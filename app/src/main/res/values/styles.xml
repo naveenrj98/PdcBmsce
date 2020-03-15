@@ -1,0 +1,57 @@
+<resources>
+
+    <!-- Base application theme. -->
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+
+
+    </style>
+
+
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium" >
+
+
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle" >normal</item>
+
+    </style>
+
+        <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Material.Title">
+
+
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
+
+    <style name="raingDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+
+
+        <item name="android:background">@android:color/white</item>
+
+        <item name="android:buttonBarPositiveButtonStyle">@style/ratingButtonDialogStyle</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/ratingButtonDialogStyle</item>
+
+    </style>
+
+
+    <style name="ratingButtonDialogStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+
+        <item name="textColor">@color/colorAccent</item>
+        <item name="android:textSize">15dp</item>
+
+
+    </style>
+
+</resources>

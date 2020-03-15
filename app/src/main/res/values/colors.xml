@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#007bff</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="overlayBackground">#7f333639</color>
+    <color name="overlayActionBar">#0e0d0e</color>
+
+    <color name="colorgreen">#00FA9A</color>
+
+    <color name="grey">#bfbfbf</color>
+    <color name="white">#fff</color>
+    <color name="black">#000000</color>
+    <color name="link_blue">#4d94ff</color>
+    <color name="t_login">#395096</color>
+    <color name="darkRed">#cc0000</color>
+    <color name="springGreen">#98FB98</color>
+    <color name="azure" >#F0FFFF</color>
+    <color name="color_option_menu">#FF3990</color>
+    <color name="filter_label_normal">#8A8889</color>
+    <color name="filter_label_selected">#221F20</color>
+
+    <color name="background" >#4DB6AC</color>
+
+</resources>
