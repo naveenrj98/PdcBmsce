@@ -35,23 +35,33 @@
 
     </style>
 
-    <style name="raingDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="raingDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert" >
 
 
         <item name="android:background">@android:color/white</item>
 
-        <item name="android:buttonBarPositiveButtonStyle">@style/ratingButtonDialogStyle</item>
-        <item name="android:buttonBarNegativeButtonStyle">@style/ratingButtonDialogStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle" >@style/ratingButtonDialogStyle</item>
+        <item name="android:buttonBarNegativeButtonStyle" >@style/ratingButtonDialogStyle</item>
 
     </style>
 
 
-    <style name="ratingButtonDialogStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+    <style name="ratingButtonDialogStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog" >
 
         <item name="textColor">@color/colorAccent</item>
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
 
 
     </style>
+    <style name="ratingDialogFadeAnim" >
+
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+
+
+    </style>
+
+
+
 
 </resources>

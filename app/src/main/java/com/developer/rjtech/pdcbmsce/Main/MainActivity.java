@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.developer.rjtech.pdcbmsce.CodingClub.CodingClubFragment;
+import com.developer.rjtech.pdcbmsce.Companies.CompaniesActivity;
 import com.developer.rjtech.pdcbmsce.Companies.CompaniesFragment;
 import com.developer.rjtech.pdcbmsce.Home.HomeFragment;
 import com.developer.rjtech.pdcbmsce.NewUpdates.NewsFragment;
@@ -59,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //------------------------------------Navigation related code------------------------------------------------------------
         setSupportActionBar(toolbar);
 
-        //------------------------------------Bottom Navigation Code Starts--------------------------------------------------
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
-
+//------------------------------------Bottom Navigation Code Starts--------------------------------------------------
         MeowBottomNavigation bottomNavigation = findViewById(R.id.bottomNavigation);
 
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home));
@@ -104,7 +105,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case ID_COMPANIES:
                         name = "NOTIFICATION";
-                        selectFragment = new CompaniesFragment();
+//                        Intent i = new Intent(getApplicationContext(), CompaniesActivity.class);
+//                        startActivity(i);
+                       selectFragment = new CompaniesFragment();
                         break;
                     case ID_ACCOUNT:
                         name = "ACCOUNT";
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     default:
                         name = "";
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectFragment).commit();
+           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectFragment).commit();
 
 
             }

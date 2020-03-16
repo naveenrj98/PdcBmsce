@@ -24,7 +24,9 @@
         android:layout_alignParentTop="true">
 
 
+
         <include layout="@layout/snippet_top_toolbar"/>
+
 
     </RelativeLayout>
 

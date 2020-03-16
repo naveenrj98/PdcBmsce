@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.developer.rjtech.pdcbmsce.Common.Common;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.Utils.StringManipulation;
 import com.developer.rjtech.pdcbmsce.models.User;
@@ -208,7 +209,7 @@ public class FirebaseMethods {
     public void addNewUser(String email, String username, String description, String website, String profile_photo){
 
         User user = new User( userID,  1,  email,  StringManipulation.condenseUsername(username) );
-
+        Common.currentUser = user;
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(userID)
                 .setValue(user);

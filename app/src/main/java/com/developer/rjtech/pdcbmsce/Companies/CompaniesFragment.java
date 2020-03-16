@@ -3,6 +3,7 @@ package com.developer.rjtech.pdcbmsce.Companies;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,15 +14,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.developer.rjtech.pdcbmsce.Common.Common;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
 import com.developer.rjtech.pdcbmsce.models.Category;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CompaniesFragment extends Fragment {
@@ -35,12 +41,20 @@ public class CompaniesFragment extends Fragment {
     TextView textFullName;
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adptor;
 
+    //--------Search Functionality---------
+    FirebaseRecyclerAdapter<Category, MenuViewHolder> searchadptor;
+    List<String> suggestList = new ArrayList<>();
+//    MaterialSearchBar materialSearchBar;
+
 
     @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_companies, container, false);
+
+
 
 
         //Auth
@@ -52,18 +66,121 @@ public class CompaniesFragment extends Fragment {
         recycler_menu.setHasFixedSize(true);
 
 
-        recycler_menu.setLayoutManager(new GridLayoutManager(getContext(),3));
+        recycler_menu.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
         loadMenu();
+//        //Search
+//        materialSearchBar = view.findViewById(R.id.searchBar);
+//        materialSearchBar.setHint("Enter Your Company");
+//        loadSuggest();
+//        materialSearchBar.setLastSuggestions(suggestList);
+//        materialSearchBar.setCardViewElevation(10);
+//        materialSearchBar.addTextChangeListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//                List<String> suggest = new ArrayList<>();
+//                for (String search : suggest) {
+//
+//                    if (search.toLowerCase().contains(materialSearchBar.getText().toLowerCase())) {
+//
+//                        suggest.add(search);
+//                    }
+//                    materialSearchBar.setLastSuggestions(suggest);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+//        materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
+//            @Override
+//            public void onSearchStateChanged(boolean enabled) {
+//                if (!enabled) {
+//                    recycler_menu.setAdapter(adptor);
+//                }
+//            }
+//
+//            @Override
+//            public void onSearchConfirmed(CharSequence text) {
+//
+//                starSearch(text);
+//
+//            }
+//
+//            @Override
+//            public void onButtonClicked(int buttonCode) {
+//
+//            }
+//        });
         return view;
     }
 
-    private void loadMenu(){
+    private void starSearch(CharSequence text) {
+
+            searchadptor = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,
+                    R.layout.menu_item,
+                    MenuViewHolder.class, category) {
+                @Override
+                protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
+
+                    menuViewHolder.textMenuName.setText(category.getName());
+                    Picasso.with(getContext()).load(category.getImage())
+                            .into(menuViewHolder.imageView);
+                    final Category clickItem = category;
+                    menuViewHolder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+
+                            Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
+                            intent.putExtra("CategoryId", adptor.getRef(position).getKey());
+                            startActivity(intent);
+                        }
+                });
+
+                }
+            };
+            recycler_menu.setAdapter(searchadptor);
+
+    }
+
+    private void loadSuggest() {
+
+            category.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+                        Category item = postSnapshot.getValue(Category.class);
+                        suggestList.add(item.getName());
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+    }
+
+    private void loadMenu() {
 
         adptor = new FirebaseRecyclerAdapter<Category,
                 MenuViewHolder>(Category.class,
                 R.layout.menu_item,
-                MenuViewHolder.class,category) {
+                MenuViewHolder.class, category) {
             @Override
             protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position) {
 
@@ -75,9 +192,9 @@ public class CompaniesFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
-                        Toast.makeText(getActivity(),""+clickItem.getName(),Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), FoodDetail.class);
-                        intent.putExtra("CategoryId",adptor.getRef(position).getKey());
+                        Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
+                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
                         startActivity(intent);
 
                     }
