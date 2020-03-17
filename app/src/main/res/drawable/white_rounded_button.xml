@@ -5,7 +5,7 @@
         android:state_pressed="true">
         <shape>
             <solid
-                android:color="@color/t_login"/>
+                android:color="@color/colorPrimary"/>
             <stroke
                 android:color="@color/black"
                 android:width="2dp"/>

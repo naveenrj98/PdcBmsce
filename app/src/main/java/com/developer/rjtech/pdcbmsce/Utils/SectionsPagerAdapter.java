@@ -2,6 +2,7 @@ package com.developer.rjtech.pdcbmsce.Utils;
 
 
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -38,4 +39,22 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         mFragmentList.add(fragment);
     }
 
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+
+            case 0:
+                return "Technical";
+            case 1:
+                return "Resume";
+            case 2:
+                return "Aptitude";
+            default:
+                return "";
+
+        }
+
+
+    }
 }

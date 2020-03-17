@@ -42,8 +42,8 @@
         fab:menu_animationDelayPerItem="55"
         fab:menu_backgroundColor="@android:color/transparent"
         fab:menu_buttonSpacing="0dp"
-        fab:menu_colorNormal="@color/background"
-        fab:menu_colorPressed="@color/background"
+        fab:menu_colorNormal="@color/colorPrimary"
+        fab:menu_colorPressed="@color/colorPrimary"
         fab:menu_colorRipple="#99d4d4d4"
         fab:menu_fab_label="RJ Profile guru"
         fab:menu_fab_size="normal"
@@ -65,9 +65,9 @@
         fab:menu_labels_textSize="15sp"
         fab:menu_openDirection="up"
         fab:menu_shadowColor="#66aff198"
-        fab:menu_shadowRadius="4dp"
+        fab:menu_shadowRadius="2dp"
         fab:menu_shadowXOffset="1dp"
-        fab:menu_shadowYOffset="4dp"
+        fab:menu_shadowYOffset="2dp"
         fab:menu_showShadow="true">
 
         <com.github.clans.fab.FloatingActionButton
