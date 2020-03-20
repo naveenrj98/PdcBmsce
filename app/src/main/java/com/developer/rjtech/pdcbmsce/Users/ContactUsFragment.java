@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.developer.rjtech.pdcbmsce.Firebase.FirebaseMethods;
 import com.developer.rjtech.pdcbmsce.Profile.AccountSettingsActivity;
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.models.ContactUs;
+import com.developer.rjtech.pdcbmsce.Model.ContactUs;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

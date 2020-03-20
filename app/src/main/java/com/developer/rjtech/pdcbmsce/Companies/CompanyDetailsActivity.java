@@ -1,24 +1,31 @@
 package com.developer.rjtech.pdcbmsce.Companies;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.QuickContactBadge;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
-import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.developer.rjtech.pdcbmsce.Common.Common;
+import com.developer.rjtech.pdcbmsce.PDFViewer.PdfActivity;
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.models.Category;
-import com.developer.rjtech.pdcbmsce.models.Rating;
+import com.developer.rjtech.pdcbmsce.Model.Category;
+import com.developer.rjtech.pdcbmsce.Model.Rating;
+import com.github.barteksc.pdfviewer.PDFView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,8 +43,13 @@ import java.util.Arrays;
 public class CompanyDetailsActivity extends AppCompatActivity implements RatingDialogListener {
     private static final String TAG = "FoodDetails";
 
-    TextView food_name, food_desription;
+    TextView food_name, food_desription, tv_pdfView;
     ImageView food_image;
+
+
+    CardView cv_interview,cv_internship,cv_jd,cv_company;
+    LinearLayout ll_interview, ll_internship, ll_jd,ll_company;
+    Button btn_dropdown, btn_interview_dropdown, btn_jd, btn_company;
 
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton  btnraingBar;
@@ -52,12 +64,112 @@ public class CompanyDetailsActivity extends AppCompatActivity implements RatingD
 
 
 
+
     Category currentfood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_companies_detail);
+
+
+
+        cv_company = findViewById(R.id.cv_company_details);
+        ll_company = findViewById(R.id.ll_company);
+        btn_company = findViewById(R.id.btn_company_dropdown);
+
+        btn_company.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (ll_company.getVisibility() == View.GONE) {
+                    TransitionManager.beginDelayedTransition(cv_company, new AutoTransition());
+                    ll_company.setVisibility(View.VISIBLE);
+                    btn_company.setBackgroundResource(R.drawable.ic_dropdown);
+                } else {
+                    TransitionManager.endTransitions(cv_company);
+                    ll_company.setVisibility(View.GONE);
+                    btn_company.setBackgroundResource(R.drawable.ic_dropdown);
+
+                }
+
+            }
+        });
+
+        cv_jd = findViewById(R.id.cv_jd);
+        ll_jd = findViewById(R.id.ll_job_description);
+        btn_jd = findViewById(R.id.btn_jd_dropdown);
+
+        btn_jd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (ll_jd.getVisibility() == View.GONE) {
+                    TransitionManager.beginDelayedTransition(cv_jd, new AutoTransition());
+                    ll_jd.setVisibility(View.VISIBLE);
+                    btn_jd.setBackgroundResource(R.drawable.ic_dropdown);
+                } else {
+                    TransitionManager.endTransitions(cv_jd);
+                    ll_jd.setVisibility(View.GONE);
+                    btn_jd.setBackgroundResource(R.drawable.ic_dropdown);
+
+                }
+
+            }
+        });
+
+        cv_internship = findViewById(R.id.cv_internship);
+        ll_internship = findViewById(R.id.ll_internship);
+        btn_dropdown = findViewById(R.id.btn_dropdown);
+
+        btn_dropdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (ll_internship.getVisibility() == View.GONE) {
+                    TransitionManager.beginDelayedTransition(cv_internship, new AutoTransition());
+                    ll_internship.setVisibility(View.VISIBLE);
+                    btn_dropdown.setBackgroundResource(R.drawable.ic_dropdown);
+                } else {
+                    TransitionManager.endTransitions(cv_internship);
+                    ll_internship.setVisibility(View.GONE);
+                    btn_dropdown.setBackgroundResource(R.drawable.ic_dropdown);
+
+                }
+
+            }
+        });
+
+        cv_interview = findViewById(R.id.cv_interview);
+        ll_interview = findViewById(R.id.ll_interview);
+        btn_interview_dropdown = findViewById(R.id.btn_interview_dropdown);
+
+        btn_interview_dropdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ll_interview.getVisibility() == View.GONE) {
+                    TransitionManager.beginDelayedTransition(cv_interview, new AutoTransition());
+                    ll_interview.setVisibility(View.VISIBLE);
+                    btn_interview_dropdown.setBackgroundResource(R.drawable.ic_dropdown);
+                } else {
+                    TransitionManager.endTransitions(cv_interview);
+                    ll_interview.setVisibility(View.GONE);
+                    btn_interview_dropdown.setBackgroundResource(R.drawable.ic_dropdown);
+
+                }
+            }
+        });
+
+        tv_pdfView = findViewById(R.id.tv_pdfname);
+        tv_pdfView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), PdfActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         //Auth
@@ -179,11 +291,14 @@ public class CompanyDetailsActivity extends AppCompatActivity implements RatingD
 
                 }
 
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
             });
+
+
 
         }
 

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +15,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.developer.rjtech.pdcbmsce.CodingClub.CodingClubFragment;
+import com.developer.rjtech.pdcbmsce.Home.HomeFragment;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
-import com.developer.rjtech.pdcbmsce.models.Category;
+import com.developer.rjtech.pdcbmsce.Model.Category;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,6 +50,8 @@ public class CompaniesFragment extends Fragment {
     List<String> suggestList = new ArrayList<>();
 //    MaterialSearchBar materialSearchBar;
 
+    SwipeRefreshLayout swipeRefreshLayout;
+
 
     @Override
 
@@ -68,7 +74,26 @@ public class CompaniesFragment extends Fragment {
 
         recycler_menu.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
-        loadMenu();
+
+
+        swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                R.color.colorgreen,
+                R.color.color_option_menu,
+                R.color.darkRed);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadMenu();
+            }
+        });
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                loadMenu();
+            }
+        });
+
 //        //Search
 //        materialSearchBar = view.findViewById(R.id.searchBar);
 //        materialSearchBar.setHint("Enter Your Company");
@@ -124,34 +149,35 @@ public class CompaniesFragment extends Fragment {
         return view;
     }
 
-    private void starSearch(CharSequence text) {
-
-            searchadptor = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,
-                    R.layout.menu_item,
-                    MenuViewHolder.class, category) {
-                @Override
-                protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
-
-                    menuViewHolder.textMenuName.setText(category.getName());
-                    Picasso.with(getContext()).load(category.getImage())
-                            .into(menuViewHolder.imageView);
-                    final Category clickItem = category;
-                    menuViewHolder.setItemClickListener(new ItemClickListener() {
-                        @Override
-                        public void onClick(View view, int position, boolean isLongClick) {
-
-                            Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
-                            intent.putExtra("CategoryId", adptor.getRef(position).getKey());
-                            startActivity(intent);
-                        }
-                });
-
-                }
-            };
-            recycler_menu.setAdapter(searchadptor);
-
-    }
+//    private void starSearch(CharSequence text) {
+//
+//            searchadptor = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,
+//                    R.layout.menu_item,
+//                    MenuViewHolder.class, category) {
+//                @Override
+//                protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
+//
+//                    menuViewHolder.textMenuName.setText(category.getName());
+//
+//                    Picasso.with(getContext()).load(category.getImage())
+//                            .into(menuViewHolder.imageView);
+//                    final Category clickItem = category;
+//                    menuViewHolder.setItemClickListener(new ItemClickListener() {
+//                        @Override
+//                        public void onClick(View view, int position, boolean isLongClick) {
+//
+//                            Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
+//                            Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
+//                            intent.putExtra("CategoryId", adptor.getRef(position).getKey());
+//                            startActivity(intent);
+//                        }
+//                });
+//
+//                }
+//            };
+//            recycler_menu.setAdapter(searchadptor);
+//
+//    }
 
     private void loadSuggest() {
 
@@ -177,30 +203,57 @@ public class CompaniesFragment extends Fragment {
 
     private void loadMenu() {
 
-        adptor = new FirebaseRecyclerAdapter<Category,
-                MenuViewHolder>(Category.class,
-                R.layout.menu_item,
-                MenuViewHolder.class, category) {
-            @Override
-            protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position) {
+            FirebaseRecyclerOptions<Category> options = new FirebaseRecyclerOptions.Builder<Category>()
+                    .setQuery(category,Category.class)
+                    .build();
 
-                viewHolder.textMenuName.setText(model.getName());
-                Picasso.with(getContext()).load(model.getImage())
-                        .into(viewHolder.imageView);
+           adptor = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(options) {
+
+               @Override
+               protected void onBindViewHolder(@NonNull MenuViewHolder holder, int position, @NonNull Category model) {
+
+                   Picasso.with(getContext()).load(model.getImage())
+                        .into(holder.imageView);
                 final Category clickItem = model;
-                viewHolder.setItemClickListener(new ItemClickListener() {
+                holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
                         Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
+                     //   getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
                         Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
                         intent.putExtra("CategoryId", adptor.getRef(position).getKey());
                         startActivity(intent);
 
                     }
                 });
-            }
-        };
+
+
+               }
+
+               @NonNull
+               @Override
+               public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                   View itemView = LayoutInflater.from(parent.getContext())
+                           .inflate(R.layout.menu_item, parent, false);
+                   return new MenuViewHolder(itemView);
+               }
+           };
+           adptor.startListening();
+
         recycler_menu.setAdapter(adptor);
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadMenu();
+    }
+
+    @Override
+    public void onStop() {
+            super.onStop();
+            adptor.stopListening();
     }
 }

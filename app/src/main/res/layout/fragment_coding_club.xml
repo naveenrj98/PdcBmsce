@@ -15,6 +15,7 @@
         android:layout_height="50dp"
         app:siTextSize="10dp"
         app:siTextColor="?attr/editTextColor"
+        android:background="@drawable/white_grey_border_bottom"
         app:siSelectedTextColor="@color/springGreen"
         app:siRadiusMax="23dp"
         app:siRadiusMin="12dp"

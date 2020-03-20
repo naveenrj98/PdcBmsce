@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.developer.rjtech.pdcbmsce.Firebase.FirebaseMethods;
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.models.User;
+import com.developer.rjtech.pdcbmsce.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

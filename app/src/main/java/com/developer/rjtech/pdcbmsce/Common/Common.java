@@ -1,18 +1,20 @@
 package com.developer.rjtech.pdcbmsce.Common;
 
 
-import com.developer.rjtech.pdcbmsce.models.User;
+import com.developer.rjtech.pdcbmsce.Model.User;
 
 public class Common {
 
 
-public  static User currentUser;
+public static User currentUser;
 
     public static final String UPDATE = "Update";
     public static final String DELETE = "Delete";
     public static final String USER_KEY = "User";
     public static final String PWD_KEY = "Password";
     public static final String BASE_URL = "https://fcm.googleapis.com/";
+    public static  String yearSelected="";
+    public static  String companyCategorySelected="";
 
 //    public static APIService getFCMClient()
 //    {

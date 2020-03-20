@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Companies.CompaniesFragment"
-    android:background="@color/colorPrimary"
-    >
+    android:id="@+id/swipe_layout"
+    android:orientation="vertical"
+    tools:context=".Companies.YearActivity"
+    android:background="@color/colorPrimary">
 
+
+<!--        <com.mancj.materialsearchbar.MaterialSearchBar-->
+<!--            android:id="@+id/searchBar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+
+<!--            app:mt_hint="Enter your Search"-->
+<!--            app:mt_speechMode="false"/>-->
 
 
 
 
     <androidx.recyclerview.widget.RecyclerView
+
         android:layout_marginTop="60dp"
-        android:id="@+id/recycler_menu"
+        android:id="@+id/recycler_company_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
@@ -26,6 +35,5 @@
 
 
     </androidx.recyclerview.widget.RecyclerView>
-
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

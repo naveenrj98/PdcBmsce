@@ -21,8 +21,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Companies.CompaniesActivity">
 
+        <activity android:name=".Companies.YearActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".Main.MainActivity">
             <intent-filter>
@@ -37,6 +42,8 @@
         <activity android:name=".Profile.AccountSettingsActivity" />
         <activity android:name=".Profile.DeveloperActivty" />
         <activity android:name=".Companies.CompanyDetailsActivity" />
+        <activity android:name=".Companies.CompanyCategoryActivity" />
+        <activity android:name=".Companies.CompanyListActivity" />
     </application>
 
 </manifest>

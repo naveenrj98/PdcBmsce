@@ -1,4 +1,4 @@
-package com.developer.rjtech.pdcbmsce.models;
+package com.developer.rjtech.pdcbmsce.Model;
 
 public class UserSettings {
 

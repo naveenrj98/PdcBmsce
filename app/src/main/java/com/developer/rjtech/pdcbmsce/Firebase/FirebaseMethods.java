@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import com.developer.rjtech.pdcbmsce.Common.Common;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.Utils.StringManipulation;
-import com.developer.rjtech.pdcbmsce.models.User;
-import com.developer.rjtech.pdcbmsce.models.UserAccountSettings;
-import com.developer.rjtech.pdcbmsce.models.UserSettings;
+import com.developer.rjtech.pdcbmsce.Model.User;
+import com.developer.rjtech.pdcbmsce.Model.UserAccountSettings;
+import com.developer.rjtech.pdcbmsce.Model.UserSettings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,8 +22,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
 
 
 public class FirebaseMethods {

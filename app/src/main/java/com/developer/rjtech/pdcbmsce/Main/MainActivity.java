@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.developer.rjtech.pdcbmsce.CodingClub.CodingClubFragment;
-import com.developer.rjtech.pdcbmsce.Companies.CompaniesActivity;
 import com.developer.rjtech.pdcbmsce.Companies.CompaniesFragment;
 import com.developer.rjtech.pdcbmsce.Home.HomeFragment;
 import com.developer.rjtech.pdcbmsce.NewUpdates.NewsFragment;
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case ID_COMPANIES:
                         name = "NOTIFICATION";
-//                        Intent i = new Intent(getApplicationContext(), CompaniesActivity.class);
+//                        Intent i = new Intent(getApplicationContext(), YearActivity.class);
 //                        startActivity(i);
                        selectFragment = new CompaniesFragment();
                         break;
@@ -221,6 +220,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         };
     }
+
 
     @Override
     public void onStart() {

@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.developer.rjtech.pdcbmsce"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -64,7 +64,7 @@ dependencies {
 
     /*------------FirebAse UI Related Dependency-------------------------------------------------*/
     implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.firebaseui:firebase-ui-database:1.2.0'
+    implementation 'com.firebaseui:firebase-ui-database:3.1.2'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
 
     implementation 'io.paperdb:paperdb:2.1'
@@ -77,6 +77,10 @@ dependencies {
 
     /*-------------------Spring Indicator for Tab Layout-------------------------------------------*/
     implementation 'com.github.chenupt.android:springindicator:1.0.2@aar'
+
+    /*------------------------PDF Viewer-----------------------------------------------------------*/
+    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
 
 }
