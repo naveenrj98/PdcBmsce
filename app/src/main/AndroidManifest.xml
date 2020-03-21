@@ -21,14 +21,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Companies.SearchActivity">
 
-        <activity android:name=".Companies.YearActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
+        <activity android:name=".Companies.YearActivity">
+
+            </activity>
         <activity android:name=".Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,6 +43,7 @@
         <activity android:name=".Companies.CompanyDetailsActivity" />
         <activity android:name=".Companies.CompanyCategoryActivity" />
         <activity android:name=".Companies.CompanyListActivity" />
+        <activity android:name=".PDFViewer.PdfActivity" />
     </application>
 
 </manifest>

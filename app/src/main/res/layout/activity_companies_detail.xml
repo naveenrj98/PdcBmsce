@@ -28,7 +28,7 @@
             >
 
             <ImageView
-                android:id="@+id/img_food"
+                android:id="@+id/img_company"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
@@ -56,14 +56,14 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnrateing"
-        app:srcCompat="@drawable/ic_star_black_24dp"
+        app:srcCompat="@drawable/ic_map_black_24dp"
         android:backgroundTint="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="6dp"
         app:pressedTranslationZ="12dp"
         app:layout_anchor="@id/app_bar_layout"
-        app:layout_anchorGravity="bottom|right|end"
+        app:layout_anchorGravity="bottom|end"
         app:useCompatPadding="true"/>
 
     <androidx.core.widget.NestedScrollView
@@ -85,31 +85,230 @@
                         
 
     <LinearLayout
+        android:id="@+id/ll_about_review"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/company_name"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:text="Company Name"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/food_name"
-            android:layout_marginTop="8dp"
-            android:padding="12dp"
-            android:text="Company Name"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-                    <LinearLayout
-                        android:id="@+id/layout_price"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btn_about_dropdown"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+
+        android:background="@drawable/ic_dropdown" />
+
+</LinearLayout>
 
 
+        <LinearLayout
+            android:id="@+id/ll_about_company"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="Headquarters :"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_headquarters"
+
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="USA"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="Founded:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_founded"
+                    android:layout_marginTop="3dp"
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="2020"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="Size:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_company_size"
+                    android:layout_marginTop="3dp"
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="100000+ Employees"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
 
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                    </LinearLayout>
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="Type:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_company_type"
+                    android:layout_marginTop="3dp"
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="Service Based"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+
+                    android:padding="12dp"
+                    android:layout_marginTop="3dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="Revenue:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_revenue"
+                    android:layout_marginTop="3dp"
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="INR 500 billian"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:padding="12dp"
+                    android:layout_marginTop="3dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="Industry:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_industry"
+                    android:layout_marginTop="3dp"
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="Enterprise Software and Network Solutions"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="Description"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_company_description"
+
+                    android:padding="12dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="At Hewlett Packard Enterprise, we bring together the brightest minds to create breakthrough technology solutions that advance the way people live and work. What sets us apart? Our people and our relentless dedication to helping our customers make their mark on the world.
+We are a team of doers, dreamers and visionaries; inspired by our purpose and driven by our strategy. We live by our three values: partner, innovate and act.
+Our legacy inspires us as we forge ahead, always pushing to discover what’s next. Every day is a new opportunity to advance and grow ourselves, our company and the industry. Some people call it an obsession, we call it a way of life."
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
 
 
@@ -132,6 +331,8 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/ll_dropdown_company"
+
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -148,18 +349,18 @@
                     android:layout_height="wrap_content" />
                 <Button
                     android:id="@+id/btn_company_dropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_dropdown"
-                    android:gravity="end"
-                    android:layout_marginLeft="110dp"
+
+                    android:layout_marginLeft="120dp"
                     />
 
 
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/ll_company"
-android:visibility="gone"
+                android:visibility="gone"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -171,7 +372,7 @@ android:visibility="gone"
 
                         android:padding="12dp"
                         android:lineSpacingMultiplier="1.5"
-                        android:text="Company Name   :"
+                        android:text="Job Role :"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="@android:color/black"
@@ -179,11 +380,11 @@ android:visibility="gone"
                         android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:id="@+id/tv_company_name"
+                        android:id="@+id/tv_company_role"
 
                         android:padding="12dp"
                         android:lineSpacingMultiplier="1.5"
-                        android:text="Google"
+                        android:text="Software Engineer 1"
                         android:textSize="14sp"
                         android:textColor="@android:color/black"
                         android:layout_width="wrap_content"
@@ -284,7 +485,7 @@ android:visibility="gone"
                         android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:id="@+id/tv_eligibleDepart"
+                        android:id="@+id/tv_eligibleDep"
                         android:layout_marginTop="3dp"
                         android:padding="12dp"
                         android:lineSpacingMultiplier="1.5"
@@ -348,6 +549,7 @@ android:visibility="gone"
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/ll_dropdown_jd"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -356,7 +558,7 @@ android:visibility="gone"
                     android:layout_marginTop="12dp"
                     android:padding="12dp"
                     android:lineSpacingMultiplier="1.5"
-                    android:text="Job Description"
+                    android:text="Job Description  "
                     android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -364,11 +566,11 @@ android:visibility="gone"
                     android:layout_height="wrap_content" />
                 <Button
                     android:id="@+id/btn_jd_dropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_dropdown"
-                    android:gravity="end"
-                    android:layout_marginLeft="110dp"
+
+                    android:layout_marginLeft="120dp"
                     />
 
 
@@ -411,40 +613,8 @@ android:visibility="gone"
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
 
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <RatingBar
-                android:id="@+id/ratingbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:isIndicator="true"
-
-                android:max="5"
-                android:rating="0" />
-
-            <TextView
-                android:id="@+id/food_description"
-                android:layout_marginTop="12dp"
-                android:padding="12dp"
-                android:lineSpacingMultiplier="1.5"
-                android:text="Description"
-                android:textSize="14sp"
-                android:textColor="@android:color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_internship"
         app:cardElevation="5dp"
@@ -457,6 +627,7 @@ android:visibility="gone"
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/ll_dropdown_internship"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -473,10 +644,10 @@ android:visibility="gone"
                     android:layout_height="wrap_content" />
                 <Button
                     android:id="@+id/btn_dropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_dropdown"
-                    android:gravity="end"
+
                      android:layout_marginLeft="110dp"
                     />
 
@@ -577,7 +748,7 @@ android:visibility="gone"
 
                         android:padding="12dp"
                         android:lineSpacingMultiplier="1.5"
-                        android:text="Conversion:"
+                        android:text="Job Type:"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="@android:color/black"
@@ -621,6 +792,7 @@ android:visibility="gone"
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/ll_dropdown_interview"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -637,10 +809,10 @@ android:visibility="gone"
                     android:layout_height="wrap_content" />
                 <Button
                     android:id="@+id/btn_interview_dropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_dropdown"
-                    android:gravity="end"
+
                     android:layout_marginLeft="110dp"
                     />
 
@@ -657,16 +829,25 @@ android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                    <TextView
 
+
+                        android:padding="12dp"
+                        android:lineSpacingMultiplier="1.5"
+                        android:text="Click Here :"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/tv_pdfname"
-
                         android:padding="12dp"
                         android:lineSpacingMultiplier="1.5"
                         android:text="Interview_Process.pdf"
                         android:textStyle="bold"
                         android:textSize="14sp"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/link_blue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 

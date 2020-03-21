@@ -10,11 +10,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.developer.rjtech.pdcbmsce.CodingClub.CodingClubFragment;
 import com.developer.rjtech.pdcbmsce.Companies.CompaniesFragment;
+import com.developer.rjtech.pdcbmsce.Companies.CompanyYearFragment;
+import com.developer.rjtech.pdcbmsce.Companies.SearchActivity;
 import com.developer.rjtech.pdcbmsce.Home.HomeFragment;
 import com.developer.rjtech.pdcbmsce.NewUpdates.NewsFragment;
 import com.developer.rjtech.pdcbmsce.Profile.AccountSettingsActivity;
@@ -26,6 +29,7 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    MaterialSearchBar materialSearchBar;
+
 
 
     @Override
@@ -54,7 +60,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.profileToolBar);
         setupFirebaseAuth();
         initImageLoader();
-
+        materialSearchBar = findViewById(R.id.search_new_bar);
+         materialSearchBar.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                 startActivity(intent);
+             }
+         });
 
         //------------------------------------Navigation related code------------------------------------------------------------
         setSupportActionBar(toolbar);
@@ -106,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         name = "NOTIFICATION";
 //                        Intent i = new Intent(getApplicationContext(), YearActivity.class);
 //                        startActivity(i);
-                       selectFragment = new CompaniesFragment();
+                       selectFragment = new CompanyYearFragment();
                         break;
                     case ID_ACCOUNT:
                         name = "ACCOUNT";

@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         Uri uri = Uri.parse("android.resource://" // First start with this,
                 + getPackageName() // then retrieve your package name,
                 + "/" // add a slash,
-                + R.raw.water); // and then finally add your video resource. Make sure it is stored
+                + R.raw.placement); // and then finally add your video resource. Make sure it is stored
         // in the raw folder.
 
         // Set the new Uri to our VideoView
