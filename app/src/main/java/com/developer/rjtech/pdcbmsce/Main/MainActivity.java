@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import com.developer.rjtech.pdcbmsce.Profile.ProfileFragment;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.Users.LoginActivity;
 import com.developer.rjtech.pdcbmsce.Utils.UniversalImageLoader;
+import com.developer.rjtech.pdcbmsce.dialogs.ExitDialogFragment;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    MaterialSearchBar materialSearchBar;
+    Button materialSearchBar;
 
 
 
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.profileToolBar);
         setupFirebaseAuth();
         initImageLoader();
-        materialSearchBar = findViewById(R.id.search_new_bar);
+        materialSearchBar = findViewById(R.id.btn_search);
          materialSearchBar.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
@@ -248,5 +250,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+    @Override
+    public void onBackPressed() {
+        new ExitDialogFragment().show(getSupportFragmentManager(), "Exit");
     }
 }

@@ -4,27 +4,27 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/white_grey_border_top"
         >
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/profileToolBar">
+            android:layout_height="60dp"
+            android:id="@+id/profileToolBar"
+            android:background="@color/colorPrimary">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.mancj.materialsearchbar.MaterialSearchBar
-                    android:id="@+id/search_new_bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    app:mt_speechMode="false"
-                    app:mt_hint="Search All Companies"
-                    />
+                <Button
+                    android:id="@+id/btn_search"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/ic_search_white"/>
 
             </RelativeLayout>
 
