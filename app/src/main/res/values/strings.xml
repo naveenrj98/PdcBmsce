@@ -11,7 +11,7 @@
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="edit_profile">Edit Profile</string>
+    <string name="edit_profile" >Edit Profile</string>
     <string name="sign_out">Sign Out</string>
     <!-- fragment names -->
     <string name="edit_profile_fragment">Edit Profile</string>
@@ -26,7 +26,7 @@
     <string name="confirm_password_dialog">ConfirmPaswordDialog</string>
 
     <!-- Firebase messages -->
-    <string name="auth_failed">Failed to Authenticate</string>
+    <string name="auth_failed" >Failed to Authenticate</string>
     <string name="auth_success">Authentication Success</string>
 
     <!-- Firebase database fields -->
@@ -160,6 +160,7 @@ Thanks For Your Support
 
 SIgn In
 </string>
+    <string name="text_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum.</string>
     <string name="title_activity_main2">Main2Activity</string>
 
     <string name="menu_home">Home</string>
@@ -169,6 +170,64 @@ SIgn In
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_main3">Main3Activity</string>
+
+    <string name="title_1">Cool card</string>
+    <string name="title_2">Ok card</string>
+    <string name="title_3">Bad card</string>
+    <string name="title_4">Ugly card</string>
+
+
+
+
+
+    <string name="content_description_open_drawer">Open Drawer</string>
+    <string name="content_description_close_drawer">Closed Drawer</string>
+
+    <string name="steps">Steps</string>
+
+    <string name="navigation_personal_info">Personal Info</string>
+    <string name="navigation_essentials">Essentials</string>
+    <string name="navigation_projects">Projects</string>
+    <string name="navigation_education">Schools</string>
+    <string name="navigation_experience">Experience</string>
+    <string name="navigation_awards">Awards</string>
+    <string name="navigation_preview">Preview</string>
+
+    <string name="action_add">Add</string>
+
+    <string name="action_print">Print</string>
+
+    <string name="hint_project_name">Project Name</string>
+    <string name="hint_detail">Detail</string>
+    <string name="hint_subtitle">Subtitle</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_company_name">Company Name</string>
+    <string name="hint_location">Location</string>
+    <string name="hint_job_title">Job Title</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_address_line1">Address line1</string>
+    <string name="hint_address_line2">Address line2</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_school_name">School Name</string>
+    <string name="hint_degree">Degree</string>
+    <string name="hint_skills">Skills</string>
+    <string name="hint_languages">Languages</string>
+
+    <string name="message_empty_list">This is empty list</string>
+
+    <string name="symbol_separator" translatable="false">ㅡ</string>
+    <string name="education">Education</string>
+
+
+
+
+
+
+
+
+
+
 
 
 </resources>

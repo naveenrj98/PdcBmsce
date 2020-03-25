@@ -6,7 +6,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,22 +18,21 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.developer.rjtech.pdcbmsce.CodingClub.CodingClubFragment;
-import com.developer.rjtech.pdcbmsce.Companies.CompaniesFragment;
 import com.developer.rjtech.pdcbmsce.Companies.CompanyYearFragment;
 import com.developer.rjtech.pdcbmsce.Companies.SearchActivity;
 import com.developer.rjtech.pdcbmsce.Home.HomeFragment;
 import com.developer.rjtech.pdcbmsce.NewUpdates.NewsFragment;
 import com.developer.rjtech.pdcbmsce.Profile.AccountSettingsActivity;
-import com.developer.rjtech.pdcbmsce.Profile.ProfileFragment;
+import com.developer.rjtech.pdcbmsce.ResumeDeatailsSettings.ProfileFragment;
 import com.developer.rjtech.pdcbmsce.R;
+import com.developer.rjtech.pdcbmsce.ResumeModel.Resume;
 import com.developer.rjtech.pdcbmsce.Users.LoginActivity;
 import com.developer.rjtech.pdcbmsce.Utils.UniversalImageLoader;
-import com.developer.rjtech.pdcbmsce.dialogs.ExitDialogFragment;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.mancj.materialsearchbar.MaterialSearchBar;
+import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     Button materialSearchBar;
+    private Resume resume;
 
 
 
@@ -70,6 +72,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                  startActivity(intent);
              }
          });
+
+        Gson gson = new Gson();
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String json = mPrefs.getString("SerializableObject", "");
+        if (json.isEmpty())
+            resume = Resume.createNewResume();
+        else
+            resume = gson.fromJson(json, Resume.class);
 
         //------------------------------------Navigation related code------------------------------------------------------------
         setSupportActionBar(toolbar);
@@ -247,12 +257,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onStop() {
         super.onStop();
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(resume);
+        prefsEditor.putString("SerializableObject", json);
+        prefsEditor.apply();
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-    @Override
-    public void onBackPressed() {
-        new ExitDialogFragment().show(getSupportFragmentManager(), "Exit");
-    }
+//    @Override
+//    public void onBackPressed() {
+//        new ExitDialogFragment().show(getSupportFragmentManager(), "Exit");
+//    }
 }

@@ -1,25 +1,40 @@
-package com.developer.rjtech.pdcbmsce.Profile;
+package com.developer.rjtech.pdcbmsce.ResumeDeatailsSettings;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 
 import com.developer.rjtech.pdcbmsce.Firebase.FirebaseMethods;
+import com.developer.rjtech.pdcbmsce.Profile.AccountSettingsActivity;
+import com.developer.rjtech.pdcbmsce.Profile.DeveloperFragment;
+import com.developer.rjtech.pdcbmsce.Profile.EditProfileFragment;
+import com.developer.rjtech.pdcbmsce.Profile.SignOutFragment;
 import com.developer.rjtech.pdcbmsce.R;
+import com.developer.rjtech.pdcbmsce.ResumeModel.Resume;
+import com.developer.rjtech.pdcbmsce.Users.ContactUsFragment;
+import com.developer.rjtech.pdcbmsce.Utils.SectionsStatePagerAdapter;
 import com.developer.rjtech.pdcbmsce.Utils.UniversalImageLoader;
 import com.developer.rjtech.pdcbmsce.Model.UserAccountSettings;
 import com.developer.rjtech.pdcbmsce.Model.UserSettings;
@@ -30,7 +45,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -57,6 +75,13 @@ public class ProfileFragment extends Fragment {
    // private BottomNavigationViewEx bottomNavigationView;
     private Context mContext;
 
+    private SectionsStatePagerAdapter pagerAdapter;
+    private ViewPager mViewPager;
+    private RelativeLayout mRelativeLayout;
+
+    ListView listView;
+    private Resume resume;
+
 
     @Nullable
     @Override
@@ -71,7 +96,7 @@ public class ProfileFragment extends Fragment {
         mFollowers = view.findViewById(R.id.tvFollowers);
         mFollowing = view.findViewById(R.id.tvFollowing);
         mProgressBar = view.findViewById(R.id.profileProgressBar);
-        gridView = view.findViewById(R.id.gridView);
+      //  gridView = view.findViewById(R.id.gridView);
         toolbar = view.findViewById(R.id.profileToolBar);
         profileMenu = view.findViewById(R.id.profileMenu);
        // bottomNavigationView = view.findViewById(R.id.bottomNavViewBar);
@@ -79,14 +104,16 @@ public class ProfileFragment extends Fragment {
         mFirebaseMethods = new FirebaseMethods(getActivity());
         Log.d(TAG, "onCreateView: stared.");
 
-
-
-
-//        setupToolbar();
-
         setupFirebaseAuth();
 
-        TextView editProfile = view.findViewById(R.id.textEditProfile);
+        mViewPager = view.findViewById(R.id.container);
+        mRelativeLayout = view.findViewById(R.id.fragment_profile_layout);
+        listView = view.findViewById(R.id.lvAccountSettings);
+
+        setupSettingsList();
+        setupFragments();
+
+        Button editProfile = view.findViewById(R.id.textEditProfile);
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +123,9 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+
 
         return view;
     }
@@ -121,6 +151,55 @@ public class ProfileFragment extends Fragment {
 
 
     }
+
+
+    private void setupFragments(){
+        pagerAdapter = new SectionsStatePagerAdapter(getChildFragmentManager());
+        pagerAdapter.addFragment(new PersonalInformation_Fragment(), "Personal Information"); //fragment 0
+        pagerAdapter.addFragment(new Education_Fragment(), "Education"); //fragment 1
+        pagerAdapter.addFragment(new WorkExperience_Fragment(), "Work Experience"); //fragment 2
+        pagerAdapter.addFragment(new Project_Fragment(), "Project"); //fragment 3
+        pagerAdapter.addFragment(new AdditionalInformation_Fragment(), "Additional Information"); //fragment 4
+        pagerAdapter.addFragment(new AddSignature_Fragment(), "Add Signature"); //fragment 5
+
+
+
+    }
+
+    private void setViewPager(int fragmentNumber){
+        mRelativeLayout.setVisibility(View.GONE);
+        Log.d(TAG, "setViewPager: navigating to fragment #: " + fragmentNumber);
+        mViewPager.setAdapter(pagerAdapter);
+        mViewPager.setCurrentItem(fragmentNumber);
+    }
+
+    private void setupSettingsList(){
+        Log.d(TAG, "setupSettingsList: initializing 'Account Settings' list.");
+
+
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Personal Information"); //fragment 0
+
+        options.add("Education"); //fragement 1
+        options.add("Work Experience"); //fragement 2
+        options.add("Project"); //fragement 3
+        options.add("Additional Information");
+        options.add("Add Signature");
+
+
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, options);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG, "onItemClick: navigating to fragment#: " + position);
+                setViewPager(position);
+            }
+        });
+
+    }
+
 
 
 //    /**
@@ -200,6 +279,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }

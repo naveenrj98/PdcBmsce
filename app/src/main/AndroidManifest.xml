@@ -21,27 +21,52 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Companies.SearchActivity">
+
+        <activity android:name=".TestActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".Companies.YearActivity">
-
-            </activity>
-        <activity android:name=".Main.MainActivity">
+        <activity android:name=".Companies.SearchActivity" />
+        <activity android:name=".Companies.YearActivity" />
+        <activity android:name=".Main.MainActivity"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ResumeFragments.EditActivity"
+            android:parentActivityName=".Main.MainActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main.MainActivity" />
+        </activity>
+
+
+
         <activity android:name=".Users.LoginActivity" />
         <activity android:name=".Users.RegisterActivity" />
         <activity android:name=".Profile.ProfileActivity" />
         <activity android:name=".Profile.AccountSettingsActivity" />
         <activity android:name=".Profile.DeveloperActivty" />
         <activity android:name=".Companies.CompanyDetailsActivity" />
-        <activity android:name=".Companies.CompanyCategoryActivity" />
+        <activity android:name=".Companies.CompanyCategoryActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity android:name=".Companies.CompanyListActivity" />
         <activity android:name=".PDFViewer.PdfActivity" />
     </application>
