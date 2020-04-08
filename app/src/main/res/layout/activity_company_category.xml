@@ -7,7 +7,7 @@
     android:id="@+id/swipe_layout"
     android:orientation="vertical"
     tools:context=".Companies.YearActivity"
-    android:background="@color/colorPrimary">
+    >
 
 
 <!--        <com.mancj.materialsearchbar.MaterialSearchBar-->

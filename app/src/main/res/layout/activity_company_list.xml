@@ -7,7 +7,7 @@
     android:id="@+id/swipe_layout"
     android:orientation="vertical"
     tools:context=".Companies.CompanyListActivity"
-    android:background="@color/colorPrimary">
+    >
 
 <!--    <RelativeLayout-->
 <!--        android:id="@+id/rel1"-->

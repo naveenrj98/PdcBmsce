@@ -10,4 +10,5 @@
     <dimen name="margin_top">16dp</dimen>
     <dimen name="margin_left">10dp</dimen>
     <dimen name="padding_top">25dp</dimen>
+    <dimen name="font_size">16dp</dimen>
 </resources>
