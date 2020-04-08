@@ -7,7 +7,7 @@
     android:id="@+id/swipe_layout"
     android:orientation="vertical"
     tools:context=".Companies.YearActivity"
-    android:background="@color/colorPrimary">
+    >
 
 
     <!--        <com.mancj.materialsearchbar.MaterialSearchBar-->
@@ -33,6 +33,33 @@
 
         >
     </androidx.recyclerview.widget.RecyclerView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/ccategory_progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/pleaseWait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+
+            android:text="Please wait....."
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>
 

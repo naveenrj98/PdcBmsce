@@ -15,7 +15,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="ENQUIRY HERE"
+        android:text="Fill Details"
         android:textStyle="bold"
         android:textSize="30dp"
 

@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Companies.YearActivity"
+    android:id="@+id/swipe_layout"
+    android:orientation="vertical"
+    tools:context=".Companies.CompanyListActivity"
+    android:background="@color/white">
 
-    >
+    <!--    <RelativeLayout-->
+    <!--        android:id="@+id/rel1"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        >-->
 
+    <!--        <com.mancj.materialsearchbar.MaterialSearchBar-->
+    <!--            android:id="@+id/searchBar"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
 
+    <!--            app:mt_hint="Enter your Search"-->
+    <!--            app:mt_speechMode="false"/>-->
 
+    <!--    </RelativeLayout>-->
 
 
     <RelativeLayout
@@ -20,7 +33,7 @@
         <androidx.recyclerview.widget.RecyclerView
 
             android:layout_marginTop="60dp"
-            android:id="@+id/recycler_menu"
+            android:id="@+id/recycler_developer_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
@@ -35,7 +48,7 @@
             android:orientation="vertical">
 
             <ProgressBar
-                android:id="@+id/year_progressBar"
+                android:id="@+id/list_progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -56,8 +69,5 @@
         </LinearLayout>
 
     </RelativeLayout>
-
-
-
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -29,68 +29,6 @@ public class DeveloperActivty extends AppCompatActivity {
         setContentView(R.layout.activity_developer_activty);
         init();
 
-//
-//// --------------------------------------Floating Action ------------------------------------------------------------------
-//        materialDesignFAM = (FloatingActionMenu) findViewById(R.id.social_floating_menu);
-//        fab_fb = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.floating_facebook);
-//        fab_linkedin = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.floating_linkedin);
-//        fab_insta= (com.github.clans.fab.FloatingActionButton) findViewById(R.id.floating_instagram);
-//        fab_github = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.floating_github);
-//        fab_web = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.floating_web);
-//        fab_help = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.floating_help);
-//
-//        fab_fb.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                //TODO something when floating action menu first item clicked
-//                Intent facebookIntent = getOpenFacebookIntent(getApplicationContext());
-//                startActivity(facebookIntent);
-//
-//            }
-//        });
-//        fab_linkedin.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                //TODO something when floating action menu third item clicked
-//                Intent linkdinIntent = getOpenLinkdinIntent(getApplicationContext());
-//                startActivity(linkdinIntent);
-//
-//
-//            }
-//        });
-//        fab_insta.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//
-//                //TODO something when floating action menu second item clicked
-//                Intent instagramIntent = getOpenInstagramIntent(getApplicationContext());
-//                startActivity(instagramIntent);
-//
-//            }
-//        });
-//
-//        fab_github.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                //TODO something when floating action menu first item clicked
-//                Intent googleplusIntent = getOpenGithubIntent(getApplicationContext());
-//                startActivity(googleplusIntent);
-//            }
-//        });
-//        fab_web.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                //TODO something when floating action menu third item clicked
-//                Intent linkdinIntent = getOpenWebIntent(getApplicationContext());
-//                startActivity(linkdinIntent);
-//
-//            }
-//        });
-//        fab_help.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                //TODO something when floating action menu third item clicked
-//                Intent intent = new Intent(getApplicationContext(), AccountSettingsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-
-
 
     }
 

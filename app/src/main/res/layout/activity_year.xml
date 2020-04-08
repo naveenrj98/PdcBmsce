@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Companies.YearActivity"
-    android:background="@color/colorPrimary">
+    >
 
 <!--    <RelativeLayout-->
 <!--        android:id="@+id/rel1"-->

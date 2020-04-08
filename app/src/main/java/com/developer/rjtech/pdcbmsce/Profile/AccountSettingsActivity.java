@@ -76,7 +76,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         pagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new EditProfileFragment(), getString(R.string.edit_profile_fragment)); //fragment 0
 
-        pagerAdapter.addFragment(new DeveloperFragment(), "Developers"); //fragment 1
+        pagerAdapter.addFragment(new DeveloperListFragment(), "Developers"); //fragment 1
         pagerAdapter.addFragment(new ContactUsFragment(), "Contact Us"); //fragment 2
         pagerAdapter.addFragment(new SignOutFragment(), getString(R.string.sign_out_fragment)); //fragment 3
 

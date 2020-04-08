@@ -31,8 +31,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="Developers"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size"
+                    android:textColor="@color/black"
                     android:layout_marginStart="5dp"
                     android:id="@+id/profileName"/>
 

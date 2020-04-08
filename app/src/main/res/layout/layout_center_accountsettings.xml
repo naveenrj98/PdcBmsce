@@ -14,9 +14,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/textSettings"
             android:text="Settings"
-            android:textSize="25dp"
+            android:textSize="@dimen/font_size"
             android:textColor="@color/black"
-            android:background="@color/azure"/>
+            />
 
 
         <ListView

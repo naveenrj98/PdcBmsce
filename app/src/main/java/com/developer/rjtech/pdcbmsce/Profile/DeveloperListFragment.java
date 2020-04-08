@@ -1,4 +1,4 @@
-package com.developer.rjtech.pdcbmsce.Companies;
+package com.developer.rjtech.pdcbmsce.Profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.developer.rjtech.pdcbmsce.Common.Common;
+import com.developer.rjtech.pdcbmsce.Companies.CompanyDetailsActivity;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.Model.Category;
 import com.developer.rjtech.pdcbmsce.Model.CompanyList;
+import com.developer.rjtech.pdcbmsce.Model.DeveloperList;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.ViewHolder.CompanyListViewHolder;
+import com.developer.rjtech.pdcbmsce.ViewHolder.DeveloperListViewHolder;
 import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -33,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CompanyListFragment extends Fragment {
+public class DeveloperListFragment extends Fragment {
 
 
     //---------Menu ViewHolder--------
@@ -42,12 +45,11 @@ public class CompanyListFragment extends Fragment {
     RecyclerView recycler_list;
     RecyclerView.LayoutManager layoutManager;
     TextView textFullName;
-    FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder> adptor;
+    FirebaseRecyclerAdapter<DeveloperList, DeveloperListViewHolder> adptor;
 
-    //--------Search Functionality---------
-    FirebaseRecyclerAdapter<Category, MenuViewHolder> searchadptor;
+
     List<String> suggestList = new ArrayList<>();
-    MaterialSearchBar materialSearchBar;
+
     String categoryId="";
     SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar progressBar;
@@ -57,21 +59,20 @@ public class CompanyListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_company_list, container, false);
+        View view= inflater.inflate(R.layout.fragment_developer_list, container, false);
 
         //Auth
         database = FirebaseDatabase.getInstance();
-        clist = database.getReference("CompanyYear").child(Common.yearSelected)
-                .child("details").child("Companies");
+        clist = database.getReference("Developers");
 
 
-        recycler_list = view.findViewById(R.id.recycler_company_list);
+        recycler_list = view.findViewById(R.id.recycler_developer_list);
         recycler_list.setHasFixedSize(true);
 
         pleasewait = view.findViewById(R.id.pleaseWait);
         progressBar = view.findViewById(R.id.list_progressBar);
         progressBar.setVisibility(View.VISIBLE);
-        recycler_list.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        recycler_list.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
@@ -82,17 +83,9 @@ public class CompanyListFragment extends Fragment {
             @Override
             public void onRefresh() {
 
-                categoryId = getArguments().getString("CategoryId");
-                loadListCompany(categoryId);
-//                if(getArguments() != null){
-//
-//
-//                    categoryId = getArguments().getString("CategoryId");
-//
-//                }
-//                if (!categoryId.isEmpty() && categoryId != null) {
-//                    loadListCompany(categoryId);
-//                }
+
+                loadListCompany();
+
 
             }
         });
@@ -100,19 +93,11 @@ public class CompanyListFragment extends Fragment {
         swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
-                categoryId = getArguments().getString("CategoryId");
 
 
-                loadListCompany(categoryId);
 
+                loadListCompany();
 
-//                if(getArguments() != null){
-//                    categoryId = getArguments().getString("CategoryId");
-//
-//                }
-//                if (!categoryId.isEmpty() && categoryId != null) {
-//                    loadListCompany(categoryId);
-//                }
 
             }
         });
@@ -120,29 +105,36 @@ public class CompanyListFragment extends Fragment {
         return view;
     }
 
-    private void loadListCompany(String categoryId) {
+    private void loadListCompany() {
 
 
-        FirebaseRecyclerOptions<CompanyList> options = new FirebaseRecyclerOptions.Builder<CompanyList>()
-                .setQuery(clist.orderByChild("ccID").equalTo(categoryId),CompanyList.class)
+        FirebaseRecyclerOptions<DeveloperList> options = new FirebaseRecyclerOptions.Builder<DeveloperList>()
+                .setQuery(clist,DeveloperList.class)
                 .build();
 
-        adptor = new FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder>(options) {
+        adptor = new FirebaseRecyclerAdapter<DeveloperList, DeveloperListViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CompanyListViewHolder companyListViewHolder, int i, @NonNull CompanyList companyList) {
+            protected void onBindViewHolder(@NonNull DeveloperListViewHolder developerListViewHolder, int i, @NonNull DeveloperList developerList) {
 
-                Picasso.with(getActivity()).load(companyList.getImage())
-                        .into(companyListViewHolder.imageView);
-                final CompanyList clickItem = companyList;
-                companyListViewHolder.setItemClickListener(new ItemClickListener() {
+
+                developerListViewHolder.d_name.setText(developerList.getName());
+                developerListViewHolder.d_designation.setText(developerList.getDesignation());
+                developerListViewHolder.d_college.setText(developerList.getCollege());
+
+                Picasso.with(getActivity()).load(developerList.getImage())
+                        .into(developerListViewHolder.d_image);
+                final DeveloperList clickItem = developerList;
+
+                developerListViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
                         Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
-                    intent.putExtra("CategoryId", adptor.getRef(position).getKey());
-                        Common.companyCategorySelected = adptor.getRef(position).getKey();
+                        Intent intent = new Intent(getActivity(), DevelopersDetailsActivity.class);
+
+                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
                         startActivity(intent);
+
 
                     }
                 });
@@ -153,12 +145,14 @@ public class CompanyListFragment extends Fragment {
 
             @NonNull
             @Override
-            public CompanyListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public DeveloperListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.company_list_item, parent, false);
-                return new CompanyListViewHolder(itemView);
+                        .inflate(R.layout.developer_list_item, parent, false);
+                return new DeveloperListViewHolder(itemView);
             }
         };
+
+
 
 
         adptor.startListening();
@@ -172,7 +166,7 @@ public class CompanyListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        loadListCompany(categoryId);
+        loadListCompany();
     }
 
     @Override

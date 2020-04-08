@@ -11,6 +11,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,9 @@ public class CompanyCategoryFragment extends Fragment {
     List<String> suggestList = new ArrayList<>();
     MaterialSearchBar materialSearchBar;
 
-    SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private ProgressBar progressBar;
+    private TextView pleasewait;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +66,9 @@ public class CompanyCategoryFragment extends Fragment {
         recycler_category = view.findViewById(R.id.recycler_company_category);
         recycler_category.setHasFixedSize(true);
 
+        pleasewait = view.findViewById(R.id.pleaseWait);
+        progressBar = view.findViewById(R.id.ccategory_progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         recycler_category.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
@@ -80,7 +86,9 @@ public class CompanyCategoryFragment extends Fragment {
         swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
+
                 loadMenu();
+
             }
         });
         return view;
@@ -124,6 +132,8 @@ public class CompanyCategoryFragment extends Fragment {
 
                     }
                 });
+                progressBar.setVisibility(View.GONE);
+                pleasewait.setVisibility(View.GONE);
 
 
             }
@@ -139,6 +149,7 @@ public class CompanyCategoryFragment extends Fragment {
         adptor.startListening();
 
         recycler_category.setAdapter(adptor);
+
         swipeRefreshLayout.setRefreshing(false);
     }
 

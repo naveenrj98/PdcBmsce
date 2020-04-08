@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,11 +30,12 @@ import java.net.URL;
 public class PdfActivity extends AppCompatActivity {
 
     PDFView pdfView;
-    TextView tv_pdfView;
+    TextView tv_pdfView,pleasewait;
 
     //---------Menu ViewHolder--------
     FirebaseDatabase database;
     DatabaseReference mref;
+    ProgressBar progressBar;
 
 
     @Override
@@ -42,7 +45,9 @@ public class PdfActivity extends AppCompatActivity {
 
         pdfView = findViewById(R.id.pdfView);
         tv_pdfView = findViewById(R.id.tv_pdfview);
-
+        progressBar = findViewById(R.id.pdf_progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        pleasewait = findViewById(R.id.pleaseWait);
         database = FirebaseDatabase.getInstance();
         database = FirebaseDatabase.getInstance();
         String companyID = getIntent().getStringExtra("companyID");
@@ -55,6 +60,7 @@ public class PdfActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                progressBar.setVisibility(View.VISIBLE);
                 CompanyCategory value = dataSnapshot.getValue(CompanyCategory.class);
                 tv_pdfView.setText(value.getPdfurl());
                 String url = tv_pdfView.getText().toString();
@@ -66,6 +72,7 @@ public class PdfActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "Failed to load", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
 
             }
         });
@@ -91,7 +98,10 @@ public class PdfActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(InputStream inputStream) {
+
                 pdfView.fromStream(inputStream).load();
+                progressBar.setVisibility(View.GONE);
+                pleasewait.setVisibility(View.GONE);
             }
         }
 

@@ -53,65 +53,6 @@ public class DeveloperFragment extends Fragment {
 
 
 
-// --------------------------------------Floating Action ------------------------------------------------------------------
-        materialDesignFAM = view.findViewById(R.id.social_floating_menu);
-        fab_fb = view.findViewById(R.id.floating_facebook);
-        fab_linkedin = view.findViewById(R.id.floating_linkedin);
-        fab_insta= view.findViewById(R.id.floating_instagram);
-        fab_github = view.findViewById(R.id.floating_github);
-        fab_web = view.findViewById(R.id.floating_web);
-        fab_help = view.findViewById(R.id.floating_help);
-
-        fab_fb.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu first item clicked
-                Intent facebookIntent = getOpenFacebookIntent(getActivity());
-                startActivity(facebookIntent);
-
-            }
-        });
-        fab_linkedin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu third item clicked
-                Intent linkdinIntent = getOpenLinkdinIntent(getActivity());
-                startActivity(linkdinIntent);
-
-
-            }
-        });
-        fab_insta.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                //TODO something when floating action menu second item clicked
-                Intent instagramIntent = getOpenInstagramIntent(getActivity());
-                startActivity(instagramIntent);
-
-            }
-        });
-
-        fab_github.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu first item clicked
-                Intent googleplusIntent = getOpenGithubIntent(getActivity());
-                startActivity(googleplusIntent);
-            }
-        });
-        fab_web.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu third item clicked
-                Intent linkdinIntent = getOpenWebIntent(getActivity());
-                startActivity(linkdinIntent);
-
-            }
-        });
-        fab_help.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu third item clicked
-                Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
         return view;
     }

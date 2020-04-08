@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,8 @@ public class CompanyYearFragment extends Fragment {
     MaterialSearchBar materialSearchBar;
 
     SwipeRefreshLayout swipeRefreshLayout;
+    private ProgressBar progressBar;
+    private TextView pleasewait;
 
 
     @Override
@@ -62,6 +65,9 @@ public class CompanyYearFragment extends Fragment {
         recycler_menu = view.findViewById(R.id.recycler_menu);
         recycler_menu.setHasFixedSize(true);
 
+        pleasewait = view.findViewById(R.id.pleaseWait);
+        progressBar = view.findViewById(R.id.year_progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         recycler_menu.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
@@ -80,7 +86,9 @@ public class CompanyYearFragment extends Fragment {
         swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
+
                 loadMenu();
+
             }
         });
 
@@ -101,6 +109,7 @@ public class CompanyYearFragment extends Fragment {
 
                 Picasso.with(getActivity()).load(model.getImage())
                         .into(holder.imageView);
+
                 final Year clickItem = model;
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
@@ -116,6 +125,8 @@ public class CompanyYearFragment extends Fragment {
 
                     }
                 });
+                progressBar.setVisibility(View.GONE);
+                pleasewait.setVisibility(View.GONE);
 
 
             }
@@ -125,13 +136,19 @@ public class CompanyYearFragment extends Fragment {
             public YearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View itemView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.year_item, parent, false);
+
                 return new YearViewHolder(itemView);
+
             }
+
         };
+
         adptor.startListening();
 
         recycler_menu.setAdapter(adptor);
+
         swipeRefreshLayout.setRefreshing(false);
+
     }
 
     @Override

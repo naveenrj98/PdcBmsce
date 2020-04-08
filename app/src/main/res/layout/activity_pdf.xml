@@ -7,10 +7,40 @@
     android:visibility="visible"
     tools:context=".PDFViewer.PdfActivity">
 
+
+
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/pdf_progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/pleaseWait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+
+            android:text="Please wait....."
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tv_pdfview"
