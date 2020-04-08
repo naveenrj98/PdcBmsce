@@ -10,6 +10,7 @@
 
 
     <github.chenupt.springindicator.SpringIndicator
+        android:layout_marginTop="60dp"
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -24,8 +25,9 @@
 
         />
     <github.chenupt.springindicator.viewpager.ScrollerViewPager
+        android:layout_below="@+id/tabs"
         android:id="@+id/container"
-        android:layout_marginTop="50dp"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

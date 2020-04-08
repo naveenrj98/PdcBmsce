@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     >
 
@@ -13,16 +14,33 @@
 <!--        <include layout="@layout/snippet_top_profilebar"/>-->
 
 <!--    </RelativeLayout>-->
-
+    <include layout="@layout/layout_center_viewpager"/>
+<RelativeLayout
+    android:id="@+id/fragment_profile_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <RelativeLayout
+        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relLayout1"
+
         android:id="@+id/relLayout2">
 
         <include layout="@layout/layout_center_profile"/>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relLayout13"
+        android:layout_below="@+id/relLayout2"
+        >
+
+        <include layout="@layout/fragment_resume_account_settings"/>
+
+    </RelativeLayout>
+
 
     <ProgressBar
         android:id="@+id/profileProgressBar"
@@ -32,6 +50,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:indeterminate="false" />
+
+</RelativeLayout>
+
+
 
 
 

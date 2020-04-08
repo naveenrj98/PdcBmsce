@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="10dp"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="0dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_item"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/HeadLineTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="10dp"
+
+
+            tools:text="Title" />
+
+        <TextView
+            android:layout_toRightOf="@+id/title"
+            android:id="@+id/separator"
+            style="@style/BoldTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+
+            android:text="@string/symbol_separator"
+            />
+
+        <TextView
+            android:id="@+id/detail"
+            style="@style/BoldTextView"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+
+            android:layout_toRightOf="@+id/separator"
+            tools:text="Detail" />
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/subtitle"
+            style="@style/BoldTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textStyle="normal"
+            android:layout_below="@+id/detail"
+
+            tools:text="Subtitle" />
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subtitle"
+            android:maxLines="5"
+            android:textSize="16sp"
+
+            tools:text="description" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@id/description" />
+        <LinearLayout
+
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:layout_below="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="76dp"
+                android:layout_margin="5dp"
+                android:layout_height="30dp"
+                android:background="@color/green"
+                android:text="update" />
+
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_gravity="bottom|right"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+                android:src="@drawable/ic_delete_black_24dp" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>

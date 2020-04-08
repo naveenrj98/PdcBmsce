@@ -130,6 +130,7 @@ public class EditProfileFragment extends Fragment implements
 
     //EditProfile Fragment widgets
     private EditText mDisplayName, mUsername, mWebsite, mDescription, mEmail, mPhoneNumber;
+
     private TextView mChangeProfilePhoto;
     private CircleImageView mProfilePhoto;
 

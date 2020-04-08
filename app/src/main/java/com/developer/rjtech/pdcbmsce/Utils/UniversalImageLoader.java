@@ -20,7 +20,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 public class UniversalImageLoader {
 
-    private static final int defaultImage = R.drawable.naveenr_image;
+    private static final int defaultImage = R.drawable.ic_p1;
     private Context mContext;
 
     public UniversalImageLoader(Context context) {

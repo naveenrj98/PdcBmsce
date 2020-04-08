@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#007bff</color>
+    <color name="colorPrimary">#1293D2</color>
     <color name="colorPrimaryDark">@color/design_default_color_primary</color>
     <color name="colorAccent">#426FE1</color>
     <color name="overlayBackground">#7f333639</color>
