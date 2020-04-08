@@ -99,18 +99,14 @@
         android:padding="12dp"
         android:text="Company Name"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
+        android:textSize="@dimen/font_size"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_about_dropdown"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"
 
-        android:background="@drawable/ic_dropdown" />
+
+
 
 </LinearLayout>
 
@@ -315,6 +311,15 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
 
 
     </LinearLayout>
+        <Button
+            android:id="@+id/btn_about_dropdown"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center|end"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/ic_dropdown" />
 
 
 
@@ -343,18 +348,11 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
                     android:lineSpacingMultiplier="1.5"
                     android:text="Company Details"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/font_size"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <Button
-                    android:id="@+id/btn_company_dropdown"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_dropdown"
 
-                    android:layout_marginLeft="120dp"
-                    />
 
 
             </LinearLayout>
@@ -535,6 +533,15 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
 
 
         </LinearLayout>
+        <Button
+            android:id="@+id/btn_company_dropdown"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center|end"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/ic_dropdown" />
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -560,18 +567,11 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
                     android:lineSpacingMultiplier="1.5"
                     android:text="Job Description  "
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/font_size"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <Button
-                    android:id="@+id/btn_jd_dropdown"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_dropdown"
 
-                    android:layout_marginLeft="120dp"
-                    />
 
 
             </LinearLayout>
@@ -611,6 +611,16 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
 
 
         </LinearLayout>
+        <Button
+            android:id="@+id/btn_jd_dropdown"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center|end"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/ic_dropdown" />
+
 
     </androidx.cardview.widget.CardView>
 
@@ -638,18 +648,13 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
                     android:lineSpacingMultiplier="1.5"
                     android:text="Internship Details"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/font_size"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <Button
-                    android:id="@+id/btn_dropdown"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_dropdown"
 
-                     android:layout_marginLeft="110dp"
-                    />
+
+
 
 
             </LinearLayout>
@@ -778,6 +783,15 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
 
 
         </LinearLayout>
+        <Button
+            android:id="@+id/btn_dropdown"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center|end"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/ic_dropdown" />
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -803,18 +817,11 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
                     android:lineSpacingMultiplier="1.5"
                     android:text="Interview Process"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/font_size"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <Button
-                    android:id="@+id/btn_interview_dropdown"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_dropdown"
 
-                    android:layout_marginLeft="110dp"
-                    />
 
 
             </LinearLayout>
@@ -864,6 +871,16 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
 
 
         </LinearLayout>
+        <Button
+            android:id="@+id/btn_interview_dropdown"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center|end"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/ic_dropdown" />
+
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
