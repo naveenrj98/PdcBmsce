@@ -113,7 +113,7 @@
 
     <string name="roboto_medium">sans-serif-medium</string>
     <string name="filter_normal">Normal</string>
-    <string name="action_save">SAVE</string>
+
     <string name="action_open">OPEN</string>
 
     <!-- facebook  ... -->
@@ -127,7 +127,7 @@
     <!--     Spinner Items-->
 
     <string name="make_an_order">Make an order</string>
-    <string name="dialog_title">Items available in a shop</string>
+
     <string name="ok_label">OK</string>
     <string name="dismiss_label">Dismiss</string>
     <string name="clear_all_label">Clear all</string>
@@ -171,10 +171,9 @@ SIgn In
     <string name="menu_send">Send</string>
     <string name="title_activity_main3">Main3Activity</string>
 
-    <string name="title_1">Cool card</string>
-    <string name="title_2">Ok card</string>
-    <string name="title_3">Bad card</string>
+
     <string name="title_4">Ugly card</string>
+
 
 
 
@@ -194,7 +193,7 @@ SIgn In
     <string name="navigation_preview">Preview</string>
 
     <string name="action_add">Add</string>
-
+    <string name="action_save">Save</string>
     <string name="action_print">Print</string>
 
     <string name="hint_project_name">Project Name</string>
@@ -222,6 +221,81 @@ SIgn In
 
 
 
+
+
+
+    <string name="personal">Personalia:</string>
+    <string name="name_text">Name:</string>
+    <string name="email_text">Email:</string>
+    <string name="phone_text">Phone:</string>
+    <string name="add_text">Address:</string>
+    <string name="dob_text">Date Of Birth:</string>
+    <string name="objective">Objective:</string>
+    <string name="submit">Submit</string>
+    <string name="p_quality">Personal Qualities:</string>
+    <string name="plus">+</string>
+    <string name="tech_skills">Technical Skills:</string>
+    <string name="title">Title:</string>
+    <string name="subtitle">Subtitle:</string>
+    <string name="title_1">Title 1:</string>
+    <string name="title_2">Title 2:</string>
+    <string name="title_3">Title 3:</string>
+    <string name="btech">BTech</string>
+    <string name="intermediate">12th</string>
+    <string name="highschool">10th</string>
+    <string name="institute">Institute:</string>
+    <string name="university">University/Board:</string>
+    <string name="year">Year:</string>
+    <string name="academia">Academia</string>
+    <string name="training_text">Industrial Trainings/Internships:</string>
+    <string name="training_title">Training Title:</string>
+    <string name="project_name">Project Name:</string>
+    <string name="project_details">Project Details:</string>
+    <string name="toText">To:</string>
+    <string name="fromText">From:</string>
+    <string name="objective_text">To work in an organization where culture of freedom and working for initiatives is ensured, facilitating my contribution through thoughts and action to the company’s vision and thus achieve self development by playing a significant role in building the organization.</string>
+    <string name="aoi_text">Areas Of Interest:</string>
+    <string name="dialog_title">Please Confirm!</string>
+    <string name="dialog_msg">Are You Sure Want To Exit?</string>
+    <string name="dialog_yes">YES</string>
+    <string name="dialog_no">NO</string>
+    <string name="quality0">Strong Analytical and People Management Skills.</string>
+    <string name="quality1">Accuracy and Attention to details.</string>
+    <string name="quality2">Passion for constant improvement.</string>
+    <string name="quality3">Ability to take fast and practical decisions.</string>
+    <string name="quality4">Excellent Organization and prioritisation skills.</string>
+    <string name="skillTitle0">Operating System</string>
+    <string name="skillTitle1">IDEs</string>
+    <string name="skillTitle2">Programming Languages</string>
+    <string name="skillTitle3">Databases</string>
+    <string name="skillTitle4">Web Technologies</string>
+    <string name="skillSub0">Linux(UBUNTU) &amp; Windows.</string>
+    <string name="skillSub1">NetBeans, Android Studio, Eclipse.</string>
+    <string name="skillSub2"> C, C++, Java, JavaScript, SQL.</string>
+    <string name="skillSub3"> Oracle, MySQL.</string>
+    <string name="skillSub4">HTML, DHTML, CSS.</string>
+    <string name="trainingTitle0">6 Weeks Training on Android from DRDO.</string>
+    <string name="trainingTitle1">6 Weeks Training on Java from CMC Ltd.</string>
+    <string name="projectTitle0">Resume Builder</string>
+    <string name="projectTitle1">Crime Management System</string>
+    <string name="projectDetails0">Resume Builder is an Android application developed using Android Studio. iText Library is used to create PDF in this application. This Application can be used by students to generate Resume efficiently.</string>
+    <string name="projectDetails1">Crime Management System is a System developed using Java(Core) as Frontend and Oracle SQL database as Backend. This System can be used to report FIRs against crimes by the Citizens and to handle these FIRs by Police officers.</string>
+    <string name="interest0">Cybersecurity and Cryptography.</string>
+    <string name="interest1">Artificial intelligence, Machine Learning and Data Science.</string>
+    <string name="interest2">Network and Computer System.</string>
+    <string name="interest3">Image Processing and Computer Vision.</string>
+    <string name="qlabel">Qualities</string>
+    <string name="skill_label">Technical Skills</string>
+    <string name="training_label">Experience</string>
+    <string name="aoi_label">Areas Of Interest</string>
+    <string name="final_label">Creating Resume</string>
+    <string name="pg">Post Graduation</string>
+    <string name="graduation">Graduation</string>
+    <string name="intermediateTitle">Intermediate</string>
+    <string name="school">School</string>
+    <string name="trainingFrom0">08/06/2017</string>
+    <string name="trainingTo0">20/07/2017</string>
+    <string name="success_msg">Succesfully Created Resume! Click to Open</string>
 
 
 

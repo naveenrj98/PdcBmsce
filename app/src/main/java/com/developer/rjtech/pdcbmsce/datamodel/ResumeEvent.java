@@ -1,4 +1,4 @@
-package com.developer.rjtech.pdcbmsce.ResumeModel;
+package com.developer.rjtech.pdcbmsce.datamodel;
 
 import android.os.Parcel;
 import android.os.Parcelable;

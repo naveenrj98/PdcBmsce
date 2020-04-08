@@ -30,11 +30,11 @@
     android:layout_marginTop="8dp">
 
 
-    <EditText
-    android:id="@+id/input_cname"
+    <com.google.android.material.textfield.TextInputEditText
+    android:id="@+id/input_pname"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="Name"
+    android:hint="Project Name"
     android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -46,11 +46,11 @@
     android:layout_marginBottom="8dp"
     android:layout_marginTop="8dp">
 
-    <EditText
-    android:id="@+id/input_cemail"
+    <com.google.android.material.textfield.TextInputEditText
+    android:id="@+id/input_prole"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="Email"
+    android:hint="Role"
     android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -62,11 +62,11 @@
     android:layout_marginBottom="8dp"
     android:layout_marginTop="8dp">
 
-    <EditText
-    android:id="@+id/input_subject"
+    <com.google.android.material.textfield.TextInputEditText
+    android:id="@+id/input_pteschnolgy"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="Subject"
+    android:hint="Technologies"
     android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -77,13 +77,13 @@
     android:layout_marginBottom="8dp"
     android:layout_marginTop="8dp">
 
-    <EditText
-    android:id="@+id/input_message"
+    <com.google.android.material.textfield.TextInputEditText
+    android:id="@+id/input_pdescription"
     android:layout_width="match_parent"
     android:layout_height="175dp"
     android:ems="10"
     android:gravity="top"
-    android:hint="Messege"
+    android:hint="Description about Project"
     android:inputType="textMultiLine" />
 
     </com.google.android.material.textfield.TextInputLayout>

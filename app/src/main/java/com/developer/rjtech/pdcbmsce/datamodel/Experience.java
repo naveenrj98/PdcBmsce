@@ -1,7 +1,6 @@
-package com.developer.rjtech.pdcbmsce.ResumeModel;
+package com.developer.rjtech.pdcbmsce.datamodel;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * Created by ibrahim on 1/18/18.
@@ -11,7 +10,7 @@ public class Experience extends ResumeEvent {
     public Experience() {
     }
 
-    public static final Parcelable.Creator<Experience> CREATOR = new Parcelable.Creator<Experience>() {
+    public static final Creator<Experience> CREATOR = new Creator<Experience>() {
         @Override
         public Experience createFromParcel(Parcel in) {
             return new Experience(new ResumeEvent(in));

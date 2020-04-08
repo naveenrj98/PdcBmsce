@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.developer.rjtech.pdcbmsce">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Include following permission if you want to cache images on SD card -->
@@ -37,6 +38,25 @@
         <activity android:name=".Companies.CompanyListActivity" />
         <activity android:name=".Profile.DevelopersDetailsActivity" />
         <activity android:name=".PDFViewer.PdfActivity" />
+
+
+        <activity
+            android:name=".helper.MainResumeActivity"
+            android:label="Resume"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+        <activity
+            android:name=".helper.EditActivity"
+            android:parentActivityName=".helper.MainResumeActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".helper.MainResumeActivity" />
+        </activity>
+
     </application>
 
 </manifest>

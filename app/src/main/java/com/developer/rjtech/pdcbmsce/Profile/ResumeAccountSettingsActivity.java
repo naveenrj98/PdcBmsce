@@ -41,7 +41,7 @@ public class ResumeAccountSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account_settings);
         mContext = ResumeAccountSettingsActivity.this;
         Log.d(TAG, "onCreate: started.");
-        mViewPager = findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container1);
         mRelativeLayout = findViewById(R.id.relLayout1);
 
         setupSettingsList();

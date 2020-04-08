@@ -26,4 +26,11 @@
     <color name="indicator_2" >#00BCD4</color>
     <color name="indicator_3" >#00BCD4</color>
 
+    <color name="colorText">#DE000000</color>
+    <color name="colorSnack">#DEFF0000</color>
+
+
+    <color name="green">#0BAF12</color>
+
+
 </resources>

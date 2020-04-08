@@ -25,9 +25,10 @@ import com.developer.rjtech.pdcbmsce.NewUpdates.NewsFragment;
 import com.developer.rjtech.pdcbmsce.Profile.AccountSettingsActivity;
 import com.developer.rjtech.pdcbmsce.ResumeDeatailsSettings.ProfileFragment;
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.ResumeModel.Resume;
+
 import com.developer.rjtech.pdcbmsce.Users.LoginActivity;
 import com.developer.rjtech.pdcbmsce.Utils.UniversalImageLoader;
+import com.developer.rjtech.pdcbmsce.datamodel.Resume;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;

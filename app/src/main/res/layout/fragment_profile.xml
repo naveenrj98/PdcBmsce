@@ -2,11 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragprofileid"
 
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <include layout="@layout/layout_center_viewpager"/>
+    <include layout="@layout/layout_resumecenter_viewpager"/>
+</RelativeLayout>
+
 <RelativeLayout
     android:id="@+id/fragment_profile_layout"
     android:layout_width="match_parent"

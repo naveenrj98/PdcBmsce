@@ -1,5 +1,6 @@
 package com.developer.rjtech.pdcbmsce.ResumeBuild;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.R;
+import com.developer.rjtech.pdcbmsce.helper.MainResumeActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -82,6 +84,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter, ItemC
 
     @Override
     public void onClick(View view, int position, boolean isLongClick) {
+
 
     }
 }

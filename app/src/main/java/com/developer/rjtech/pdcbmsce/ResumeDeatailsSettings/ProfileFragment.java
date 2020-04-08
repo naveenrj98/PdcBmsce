@@ -26,18 +26,22 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 
+import com.developer.rjtech.pdcbmsce.Companies.CompanyCategoryFragment;
 import com.developer.rjtech.pdcbmsce.Firebase.FirebaseMethods;
 import com.developer.rjtech.pdcbmsce.Profile.AccountSettingsActivity;
 import com.developer.rjtech.pdcbmsce.Profile.DeveloperFragment;
 import com.developer.rjtech.pdcbmsce.Profile.EditProfileFragment;
 import com.developer.rjtech.pdcbmsce.Profile.SignOutFragment;
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.ResumeModel.Resume;
+
 import com.developer.rjtech.pdcbmsce.Users.ContactUsFragment;
 import com.developer.rjtech.pdcbmsce.Utils.SectionsStatePagerAdapter;
 import com.developer.rjtech.pdcbmsce.Utils.UniversalImageLoader;
 import com.developer.rjtech.pdcbmsce.Model.UserAccountSettings;
 import com.developer.rjtech.pdcbmsce.Model.UserSettings;
+import com.developer.rjtech.pdcbmsce.datamodel.Resume;
+import com.developer.rjtech.pdcbmsce.fragments.PersonalInfoFragment;
+import com.developer.rjtech.pdcbmsce.helper.MainResumeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -106,12 +110,12 @@ public class ProfileFragment extends Fragment {
 
         setupFirebaseAuth();
 
-        mViewPager = view.findViewById(R.id.container);
+        mViewPager = view.findViewById(R.id.container1);
         mRelativeLayout = view.findViewById(R.id.fragment_profile_layout);
         listView = view.findViewById(R.id.lvAccountSettings);
 
         setupSettingsList();
-        setupFragments();
+       // setupFragments();
 
         Button editProfile = view.findViewById(R.id.textEditProfile);
         editProfile.setOnClickListener(new View.OnClickListener() {
@@ -153,38 +157,16 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    private void setupFragments(){
-        pagerAdapter = new SectionsStatePagerAdapter(getChildFragmentManager());
-        pagerAdapter.addFragment(new PersonalInformation_Fragment(), "Personal Information"); //fragment 0
-        pagerAdapter.addFragment(new Education_Fragment(), "Education"); //fragment 1
-        pagerAdapter.addFragment(new WorkExperience_Fragment(), "Work Experience"); //fragment 2
-        pagerAdapter.addFragment(new Project_Fragment(), "Project"); //fragment 3
-        pagerAdapter.addFragment(new AdditionalInformation_Fragment(), "Additional Information"); //fragment 4
-        pagerAdapter.addFragment(new AddSignature_Fragment(), "Add Signature"); //fragment 5
 
-
-
-    }
-
-    private void setViewPager(int fragmentNumber){
-        mRelativeLayout.setVisibility(View.GONE);
-        Log.d(TAG, "setViewPager: navigating to fragment #: " + fragmentNumber);
-        mViewPager.setAdapter(pagerAdapter);
-        mViewPager.setCurrentItem(fragmentNumber);
-    }
 
     private void setupSettingsList(){
         Log.d(TAG, "setupSettingsList: initializing 'Account Settings' list.");
 
 
         ArrayList<String> options = new ArrayList<>();
-        options.add("Personal Information"); //fragment 0
+        options.add("Create Your Resume"); //fragment 0
 
-        options.add("Education"); //fragement 1
-        options.add("Work Experience"); //fragement 2
-        options.add("Project"); //fragement 3
-        options.add("Additional Information");
-        options.add("Add Signature");
+
 
 
         ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, options);
@@ -194,7 +176,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "onItemClick: navigating to fragment#: " + position);
-                setViewPager(position);
+
+                switch (position) {
+
+                    case 0:
+                        Intent intent = new Intent(getContext(), MainResumeActivity.class);
+                        startActivity(intent);
+                        break;
+                }
             }
         });
 

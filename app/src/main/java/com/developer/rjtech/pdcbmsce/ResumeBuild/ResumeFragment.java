@@ -50,6 +50,7 @@ public class ResumeFragment extends Fragment  {
 
         mViewPager.setOffscreenPageLimit(3);
 
+
         return view;
     }
 

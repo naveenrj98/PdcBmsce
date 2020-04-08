@@ -1,7 +1,6 @@
-package com.developer.rjtech.pdcbmsce.ResumeModel;
+package com.developer.rjtech.pdcbmsce.datamodel;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * Created by ibrahim on 1/18/18.
@@ -12,7 +11,7 @@ public class Project extends ResumeEvent {
     public Project() {
     }
 
-    public static final Parcelable.Creator<Project> CREATOR = new Parcelable.Creator<Project>() {
+    public static final Creator<Project> CREATOR = new Creator<Project>() {
         @Override
         public Project createFromParcel(Parcel in) {
             return new Project(new ResumeEvent(in));
