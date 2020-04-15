@@ -56,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Button materialSearchBar;
     private Resume resume;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,9 +127,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         selectFragment = new CodingClubFragment();
                         break;
                     case ID_COMPANIES:
-                        name = "NOTIFICATION";
-//                        Intent i = new Intent(getApplicationContext(), YearActivity.class);
-//                        startActivity(i);
+                        name = "Companies";
+
                        selectFragment = new CompanyYearFragment();
                         break;
                     case ID_ACCOUNT:
@@ -193,6 +190,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
     private void initImageLoader(){
         UniversalImageLoader universalImageLoader = new UniversalImageLoader(getApplicationContext());
         ImageLoader.getInstance().init(universalImageLoader.getConfig());

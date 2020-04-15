@@ -3,18 +3,13 @@ package com.developer.rjtech.pdcbmsce.CodingClub;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.developer.rjtech.pdcbmsce.Home.HomeFragment;
-import com.developer.rjtech.pdcbmsce.NewUpdates.NewsFragment;
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.ResumeBuild.ResumeFragment;
 import com.developer.rjtech.pdcbmsce.Utils.SectionsPagerAdapter;
-import com.google.android.material.tabs.TabLayout;
 
 import github.chenupt.springindicator.SpringIndicator;
 import github.chenupt.springindicator.viewpager.ScrollerViewPager;
@@ -41,8 +36,8 @@ public class CodingClubFragment extends Fragment {
      */
     private void setupViewPager(){
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new ResumeFragment()); //index 0
-        adapter.addFragment(new ResumeBuildFragment()); //index 1
+        adapter.addFragment(new TechnicalFragment()); //index 0
+        adapter.addFragment(new ResumeFragment()); //index 1
         adapter.addFragment(new AptitudeFragment()); //index 2
 
 

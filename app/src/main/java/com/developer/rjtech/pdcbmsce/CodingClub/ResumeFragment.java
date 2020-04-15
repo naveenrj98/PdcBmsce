@@ -1,4 +1,4 @@
-package com.developer.rjtech.pdcbmsce.ResumeBuild;
+package com.developer.rjtech.pdcbmsce.CodingClub;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +14,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.developer.rjtech.pdcbmsce.R;
+import com.developer.rjtech.pdcbmsce.ResumeBuild.CardItem;
+import com.developer.rjtech.pdcbmsce.ResumeBuild.CardPagerAdapter;
+import com.developer.rjtech.pdcbmsce.ResumeBuild.ShadowTransformer;
 import com.squareup.picasso.Picasso;
 
 
