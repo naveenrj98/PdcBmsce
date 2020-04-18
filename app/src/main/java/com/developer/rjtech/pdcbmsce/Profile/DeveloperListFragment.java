@@ -122,7 +122,7 @@ public class DeveloperListFragment extends Fragment {
                 developerListViewHolder.d_college.setText(developerList.getCollege());
 
                 Picasso.with(getActivity()).load(developerList.getImage())
-                        .into(developerListViewHolder.d_image);
+                        .into(developerListViewHolder.d_image); //image ...........
                 final DeveloperList clickItem = developerList;
 
                 developerListViewHolder.setItemClickListener(new ItemClickListener() {

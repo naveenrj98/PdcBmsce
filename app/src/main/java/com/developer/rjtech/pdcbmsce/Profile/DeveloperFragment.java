@@ -128,7 +128,4 @@ public class DeveloperFragment extends Fragment {
 
 
 
-
-
-
 }
