@@ -11,17 +11,21 @@
     android:layout_margin="10dp"
     app:cardCornerRadius="0dp"
 
+
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/rs1"
+        >
 
         <ImageView
             android:id="@+id/year_image"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+          />
 
     </RelativeLayout>
 
