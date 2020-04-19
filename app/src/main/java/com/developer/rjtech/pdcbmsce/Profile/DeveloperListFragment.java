@@ -82,23 +82,13 @@ public class DeveloperListFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-
                 loadListCompany();
-
-
             }
         });
-
         swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
-
-
-
                 loadListCompany();
-
-
             }
         });
 
