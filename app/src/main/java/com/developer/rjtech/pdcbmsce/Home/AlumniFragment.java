@@ -1,54 +1,35 @@
 package com.developer.rjtech.pdcbmsce.Home;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.developer.rjtech.pdcbmsce.Profile.DevelopersDetailsActivity;
-import com.developer.rjtech.pdcbmsce.R;
-import com.google.firebase.database.FirebaseDatabase;
-import android.content.Intent;
-
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import com.developer.rjtech.pdcbmsce.Common.Common;
-import com.developer.rjtech.pdcbmsce.Companies.CompanyDetailsActivity;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
-import com.developer.rjtech.pdcbmsce.Model.Category;
-import com.developer.rjtech.pdcbmsce.Model.CompanyList;
-import com.developer.rjtech.pdcbmsce.Model.CollegeCoordinatorList;
+import com.developer.rjtech.pdcbmsce.Model.AlumniList;
+
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.ViewHolder.CompanyListViewHolder;
-import com.developer.rjtech.pdcbmsce.ViewHolder.CollegeCoordinatorListViewHolder;
-import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
+import com.developer.rjtech.pdcbmsce.ViewHolder.AlumniListViewHolder;
+
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CollegeCoordinatorFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class CollegeCoordinatorFragment extends Fragment {
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+
+public class AlumniFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -63,7 +44,7 @@ public class CollegeCoordinatorFragment extends Fragment {
     RecyclerView recycler_list;
     RecyclerView.LayoutManager layoutManager;
     TextView textFullName;
-    FirebaseRecyclerAdapter<CollegeCoordinatorList, CollegeCoordinatorListViewHolder> adptor;
+    FirebaseRecyclerAdapter<AlumniList, AlumniListViewHolder> adptor;
 
 
     List<String> suggestList = new ArrayList<>();
@@ -77,10 +58,10 @@ public class CollegeCoordinatorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_college_coordinator_list, container, false);
+        View view =inflater.inflate(R.layout.fragment_alumni_list, container, false);
         //Auth
         database = FirebaseDatabase.getInstance();
-        clist = database.getReference("Coordinators/College");
+        clist = database.getReference("Alumni");
 
 
         recycler_list = view.findViewById(R.id.recycler_developer_list);
@@ -116,24 +97,23 @@ public class CollegeCoordinatorFragment extends Fragment {
     private void loadListCoordinators() {
 
 
-        FirebaseRecyclerOptions<CollegeCoordinatorList> options = new FirebaseRecyclerOptions.Builder<CollegeCoordinatorList>()
-                .setQuery(clist,CollegeCoordinatorList.class)
+        FirebaseRecyclerOptions<AlumniList> options = new FirebaseRecyclerOptions.Builder<AlumniList>()
+                .setQuery(clist,AlumniList.class)
                 .build();
 
-        adptor = new FirebaseRecyclerAdapter<CollegeCoordinatorList, CollegeCoordinatorListViewHolder>(options) {
+        adptor = new FirebaseRecyclerAdapter<AlumniList, AlumniListViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CollegeCoordinatorListViewHolder ccListViewHolder, int i, @NonNull CollegeCoordinatorList ccList) {
+            protected void onBindViewHolder(@NonNull AlumniListViewHolder ccListViewHolder, int i, @NonNull AlumniList ccList) {
 
 
                 ccListViewHolder.c_name.setText(ccList.getName());
                 ccListViewHolder.c_designation.setText(ccList.getDesignation());
-                ccListViewHolder.c_phone.setText(ccList.getPhone());
-                ccListViewHolder.c_email.setText(ccList.getEmail());
+                ccListViewHolder.c_dept.setText(ccList.getDept());
 
 
                 Picasso.with(getActivity()).load(ccList.getImage())
                         .into(ccListViewHolder.c_image); //image ...........
-                final CollegeCoordinatorList clickItem = ccList;
+                final AlumniList clickItem = ccList;
 
                 ccListViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
@@ -151,10 +131,10 @@ public class CollegeCoordinatorFragment extends Fragment {
 
             @NonNull
             @Override
-            public CollegeCoordinatorListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public AlumniListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.college_coordinator_list_item, parent, false);
-                return new CollegeCoordinatorListViewHolder(itemView);
+                        .inflate(R.layout.alumni_list_item, parent, false);
+                return new AlumniListViewHolder(itemView);
             }
         };
 
