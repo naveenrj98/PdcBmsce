@@ -16,7 +16,7 @@
 
         android:id="@+id/profile_page"
         android:layout_width="match_parent"
-        android:layout_height="190dp">
+        android:layout_height="200dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_person_details"
@@ -29,7 +29,7 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="190dp">
+                    android:layout_height="200dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/coordinator_image"
@@ -83,16 +83,6 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/coordinator_email"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:textAlignment="viewStart"
-                            android:text="bms@gmail.com"
-                            android:textColor="@color/link_blue"
-                            android:textSize="16sp" />
-
-                        <TextView
                             android:id="@+id/coordinator_dept"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -112,6 +102,18 @@
                             android:text="9876543210"
                             android:textColor="@color/link_blue"
                             android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/coordinator_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:textAlignment="viewStart"
+                            android:text="bms@gmail.com"
+                            android:textColor="@color/link_blue"
+                            android:textSize="16sp" />
+
+
 
                         </LinearLayout>
                 </LinearLayout>

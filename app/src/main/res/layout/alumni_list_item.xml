@@ -16,7 +16,7 @@
 
         android:id="@+id/profile_page"
         android:layout_width="match_parent"
-        android:layout_height="190dp">
+        android:layout_height="200dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_person_details"
@@ -29,12 +29,13 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="190dp">
+                    android:layout_height="200dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/coordinator_image"
-                        android:layout_width="120dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="111dp"
+                        android:layout_height="111dp"
+                        android:layout_marginTop="30dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_profile"
                         app:civ_border_color="@color/black"
@@ -44,9 +45,9 @@
 
                         android:id="@+id/linLayout2"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="100dp"
                         android:orientation="vertical"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="40dp"
                         android:padding="10dp">
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -81,26 +82,38 @@
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
-
                         <TextView
-                            android:id="@+id/coordinator_phone"
+                            android:id="@+id/coordinator_dept"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textAlignment="viewStart"
-                            android:text="9876543210"
+                            android:text="CSE"
                             android:textColor="@color/link_blue"
                             android:textSize="16sp" />
 
-                        <TextView
-                            android:id="@+id/coordinator_email"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:textAlignment="viewStart"
-                            android:text="bms@gmail.com"
-                            android:textColor="@color/link_blue"
-                            android:textSize="16sp" />
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/coordinator_phone"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:textAlignment="viewStart"-->
+<!--                            android:text="9876543210"-->
+<!--                            android:textColor="@color/link_blue"-->
+<!--                            android:textSize="16sp" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/coordinator_email"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:textAlignment="viewStart"-->
+<!--                            android:text="bms@gmail.com"-->
+<!--                            android:textColor="@color/link_blue"-->
+<!--                            android:textSize="16sp" />-->
+
+
 
                         </LinearLayout>
                 </LinearLayout>
