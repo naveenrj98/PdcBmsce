@@ -11,7 +11,7 @@
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="edit_profile" >Edit Profile</string>
+    <string name="edit_profile">Edit Profile</string>
     <string name="sign_out">Sign Out</string>
     <!-- fragment names -->
     <string name="edit_profile_fragment">Edit Profile</string>
@@ -26,7 +26,7 @@
     <string name="confirm_password_dialog">ConfirmPaswordDialog</string>
 
     <!-- Firebase messages -->
-    <string name="auth_failed" >Failed to Authenticate</string>
+    <string name="auth_failed">Failed to Authenticate</string>
     <string name="auth_success">Authentication Success</string>
 
     <!-- Firebase database fields -->
@@ -175,10 +175,6 @@ SIgn In
     <string name="title_4">Ugly card</string>
 
 
-
-
-
-
     <string name="content_description_open_drawer">Open Drawer</string>
     <string name="content_description_close_drawer">Closed Drawer</string>
 
@@ -217,11 +213,6 @@ SIgn In
 
     <string name="symbol_separator" translatable="false">ㅡ</string>
     <string name="education">Education</string>
-
-
-
-
-
 
 
     <string name="personal">Personalia:</string>
@@ -296,12 +287,6 @@ SIgn In
     <string name="trainingFrom0">08/06/2017</string>
     <string name="trainingTo0">20/07/2017</string>
     <string name="success_msg">Succesfully Created Resume! Click to Open</string>
-
-
-
-
-
-
 
 
 </resources>

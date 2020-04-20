@@ -1,14 +1,17 @@
 package com.developer.rjtech.pdcbmsce.Companies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,26 +32,31 @@ import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class CompanyYearFragment extends Fragment {
 
     //---------Menu ViewHolder--------
-    FirebaseDatabase database;
-    DatabaseReference year;
-    RecyclerView recycler_menu;
-    RecyclerView.LayoutManager layoutManager;
-    TextView textFullName;
-    FirebaseRecyclerAdapter<Year, YearViewHolder> adptor;
+    private FirebaseDatabase database;
+    private DatabaseReference year;
+   private RecyclerView recycler_menu;
+   private RecyclerView.LayoutManager layoutManager;
+   private TextView textFullName;
+   private FirebaseRecyclerAdapter<Year, YearViewHolder> adptor;
+    private List<String> selectSortedValues ;
 
     //--------Search Functionality---------
     FirebaseRecyclerAdapter<Category, MenuViewHolder> searchadptor;
     List<String> suggestList = new ArrayList<>();
     MaterialSearchBar materialSearchBar;
 
-    SwipeRefreshLayout swipeRefreshLayout;
+   private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar progressBar;
-    private TextView pleasewait;
+    private TextView pleasewait, tv_result;
+    private LinearLayout ll_filter;
+    String[] str;
 
 
     @Override
@@ -64,10 +72,21 @@ public class CompanyYearFragment extends Fragment {
 
         recycler_menu = view.findViewById(R.id.recycler_menu);
         recycler_menu.setHasFixedSize(true);
+        ll_filter = view.findViewById(R.id.ll_filter);
+
+        ll_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FilterActivity.class);
+                startActivityForResult(intent,101);
+            }
+        });
 
         pleasewait = view.findViewById(R.id.pleaseWait);
         progressBar = view.findViewById(R.id.year_progressBar);
         progressBar.setVisibility(View.VISIBLE);
+        tv_result = view.findViewById(R.id.tv_result);
+        tv_result.setText(null);
 
         recycler_menu.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
@@ -96,58 +115,136 @@ public class CompanyYearFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+
+            if (data.getStringExtra("data") != null) {
+                 str = data.getStringExtra("data").split(",");
+                selectSortedValues =  Arrays.asList(str);
+
+               // selectSortedValues = new ArrayList<>(fixedLenghtList);
+                tv_result.setText(data.getStringExtra("data"));
+                System.out.println(Arrays.toString(str));
+                System.out.println((selectSortedValues));
+            }else {
+                tv_result.setText("Non Selected");
+            }
+
+        }
+
+    }
+
     private void loadMenu() {
 
-        FirebaseRecyclerOptions<Year> options = new FirebaseRecyclerOptions.Builder<Year>()
-                .setQuery(year, Year.class)
-                .build();
 
-        adptor = new FirebaseRecyclerAdapter<Year, YearViewHolder>(options) {
+        if(selectSortedValues == null)
+        {
+            FirebaseRecyclerOptions<Year> options = new FirebaseRecyclerOptions.Builder<Year>()
+                    .setQuery(year, Year.class)
+                    .build();
+            adptor = new FirebaseRecyclerAdapter<Year, YearViewHolder>(options) {
 
-            @Override
-            protected void onBindViewHolder(@NonNull YearViewHolder holder, int position, @NonNull Year model) {
+                @Override
+                protected void onBindViewHolder(@NonNull YearViewHolder holder, int position, @NonNull Year model) {
 
-                Picasso.with(getActivity()).load(model.getImage())
-                        .into(holder.imageView);
+                    Picasso.with(getActivity()).load(model.getImage())
+                            .into(holder.imageView);
 
-                final Year clickItem = model;
-                holder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
+                    final Year clickItem = model;
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
 
-                        Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
 //                        Intent intent = new Intent(getActivity(), CompanyCategoryActivity.class);
 ////                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CompanyCategoryFragment()).addToBackStack(null).commit();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CompanyCategoryFragment()).addToBackStack(null).commit();
 
-                        Common.yearSelected = adptor.getRef(position).getKey();
+                            Common.yearSelected = adptor.getRef(position).getKey();
 //                        startActivity(intent);
 
-                    }
-                });
-                progressBar.setVisibility(View.GONE);
-                pleasewait.setVisibility(View.GONE);
+                        }
+                    });
+                    progressBar.setVisibility(View.GONE);
+                    pleasewait.setVisibility(View.GONE);
 
 
-            }
+                }
 
-            @NonNull
-            @Override
-            public YearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.year_item, parent, false);
+                @NonNull
+                @Override
+                public YearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View itemView = LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.year_item, parent, false);
 
-                return new YearViewHolder(itemView);
+                    return new YearViewHolder(itemView);
 
-            }
+                }
 
-        };
+            };
 
-        adptor.startListening();
+            adptor.startListening();
 
-        recycler_menu.setAdapter(adptor);
+            recycler_menu.setAdapter(adptor);
 
-        swipeRefreshLayout.setRefreshing(false);
+            swipeRefreshLayout.setRefreshing(false);
+        } else if (selectSortedValues.get(0).equals("2020") || selectSortedValues.get(0).equals("2021")) {
+
+            FirebaseRecyclerOptions<Year> options = new FirebaseRecyclerOptions.Builder<Year>()
+                    .setQuery(year.child(selectSortedValues.get(0)), Year.class)
+                    .build();
+            adptor = new FirebaseRecyclerAdapter<Year, YearViewHolder>(options) {
+
+                @Override
+                protected void onBindViewHolder(@NonNull YearViewHolder holder, int position, @NonNull Year model) {
+
+                    Picasso.with(getActivity()).load(model.getImage())
+                            .into(holder.imageView);
+
+                    final Year clickItem = model;
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+
+                            Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(getActivity(), CompanyCategoryActivity.class);
+////                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CompanyCategoryFragment()).addToBackStack(null).commit();
+
+                            Common.yearSelected = adptor.getRef(position).getKey();
+//                        startActivity(intent);
+
+                        }
+                    });
+                    progressBar.setVisibility(View.GONE);
+                    pleasewait.setVisibility(View.GONE);
+
+
+                }
+
+                @NonNull
+                @Override
+                public YearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View itemView = LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.year_item, parent, false);
+
+                    return new YearViewHolder(itemView);
+
+                }
+
+            };
+
+            adptor.startListening();
+
+            recycler_menu.setAdapter(adptor);
+
+            swipeRefreshLayout.setRefreshing(false);
+        }
+
+
+
 
     }
 
@@ -162,4 +259,5 @@ public class CompanyYearFragment extends Fragment {
         super.onStop();
         adptor.stopListening();
     }
+
 }
