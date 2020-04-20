@@ -3,28 +3,16 @@ package com.developer.rjtech.pdcbmsce.Model;
 public class AlumniList {
     private String Name;
     private String Image;
-    private String dept;
+    private String department;
     private String designation;
 
     public AlumniList() {
     }
 
-    @Override
-    public String toString() {
-        return "DeveloperList{" +
-                "Name='" + Name + '\'' +
-                ", Image='" + Image + '\'' +
-                ", dept='" + dept + '\'' +
-                ", designation='" + designation + '\'' +
-                '}';
-    }
-
-
-
-    public AlumniList(String name, String image, String phone, String email, String designation,String dept) {
+    public AlumniList(String name, String image, String deparment, String designation) {
         Name = name;
         Image = image;
-        this.dept = dept;
+        this.department = deparment;
         this.designation = designation;
     }
 
@@ -36,14 +24,6 @@ public class AlumniList {
         Name = name;
     }
 
-    public String getDept() {
-        return dept;
-    }
-
-    public void setDept(String name) {
-        this.dept=dept;
-    }
-
     public String getImage() {
         return Image;
     }
@@ -52,25 +32,29 @@ public class AlumniList {
         Image = image;
     }
 
+    public String getDepartment() {
+        return department;
+    }
 
-//    public String getPhone() {
-//        return phone;
-//    }
-//
-//    public void setPhone(String phone) {
-//        this.phone = phone;
-//    }
-//
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-
+    public void setDepartment(String deparment) {
+        this.department = deparment;
+    }
 
     public String getDesignation() {
         return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+    @Override
+    public String toString() {
+        return "AlumniList{" +
+                "Name='" + Name + '\'' +
+                ", Image='" + Image + '\'' +
+                ", deparment='" + department + '\'' +
+                ", designation='" + designation + '\'' +
+                '}';
     }
 }

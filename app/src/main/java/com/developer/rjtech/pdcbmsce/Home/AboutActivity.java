@@ -3,6 +3,9 @@ package com.developer.rjtech.pdcbmsce.Home;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.developer.rjtech.pdcbmsce.CodingClub.AptitudeFragment;
 import com.developer.rjtech.pdcbmsce.CodingClub.ResumeFragment;
@@ -14,6 +17,8 @@ import com.developer.rjtech.pdcbmsce.Utils.SectionsPagerAdapter;
 import github.chenupt.springindicator.SpringIndicator;
 import github.chenupt.springindicator.viewpager.ScrollerViewPager;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 public class AboutActivity extends AppCompatActivity {
     ScrollerViewPager viewPager;
     SpringIndicator tabLayout;
@@ -24,6 +29,15 @@ public class AboutActivity extends AppCompatActivity {
         viewPager =  findViewById(R.id.container);
         tabLayout =  findViewById(R.id.tabs);
         setupViewPager();
+
+        ImageView backArrow = findViewById(R.id.backArrow);
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigating back to ProfileActivity");
+                finish();
+            }
+        });
 
     }
     private void setupViewPager(){

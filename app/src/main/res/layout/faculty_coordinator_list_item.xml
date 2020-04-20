@@ -29,7 +29,7 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_height="wrap_content">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/coordinator_image"
@@ -89,7 +89,7 @@
                             android:layout_marginTop="5dp"
                             android:textAlignment="viewStart"
                             android:text="CSE"
-                            android:textColor="@color/link_blue"
+
                             android:textSize="16sp" />
 
 
@@ -100,7 +100,7 @@
                             android:layout_marginTop="5dp"
                             android:textAlignment="viewStart"
                             android:text="9876543210"
-                            android:textColor="@color/link_blue"
+
                             android:textSize="16sp" />
 
                         <TextView

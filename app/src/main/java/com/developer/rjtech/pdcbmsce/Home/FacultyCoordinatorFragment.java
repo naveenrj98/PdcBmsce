@@ -163,5 +163,15 @@ public class FacultyCoordinatorFragment extends Fragment {
         swipeRefreshLayout.setRefreshing(false);
 
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadListCoordinators();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        adptor.stopListening();
+    }
 }

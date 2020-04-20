@@ -44,7 +44,7 @@
 
                         android:id="@+id/linLayout2"
                         android:layout_width="match_parent"
-                        android:layout_height="170dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="10dp">
 
@@ -65,16 +65,22 @@
                                 android:textStyle="bold" />
 
                         </LinearLayout>
-
-
                         <TextView
-                            android:id="@+id/coordinator_email"
+                            android:id="@+id/coordinator_year"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="blah@gmail.com"
+                            android:text="3rd Year student"
                             android:textAlignment="viewStart"
-                            android:textColor="@color/black"
+
+                            android:textSize="16sp" />
+                        <TextView
+                            android:id="@+id/coordinator_dept"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Department of CSE"
+                            android:textAlignment="viewStart"
                             android:textSize="16sp" />
 
                         <TextView
@@ -84,28 +90,23 @@
                             android:layout_marginTop="5dp"
                             android:text="9876543241"
                             android:textAlignment="viewStart"
-                            android:textColor="@color/link_blue"
+
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/coordinator_dept"
+                            android:id="@+id/coordinator_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="CSE"
+                            android:text="blah@gmail.com"
                             android:textAlignment="viewStart"
                             android:textColor="@color/link_blue"
+
                             android:textSize="16sp" />
 
-                        <TextView
-                            android:id="@+id/coordinator_year"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Third"
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/link_blue"
-                            android:textSize="16sp" />
+
+
+
 
 
                     </LinearLayout>

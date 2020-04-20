@@ -32,7 +32,7 @@
                     android:layout_height="200dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/coordinator_image"
+                        android:id="@+id/alumni_image"
                         android:layout_width="111dp"
                         android:layout_height="111dp"
                         android:layout_marginTop="30dp"
@@ -45,7 +45,7 @@
 
                         android:id="@+id/linLayout2"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_marginTop="40dp"
                         android:padding="10dp">
@@ -56,7 +56,7 @@
                             android:weightSum="2"
                             >
                             <TextView
-                                android:id="@+id/coordinator_name"
+                                android:id="@+id/alumni_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="NKA"
@@ -73,7 +73,7 @@
 
 
                         <TextView
-                            android:id="@+id/coordinator_designation"
+                            android:id="@+id/alumni_designation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -83,36 +83,14 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/coordinator_dept"
+                            android:id="@+id/alumni_dept"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textAlignment="viewStart"
-                            android:text="CSE"
+                            android:text="department of CSE"
                             android:textColor="@color/link_blue"
                             android:textSize="16sp" />
-
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/coordinator_phone"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="5dp"-->
-<!--                            android:textAlignment="viewStart"-->
-<!--                            android:text="9876543210"-->
-<!--                            android:textColor="@color/link_blue"-->
-<!--                            android:textSize="16sp" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/coordinator_email"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="5dp"-->
-<!--                            android:textAlignment="viewStart"-->
-<!--                            android:text="bms@gmail.com"-->
-<!--                            android:textColor="@color/link_blue"-->
-<!--                            android:textSize="16sp" />-->
-
 
 
                         </LinearLayout>
@@ -120,36 +98,5 @@
             </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
-
-    <!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:orientation="horizontal">-->
-<!--            <ImageView-->
-<!--                android:id="@+id/company_list_image"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent" />-->
-
-<!--           -->
-
-
-<!--        </LinearLayout>-->
-
-<!--        -->
-<!--        &lt;!&ndash;        <TextView&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:id="@+id/menu_name"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:text="Name of Menu"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:gravity="center"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:textSize="20sp"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:textColor="@android:color/white"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:background="@color/overlayBackground"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:layout_centerInParent="true"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:layout_height="wrap_content" />&ndash;&gt;-->
-<!--    </RelativeLayout>-->
 
 </androidx.cardview.widget.CardView>

@@ -7,15 +7,26 @@
     >
 
     <!--    <include layout="@layout/content_coding" />-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relLayout1">
+
+            <include layout="@layout/snippet_top_about_coordinators"/>
+
+        </RelativeLayout>
 
     <github.chenupt.springindicator.SpringIndicator
-        android:layout_marginTop="60dp"
+        android:layout_below="@id/relLayout1"
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:siTextSize="10dp"
-        app:siTextColor="?attr/editTextColor"
+        app:siTextColor="@color/black"
         android:background="@drawable/white_grey_border_bottom"
         app:siSelectedTextColor="@color/springGreen"
         app:siRadiusMax="23dp"
@@ -32,6 +43,6 @@
         android:layout_height="match_parent"
         />
 
-
+    </RelativeLayout>
 
 </RelativeLayout>

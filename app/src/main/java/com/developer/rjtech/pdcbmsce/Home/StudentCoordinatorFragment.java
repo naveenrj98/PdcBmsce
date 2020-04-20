@@ -162,4 +162,5 @@ public class StudentCoordinatorFragment extends Fragment {
         super.onStop();
         adptor.stopListening();
     }
+
 }

@@ -30,21 +30,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 public class AlumniFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     FirebaseDatabase database;
-    DatabaseReference clist;
-    RecyclerView recycler_list;
-    RecyclerView.LayoutManager layoutManager;
-    TextView textFullName;
-    FirebaseRecyclerAdapter<AlumniList, AlumniListViewHolder> adptor;
+    DatabaseReference alist;
+    RecyclerView recycler_alumni_list;
+   FirebaseRecyclerAdapter<AlumniList, AlumniListViewHolder> adptor;
 
 
     List<String> suggestList = new ArrayList<>();
@@ -61,16 +52,16 @@ public class AlumniFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_alumni_list, container, false);
         //Auth
         database = FirebaseDatabase.getInstance();
-        clist = database.getReference("Alumni");
+        alist = database.getReference("Alumni");
 
 
-        recycler_list = view.findViewById(R.id.recycler_developer_list);
-        recycler_list.setHasFixedSize(true);
+        recycler_alumni_list = view.findViewById(R.id.recycler_developer_list);
+        recycler_alumni_list.setHasFixedSize(true);
 
         pleasewait = view.findViewById(R.id.pleaseWait);
         progressBar = view.findViewById(R.id.list_progressBar);
         progressBar.setVisibility(View.VISIBLE);
-        recycler_list.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+        recycler_alumni_list.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
@@ -98,7 +89,7 @@ public class AlumniFragment extends Fragment {
 
 
         FirebaseRecyclerOptions<AlumniList> options = new FirebaseRecyclerOptions.Builder<AlumniList>()
-                .setQuery(clist,AlumniList.class)
+                .setQuery(alist,AlumniList.class)
                 .build();
 
         adptor = new FirebaseRecyclerAdapter<AlumniList, AlumniListViewHolder>(options) {
@@ -106,13 +97,13 @@ public class AlumniFragment extends Fragment {
             protected void onBindViewHolder(@NonNull AlumniListViewHolder ccListViewHolder, int i, @NonNull AlumniList ccList) {
 
 
-                ccListViewHolder.c_name.setText(ccList.getName());
-                ccListViewHolder.c_designation.setText(ccList.getDesignation());
-                ccListViewHolder.c_dept.setText(ccList.getDept());
+                ccListViewHolder.a_name.setText(ccList.getName());
+                ccListViewHolder.a_dept.setText(ccList.getDepartment());
+                ccListViewHolder.a_designation.setText(ccList.getDesignation());
 
 
                 Picasso.with(getActivity()).load(ccList.getImage())
-                        .into(ccListViewHolder.c_image); //image ...........
+                        .into(ccListViewHolder.a_image); //image ...........
                 final AlumniList clickItem = ccList;
 
                 ccListViewHolder.setItemClickListener(new ItemClickListener() {
@@ -143,9 +134,20 @@ public class AlumniFragment extends Fragment {
 
         adptor.startListening();
 
-        recycler_list.setAdapter(adptor);
+        recycler_alumni_list.setAdapter(adptor);
 
         swipeRefreshLayout.setRefreshing(false);
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadListCoordinators();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adptor.stopListening();
     }
 }

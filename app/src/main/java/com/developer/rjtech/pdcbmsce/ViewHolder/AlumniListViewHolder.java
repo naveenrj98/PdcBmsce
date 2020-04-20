@@ -12,19 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class AlumniListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-  public TextView c_name, c_designation, c_dept,c_phone,c_email;
- public ImageView c_image;
+  public TextView a_name, a_designation, a_dept;
+ public ImageView a_image;
 
 private ItemClickListener itemClickListener;
     public AlumniListViewHolder(View itemView) {
         super(itemView);
 
        // textMenuName = itemView.findViewById(R.id.menu_name);
-        c_image = itemView.findViewById(R.id.coordinator_image);
-        c_name = itemView.findViewById(R.id.coordinator_name);
-        c_dept = itemView.findViewById(R.id.coordinator_dept);
+        a_image = itemView.findViewById(R.id.alumni_image);
+        a_name = itemView.findViewById(R.id.alumni_name);
+        a_dept = itemView.findViewById(R.id.alumni_dept);
         //c_phone = itemView.findViewById(R.id.coordinator_phone);
-        c_designation = itemView.findViewById(R.id.coordinator_designation);
+        a_designation = itemView.findViewById(R.id.alumni_designation);
         //c_email = itemView.findViewById(R.id.coordinator_email);
         itemView.setOnClickListener(this);
     }
