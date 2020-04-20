@@ -1,17 +1,25 @@
-package com.developer.rjtech.pdcbmsce.Profile;
+package com.developer.rjtech.pdcbmsce.Home;
 
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.developer.rjtech.pdcbmsce.Profile.DevelopersDetailsActivity;
+import com.developer.rjtech.pdcbmsce.R;
+import com.google.firebase.database.FirebaseDatabase;
+import android.content.Intent;
+
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -20,10 +28,10 @@ import com.developer.rjtech.pdcbmsce.Companies.CompanyDetailsActivity;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.Model.Category;
 import com.developer.rjtech.pdcbmsce.Model.CompanyList;
-import com.developer.rjtech.pdcbmsce.Model.DeveloperList;
+import com.developer.rjtech.pdcbmsce.Model.CollegeCoordinatorList;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.ViewHolder.CompanyListViewHolder;
-import com.developer.rjtech.pdcbmsce.ViewHolder.DeveloperListViewHolder;
+import com.developer.rjtech.pdcbmsce.ViewHolder.CollegeCoordinatorListViewHolder;
 import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -35,17 +43,22 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+public class CollegeCoordinatorFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
-public class DeveloperListFragment extends Fragment {
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
 
-
-    //---------Menu ViewHolder--------
     FirebaseDatabase database;
     DatabaseReference clist;
     RecyclerView recycler_list;
     RecyclerView.LayoutManager layoutManager;
     TextView textFullName;
-    FirebaseRecyclerAdapter<DeveloperList, DeveloperListViewHolder> adptor;
+    FirebaseRecyclerAdapter<CollegeCoordinatorList, CollegeCoordinatorListViewHolder> adptor;
 
 
     List<String> suggestList = new ArrayList<>();
@@ -59,11 +72,10 @@ public class DeveloperListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_developer_list, container, false);
-
+        View view =inflater.inflate(R.layout.fragment_college_coordinator_list, container, false);
         //Auth
         database = FirebaseDatabase.getInstance();
-        clist = database.getReference("Developers");
+        clist = database.getReference("Coordinators/College");
 
 
         recycler_list = view.findViewById(R.id.recycler_developer_list);
@@ -82,49 +94,44 @@ public class DeveloperListFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loadListCompany();
+                loadListCoordinators();
             }
         });
         swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
-                loadListCompany();
+                loadListCoordinators();
             }
         });
 
         return view;
+
+
     }
+    private void loadListCoordinators() {
 
-    private void loadListCompany() {
 
-
-        FirebaseRecyclerOptions<DeveloperList> options = new FirebaseRecyclerOptions.Builder<DeveloperList>()
-                .setQuery(clist,DeveloperList.class)
+        FirebaseRecyclerOptions<CollegeCoordinatorList> options = new FirebaseRecyclerOptions.Builder<CollegeCoordinatorList>()
+                .setQuery(clist,CollegeCoordinatorList.class)
                 .build();
 
-        adptor = new FirebaseRecyclerAdapter<DeveloperList, DeveloperListViewHolder>(options) {
+        adptor = new FirebaseRecyclerAdapter<CollegeCoordinatorList, CollegeCoordinatorListViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull DeveloperListViewHolder developerListViewHolder, int i, @NonNull DeveloperList developerList) {
+            protected void onBindViewHolder(@NonNull CollegeCoordinatorListViewHolder ccListViewHolder, int i, @NonNull CollegeCoordinatorList ccList) {
 
 
-                developerListViewHolder.d_name.setText(developerList.getName());
-                developerListViewHolder.d_designation.setText(developerList.getDesignation());
-                developerListViewHolder.d_college.setText(developerList.getCollege());
+                ccListViewHolder.c_name.setText(ccList.getName());
+                ccListViewHolder.c_designation.setText(ccList.getDesignation());
+                ccListViewHolder.c_phone.setText(ccList.getPhone());
+                ccListViewHolder.c_email.setText(ccList.getEmail());
 
-                Picasso.with(getActivity()).load(developerList.getImage())
-                        .into(developerListViewHolder.d_image); //image ...........
-                final DeveloperList clickItem = developerList;
+                Picasso.with(getActivity()).load(ccList.getImage())
+                        .into(ccListViewHolder.c_image); //image ...........
+                final CollegeCoordinatorList clickItem = ccList;
 
-                developerListViewHolder.setItemClickListener(new ItemClickListener() {
+                ccListViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-
-                        Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), DevelopersDetailsActivity.class);
-
-                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
-                        startActivity(intent);
-
 
                     }
                 });
@@ -135,10 +142,10 @@ public class DeveloperListFragment extends Fragment {
 
             @NonNull
             @Override
-            public DeveloperListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public CollegeCoordinatorListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.developer_list_item, parent, false);
-                return new DeveloperListViewHolder(itemView);
+                        .inflate(R.layout.college_coordinator_list_item, parent, false);
+                return new CollegeCoordinatorListViewHolder(itemView);
             }
         };
 
@@ -151,17 +158,5 @@ public class DeveloperListFragment extends Fragment {
 
         swipeRefreshLayout.setRefreshing(false);
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadListCompany();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        adptor.stopListening();
     }
 }

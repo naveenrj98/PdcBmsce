@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!--    <include layout="@layout/content_coding" />-->
+
+
+    <github.chenupt.springindicator.SpringIndicator
+        android:layout_marginTop="60dp"
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:siTextSize="10dp"
+        app:siTextColor="?attr/editTextColor"
+        android:background="@drawable/white_grey_border_bottom"
+        app:siSelectedTextColor="@color/springGreen"
+        app:siRadiusMax="23dp"
+        app:siRadiusMin="12dp"
+        app:siIndicatorColors="@array/indicator_colors"
+
+
+        />
+    <github.chenupt.springindicator.viewpager.ScrollerViewPager
+        android:layout_below="@+id/tabs"
+        android:id="@+id/container"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+
+</RelativeLayout>

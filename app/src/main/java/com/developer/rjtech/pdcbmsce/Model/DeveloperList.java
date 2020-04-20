@@ -1,9 +1,6 @@
 package com.developer.rjtech.pdcbmsce.Model;
 
 public class DeveloperList {
-
-
-
     private String Name;
     private String Image;
     private String college;

@@ -1,13 +1,7 @@
-package com.developer.rjtech.pdcbmsce.Profile;
+package com.developer.rjtech.pdcbmsce.Home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,29 +9,38 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.developer.rjtech.pdcbmsce.Common.Common;
-import com.developer.rjtech.pdcbmsce.Companies.CompanyDetailsActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
-import com.developer.rjtech.pdcbmsce.Model.Category;
-import com.developer.rjtech.pdcbmsce.Model.CompanyList;
 import com.developer.rjtech.pdcbmsce.Model.DeveloperList;
+import com.developer.rjtech.pdcbmsce.Model.StudentCoordinatorList;
+import com.developer.rjtech.pdcbmsce.Profile.DevelopersDetailsActivity;
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.ViewHolder.CompanyListViewHolder;
 import com.developer.rjtech.pdcbmsce.ViewHolder.DeveloperListViewHolder;
-import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
+import com.developer.rjtech.pdcbmsce.ViewHolder.StudentCoordinatorListViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+public class StudentCoordinatorFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
-public class DeveloperListFragment extends Fragment {
-
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
 
     //---------Menu ViewHolder--------
     FirebaseDatabase database;
@@ -45,7 +48,7 @@ public class DeveloperListFragment extends Fragment {
     RecyclerView recycler_list;
     RecyclerView.LayoutManager layoutManager;
     TextView textFullName;
-    FirebaseRecyclerAdapter<DeveloperList, DeveloperListViewHolder> adptor;
+    FirebaseRecyclerAdapter<StudentCoordinatorList, StudentCoordinatorListViewHolder> adptor;
 
 
     List<String> suggestList = new ArrayList<>();
@@ -59,11 +62,11 @@ public class DeveloperListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_developer_list, container, false);
+        View view= inflater.inflate(R.layout.fragment_student_coordinator, container, false);
 
         //Auth
         database = FirebaseDatabase.getInstance();
-        clist = database.getReference("Developers");
+        clist = database.getReference("Coordinators/Student");
 
 
         recycler_list = view.findViewById(R.id.recycler_developer_list);
@@ -98,33 +101,28 @@ public class DeveloperListFragment extends Fragment {
     private void loadListCompany() {
 
 
-        FirebaseRecyclerOptions<DeveloperList> options = new FirebaseRecyclerOptions.Builder<DeveloperList>()
-                .setQuery(clist,DeveloperList.class)
+        FirebaseRecyclerOptions<StudentCoordinatorList> options = new FirebaseRecyclerOptions.Builder<StudentCoordinatorList>()
+                .setQuery(clist,StudentCoordinatorList.class)
                 .build();
 
-        adptor = new FirebaseRecyclerAdapter<DeveloperList, DeveloperListViewHolder>(options) {
+        adptor = new FirebaseRecyclerAdapter<StudentCoordinatorList, StudentCoordinatorListViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull DeveloperListViewHolder developerListViewHolder, int i, @NonNull DeveloperList developerList) {
+            protected void onBindViewHolder(@NonNull StudentCoordinatorListViewHolder scListViewHolder, int i, @NonNull StudentCoordinatorList scList) {
 
 
-                developerListViewHolder.d_name.setText(developerList.getName());
-                developerListViewHolder.d_designation.setText(developerList.getDesignation());
-                developerListViewHolder.d_college.setText(developerList.getCollege());
+                scListViewHolder.c_name.setText(scList.getName());
+                scListViewHolder.c_email.setText(scList.getEmail());
+                scListViewHolder.c_phone.setText(scList.getPhone());
+                scListViewHolder.c_dept.setText(scList.getDept());
+                scListViewHolder.c_year.setText(scList.getYear());
 
-                Picasso.with(getActivity()).load(developerList.getImage())
-                        .into(developerListViewHolder.d_image); //image ...........
-                final DeveloperList clickItem = developerList;
+                Picasso.with(getActivity()).load(scList.getImage())
+                        .into(scListViewHolder.c_image); //image ...........
+                final StudentCoordinatorList clickItem = scList;
 
-                developerListViewHolder.setItemClickListener(new ItemClickListener() {
+                scListViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-
-                        Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), DevelopersDetailsActivity.class);
-
-                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
-                        startActivity(intent);
-
 
                     }
                 });
@@ -135,10 +133,10 @@ public class DeveloperListFragment extends Fragment {
 
             @NonNull
             @Override
-            public DeveloperListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public StudentCoordinatorListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.developer_list_item, parent, false);
-                return new DeveloperListViewHolder(itemView);
+                        .inflate(R.layout.student_coordinator_list_item, parent, false);
+                return new StudentCoordinatorListViewHolder(itemView);
             }
         };
 
