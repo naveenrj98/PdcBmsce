@@ -43,11 +43,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CollegeCoordinatorFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CollegeCoordinatorFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -130,7 +125,6 @@ public class CollegeCoordinatorFragment extends Fragment {
                 ccListViewHolder.c_phone.setText(ccList.getPhone());
                 ccListViewHolder.c_email.setText(ccList.getEmail());
 
-
                 Picasso.with(getActivity()).load(ccList.getImage())
                         .into(ccListViewHolder.c_image); //image ...........
                 final CollegeCoordinatorList clickItem = ccList;
@@ -138,9 +132,6 @@ public class CollegeCoordinatorFragment extends Fragment {
                 ccListViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-
-
-
 
                     }
                 });
