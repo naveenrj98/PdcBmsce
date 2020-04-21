@@ -36,7 +36,6 @@
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:layout_gravity="center"
-
                         android:padding="10dp"
                         android:src="@drawable/ic_profile"
                         app:civ_border_color="@color/black"
@@ -48,8 +47,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-
                         android:padding="10dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -65,10 +64,6 @@
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
-
-
-
-
 
                         </LinearLayout>
 
