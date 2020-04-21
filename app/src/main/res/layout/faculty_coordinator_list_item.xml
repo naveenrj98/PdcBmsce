@@ -6,14 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     app:cardElevation="10dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="0dp"
 
     >
     <RelativeLayout
-
+        android:background="@color/colorPrimary"
         android:id="@+id/profile_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -22,7 +21,6 @@
             android:id="@+id/cv_person_details"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -65,10 +63,6 @@
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
-
-
-
-
                         </LinearLayout>
 
 
@@ -89,7 +83,7 @@
                             android:layout_marginTop="5dp"
                             android:textAlignment="viewStart"
                             android:text="CSE"
-
+                            android:textColor="@color/black"
                             android:textSize="16sp" />
 
 
@@ -100,7 +94,7 @@
                             android:layout_marginTop="5dp"
                             android:textAlignment="viewStart"
                             android:text="9876543210"
-
+                            android:textColor="@color/link_blue"
                             android:textSize="16sp" />
 
                         <TextView
