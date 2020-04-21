@@ -1,6 +1,5 @@
 package com.developer.rjtech.pdcbmsce.CodingClub;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,21 +8,18 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
-import com.developer.rjtech.pdcbmsce.Model.DeveloperList;
+import com.developer.rjtech.pdcbmsce.Model.InterviewList;
 import com.developer.rjtech.pdcbmsce.Model.TechnicalList;
-import com.developer.rjtech.pdcbmsce.Profile.DevelopersDetailsActivity;
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.ViewHolder.DeveloperListViewHolder;
+import com.developer.rjtech.pdcbmsce.ViewHolder.InterviewListViewHolder;
 import com.developer.rjtech.pdcbmsce.ViewHolder.TechnicalListViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -34,9 +30,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class TechnicalFragment extends Fragment {
+public class InterviewFragment extends Fragment {
 
     //---------Menu ViewHolder--------
     FirebaseDatabase database;
@@ -44,7 +39,7 @@ public class TechnicalFragment extends Fragment {
     RecyclerView recycler_list;
     RecyclerView.LayoutManager layoutManager;
     TextView textFullName;
-    FirebaseRecyclerAdapter<TechnicalList, TechnicalListViewHolder> adptor;
+    FirebaseRecyclerAdapter<InterviewList, InterviewListViewHolder> adptor;
 
 
     List<String> suggestList = new ArrayList<>();
@@ -59,13 +54,14 @@ public class TechnicalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_technical, container, false);
+        View view= inflater.inflate(R.layout.fragment_interview, container, false);
+
         //Auth
         database = FirebaseDatabase.getInstance();
-        clist = database.getReference("Technical");
+        clist = database.getReference("Interview");
 
 
-        recycler_list = view.findViewById(R.id.recycler_technical_list);
+        recycler_list = view.findViewById(R.id.recycler_interview_list);
         recycler_list.setHasFixedSize(true);
 
         pleasewait = view.findViewById(R.id.pleaseWait);
@@ -98,25 +94,24 @@ public class TechnicalFragment extends Fragment {
 
         return view;
     }
-
     private void loadListCompany() {
 
 
-        FirebaseRecyclerOptions<TechnicalList> options = new FirebaseRecyclerOptions.Builder<TechnicalList>()
-                .setQuery(clist,TechnicalList.class)
+        FirebaseRecyclerOptions<InterviewList> options = new FirebaseRecyclerOptions.Builder<InterviewList>()
+                .setQuery(clist,InterviewList.class)
                 .build();
 
-        adptor = new FirebaseRecyclerAdapter<TechnicalList, TechnicalListViewHolder>(options) {
+        adptor = new FirebaseRecyclerAdapter<InterviewList, InterviewListViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull TechnicalListViewHolder developerListViewHolder, int i, @NonNull TechnicalList developerList) {
+            protected void onBindViewHolder(@NonNull InterviewListViewHolder developerListViewHolder, int i, @NonNull InterviewList developerList) {
 
 
-                developerListViewHolder.t_name.setText(developerList.getName());
+                developerListViewHolder.i_name.setText(developerList.getName());
 
 
                 Picasso.with(getActivity()).load(developerList.getImage())
-                        .into(developerListViewHolder.t_image); //image ...........
-                final TechnicalList clickItem = developerList;
+                        .into(developerListViewHolder.i_image); //image ...........
+                final InterviewList clickItem = developerList;
 
                 developerListViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
@@ -138,10 +133,10 @@ public class TechnicalFragment extends Fragment {
 
             @NonNull
             @Override
-            public TechnicalListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public InterviewListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.technical_list_item, parent, false);
-                return new TechnicalListViewHolder(itemView);
+                        .inflate(R.layout.interview_list_item, parent, false);
+                return new InterviewListViewHolder(itemView);
             }
         };
 

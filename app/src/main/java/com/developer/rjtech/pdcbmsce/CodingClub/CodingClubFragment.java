@@ -37,8 +37,8 @@ public class CodingClubFragment extends Fragment {
     private void setupViewPager(){
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new TechnicalFragment()); //index 0
-        adapter.addFragment(new ResumeFragment()); //index 1
-        adapter.addFragment(new AptitudeFragment()); //index 2
+        adapter.addFragment(new AptitudeFragment()); //index 1
+        adapter.addFragment(new InterviewFragment()); //index 2
 
 
         viewPager.setAdapter(adapter);

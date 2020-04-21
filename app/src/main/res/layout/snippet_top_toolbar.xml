@@ -5,26 +5,24 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/white_grey_border_top"
+        android:background="@drawable/white_grey_border_bottom"
+
         >
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:id="@+id/profileToolBar"
-            android:background="@color/colorPrimary">
+            app:titleTextColor="@color/white"
+
+
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/btn_search"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="250dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/ic_search_white"/>
+
 
             </RelativeLayout>
 

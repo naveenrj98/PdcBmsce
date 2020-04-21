@@ -47,9 +47,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return "Technical";
             case 1:
-                return "Resume";
-            case 2:
                 return "Aptitude";
+            case 2:
+                return "Interview";
             default:
                 return "";
 

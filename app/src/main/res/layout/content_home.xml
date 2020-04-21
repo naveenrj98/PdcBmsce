@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,66 +8,112 @@
     android:id="@+id/content_home"
     tools:context=".Home.HomeFragment">
 
+
+
+
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="225dp"
         android:id="@+id/bg_top_header"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_alignParentTop="true"
         android:background="@drawable/background"
         android:foreground="@drawable/mage_overlay"
-        />
+        android:contentDescription="TODO" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relLayout1"
+            android:gravity="top"
+            android:layout_alignParentTop="true">
 
 
-    <TextView
-        android:id="@+id/user_name"
+
+            <include layout="@layout/snippet_top_toolbar"/>
+
+
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/rl_home"
+        android:layout_gravity="top|end"
+        android:gravity="end"
+
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_menu"
+            android:layout_margin="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_width="50dp"
+            android:background="@drawable/white_round_button"
+            android:layout_height="50dp"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="1dp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_settings"
+            android:layout_marginRight="10dp"
+           android:layout_alignParentRight="true"
+            android:layout_width="30dp"
+            android:background="@drawable/white_round_button"
+            android:src="@drawable/ic_option_menu"
+            android:layout_height="30dp"
+            app:civ_border_color="@color/black"
+            />
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome To BMSCE"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
-        android:text="Welcome To BMSCE"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+    <RelativeLayout
 
-
-    <TextView
-
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/rl_home"
+        android:id="@+id/rl_home2"
+        android:layout_marginBottom="50dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
+        android:layout_height="wrap_content">
 
-        android:gravity="center_vertical|center_horizontal"
-        android:text="Placement"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
-        app:layout_constraintEnd_toEndOf="@+id/bg_top_header"
-        app:layout_constraintHorizontal_bias="0.222"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name"
-        app:layout_constraintVertical_bias="0.266" />
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Placement"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
+
+    </RelativeLayout>
+
+
+
+
+
+<RelativeLayout
+  android:layout_below="@+id/rl_home2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="100dp"
+        android:layout_height="match_parent"
         android:alignmentMode="alignMargins"
+        android:layout_marginBottom="100dp"
         android:columnCount="2"
         android:columnOrderPreserved="false"
         android:padding="14dp"
         android:rowCount="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bg_top_header"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_editor_absoluteX="0dp">
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="center">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/rules_image"
@@ -159,7 +205,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/developers"
+            android:id="@+id/cv_resume_home"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -186,14 +232,16 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/ic_developerss" />
+                    android:background="@drawable/ic_home_resume" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/mo_re"
-                    android:text="Developers"
+                    android:layout_gravity="center_vertical|center"
+                    android:gravity="center"
+                    android:text="Build Resume"
                     android:textColor="#3f3f3f"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -324,4 +372,7 @@
 
     </GridLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
+
+</RelativeLayout>

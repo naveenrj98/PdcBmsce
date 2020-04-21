@@ -560,8 +560,10 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+
                 <TextView
-                    android:id="@+id/tv_job_description"
+
                     android:layout_marginTop="12dp"
                     android:padding="12dp"
                     android:lineSpacingMultiplier="1.5"
@@ -586,15 +588,27 @@ Our legacy inspires us as we forge ahead, always pushing to discover what’s ne
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                    <TextView
+
+
+                        android:padding="12dp"
+                        android:lineSpacingMultiplier="1.5"
+                        android:text="Click Here :"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
 
                     <TextView
-                        android:id="@+id/tv_jd"
+                        android:id="@+id/tv_job_description"
 
                         android:padding="12dp"
                         android:lineSpacingMultiplier="1.5"
                         android:text="JOB Description"
                         android:textSize="14sp"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/link_blue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 

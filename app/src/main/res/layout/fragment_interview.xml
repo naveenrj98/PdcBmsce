@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/swipe_layout"
     android:orientation="vertical"
-    tools:context=".Companies.CompanyListActivity"
+    tools:context=".Main.MainActivity"
     android:background="@color/white">
 
     <!--    <RelativeLayout-->
@@ -39,7 +39,7 @@
             <androidx.recyclerview.widget.RecyclerView
 
 
-                android:id="@+id/recycler_technical_list"
+                android:id="@+id/recycler_interview_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
