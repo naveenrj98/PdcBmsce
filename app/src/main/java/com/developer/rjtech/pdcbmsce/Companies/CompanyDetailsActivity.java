@@ -51,7 +51,6 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
     //widgets
     TextView company_name, tv_pdfView, tv_jobRole,tv_jobLocation,tv_DOV,tv_cgpa,tv_eligibleDep,tv_offers;
     TextView tv_pdfname;
-    TextView tv_jdname;
     TextView tv_stipend, tv_duration, tv_worktime, tv_jobtype;
     CircleImageView civ_linkedin, civ_glassdoor, civ_website;
     ImageView company_image;
@@ -86,7 +85,6 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
         tv_eligibleDep=findViewById(R.id.tv_eligibleDep);
         tv_offers = findViewById(R.id.tv_offers);
         tv_pdfname = findViewById(R.id.tv_pdfname);
-        tv_jdname = findViewById(R.id.tv_job_description);
         tv_stipend = findViewById(R.id.tv_stipend);
         tv_duration = findViewById(R.id.tv_duration);
         tv_jobtype = findViewById(R.id.tv_conversion);
@@ -363,33 +361,6 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
 
                 }
             });
-        companies.child(companyId).child("jobDescription").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                currentCompany = dataSnapshot.getValue(CompanyCategory.class);
-
-                tv_jdname.setText(currentCompany.getPdfname());
-
-                tv_jdname.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Intent intent = new Intent(getApplicationContext(), PdfActivity.class);
-                        intent.putExtra("companyID",companyId);
-                        startActivity(intent);
-
-                    }
-                });
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
 
 

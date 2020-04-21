@@ -8,8 +8,7 @@ public class CompanyCategory {
     private String image;
     private String duration,jobtype,stipend,worktime;
     private String pdfname,pdfurl;
-    private String jdname,jdurl;
-    private String cgpa,eligibledepartment,jobdescrition,offers,role,visitdate,joblocation;
+    private String cgpa,eligibledepartment,jobdescrition,joblocation,offers,role,visitdate;
     private String linkedin, glassdoor, website;
 
 
@@ -17,14 +16,6 @@ public class CompanyCategory {
 
     public CompanyCategory() {
 
-    }
-
-    public String getJoblocation() {
-        return joblocation;
-    }
-
-    public void setJoblocation(String joblocation) {
-        this.joblocation = joblocation;
     }
 
     @Override
@@ -38,22 +29,44 @@ public class CompanyCategory {
                 ", worktime='" + worktime + '\'' +
                 ", pdfname='" + pdfname + '\'' +
                 ", pdfurl='" + pdfurl + '\'' +
-                ", jdname='" + jdname + '\'' +
-                ", jdurl='" + jdurl + '\'' +
                 ", cgpa='" + cgpa + '\'' +
                 ", eligibledepartment='" + eligibledepartment + '\'' +
                 ", jobdescrition='" + jobdescrition + '\'' +
+                ", joblocation='" + joblocation + '\'' +
                 ", offers='" + offers + '\'' +
                 ", role='" + role + '\'' +
                 ", visitdate='" + visitdate + '\'' +
-                ", joblocation='" + joblocation + '\'' +
                 ", linkedin='" + linkedin + '\'' +
                 ", glassdoor='" + glassdoor + '\'' +
                 ", website='" + website + '\'' +
                 '}';
     }
 
-    public CompanyCategory(String name, String image, String duration, String jobtype, String stipend, String worktime, String pdfname, String pdfurl, String jdname, String jdurl, String cgpa, String eligibledepartment, String jobdescrition, String offers, String role, String visitdate, String linkedin, String glassdoor, String website) {
+    public String getLinkedin() {
+        return linkedin;
+    }
+
+    public void setLinkedin(String linkedin) {
+        this.linkedin = linkedin;
+    }
+
+    public String getGlassdoor() {
+        return glassdoor;
+    }
+
+    public void setGlassdoor(String glassdoor) {
+        this.glassdoor = glassdoor;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public CompanyCategory(String name, String image, String duration, String jobtype, String stipend, String worktime, String pdfname, String pdfurl, String cgpa, String eligibledepartment, String jobdescrition, String joblocation, String offers, String role, String visitedate) {
         this.name = name;
         this.image = image;
         this.duration = duration;
@@ -62,33 +75,13 @@ public class CompanyCategory {
         this.worktime = worktime;
         this.pdfname = pdfname;
         this.pdfurl = pdfurl;
-        this.jdname = jdname;
-        this.jdurl = jdurl;
         this.cgpa = cgpa;
         this.eligibledepartment = eligibledepartment;
         this.jobdescrition = jobdescrition;
+        this.joblocation = joblocation;
         this.offers = offers;
         this.role = role;
-        this.visitdate = visitdate;
-        this.linkedin = linkedin;
-        this.glassdoor = glassdoor;
-        this.website = website;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+        this.visitdate = visitedate;
     }
 
     public String getDuration() {
@@ -139,22 +132,6 @@ public class CompanyCategory {
         this.pdfurl = pdfurl;
     }
 
-    public String getJdname() {
-        return jdname;
-    }
-
-    public void setJdname(String jdname) {
-        this.jdname = jdname;
-    }
-
-    public String getJdurl() {
-        return jdurl;
-    }
-
-    public void setJdurl(String jdurl) {
-        this.jdurl = jdurl;
-    }
-
     public String getCgpa() {
         return cgpa;
     }
@@ -179,6 +156,14 @@ public class CompanyCategory {
         this.jobdescrition = jobdescrition;
     }
 
+    public String getJoblocation() {
+        return joblocation;
+    }
+
+    public void setJoblocation(String joblocation) {
+        this.joblocation = joblocation;
+    }
+
     public String getOffers() {
         return offers;
     }
@@ -199,32 +184,24 @@ public class CompanyCategory {
         return visitdate;
     }
 
-    public void setVisitdate(String visitdate) {
-        this.visitdate = visitdate;
+    public void setVisitdate(String visitedate) {
+        this.visitdate = visitedate;
     }
 
-    public String getLinkedin() {
-        return linkedin;
+    public String getName() {
+        return name;
     }
 
-    public void setLinkedin(String linkedin) {
-        this.linkedin = linkedin;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getGlassdoor() {
-        return glassdoor;
+    public String getImage() {
+        return image;
     }
 
-    public void setGlassdoor(String glassdoor) {
-        this.glassdoor = glassdoor;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

@@ -34,7 +34,7 @@ public class PdfActivity extends AppCompatActivity {
 
     //---------Menu ViewHolder--------
     FirebaseDatabase database;
-    DatabaseReference mref_interview, mref_jd;
+    DatabaseReference mref;
     ProgressBar progressBar;
 
 
@@ -51,36 +51,10 @@ public class PdfActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         database = FirebaseDatabase.getInstance();
         String companyID = getIntent().getStringExtra("companyID");
-        mref_interview = database.getReference("CompanyYear").child(Common.yearSelected)
+        mref = database.getReference("CompanyYear").child(Common.yearSelected)
                 .child("details").child("Companies").child(companyID).child("InterviewProcess");
 
-        mref_interview.addValueEventListener(new ValueEventListener() {
-
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                progressBar.setVisibility(View.VISIBLE);
-                CompanyCategory value = dataSnapshot.getValue(CompanyCategory.class);
-                tv_pdfView.setText(value.getPdfurl());
-                String url = tv_pdfView.getText().toString();
-                new RetrivePdfStream().execute(url);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Failed to load", Toast.LENGTH_SHORT).show();
-                progressBar.setVisibility(View.GONE);
-
-            }
-        });
-
-        mref_jd = database.getReference("CompanyYear").child(Common.yearSelected)
-                .child("details").child("Companies").child(companyID).child("jobDescription");
-
-        mref_jd.addValueEventListener(new ValueEventListener() {
+        mref.addValueEventListener(new ValueEventListener() {
 
 
             @Override
