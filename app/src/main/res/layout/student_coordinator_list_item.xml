@@ -13,7 +13,7 @@
 
     >
     <RelativeLayout
-
+        android:background="@color/colorPrimary"
         android:id="@+id/profile_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -22,7 +22,6 @@
             android:id="@+id/cv_person_details"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -66,15 +65,7 @@
                                 android:textStyle="bold" />
 
                         </LinearLayout>
-                        <TextView
-                            android:id="@+id/coordinator_year"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="3rd Year student"
-                            android:textAlignment="viewStart"
 
-                            android:textSize="16sp" />
                         <TextView
                             android:id="@+id/coordinator_dept"
                             android:layout_width="match_parent"
@@ -82,6 +73,16 @@
                             android:layout_marginTop="5dp"
                             android:text="Department of CSE"
                             android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                        <TextView
+                            android:id="@+id/coordinator_year"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="3rd Year student"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
                             android:textSize="16sp" />
 
                         <TextView
@@ -91,7 +92,7 @@
                             android:layout_marginTop="5dp"
                             android:text="9876543241"
                             android:textAlignment="viewStart"
-
+                            android:textColor="@color/link_blue"
                             android:textSize="16sp" />
 
                         <TextView
@@ -102,23 +103,13 @@
                             android:text="blah@gmail.com"
                             android:textAlignment="viewStart"
                             android:textColor="@color/link_blue"
-
                             android:textSize="16sp" />
-
-
-
-
 
 
                     </LinearLayout>
 
 
-
-
-
                 </LinearLayout>
-
-
 
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
