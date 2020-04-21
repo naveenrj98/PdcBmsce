@@ -32,9 +32,10 @@
                     android:layout_height="wrap_content">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_gravity="center_vertical"
                         android:id="@+id/coordinator_image"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="111dp"
+                        android:layout_height="111dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_profile"
                         app:civ_border_color="@color/black"

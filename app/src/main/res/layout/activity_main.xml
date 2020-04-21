@@ -16,19 +16,19 @@
 
 
         />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/relLayout1"
-        android:gravity="top"
-        android:layout_alignParentTop="true">
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/relLayout1"-->
+<!--        android:gravity="top"-->
+<!--        android:layout_alignParentTop="true">-->
 
 
 
-        <include layout="@layout/snippet_top_toolbar"/>
+<!--        <include layout="@layout/snippet_top_toolbar"/>-->
 
 
-    </RelativeLayout>
+<!--    </RelativeLayout>-->
 
 <!--    <com.github.clans.fab.FloatingActionMenu-->
 <!--        android:id="@+id/social_floating_menu"-->

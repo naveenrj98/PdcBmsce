@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:gravity="center"
-        android:text="News" />
+        android:text="Updates Will be Added Soon" />
 
 </FrameLayout>

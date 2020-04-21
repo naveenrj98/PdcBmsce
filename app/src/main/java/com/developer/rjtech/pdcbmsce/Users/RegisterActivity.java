@@ -26,10 +26,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
+
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\\.)?[a-zA-Z]+\\.)?(bmsce.ac|domain2)\\.in$";
+
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
     private Context mContext;
     private String email, username, password;
@@ -66,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 email = mEmail.getText().toString();
+
                 username = mUsername.getText().toString();
                 password = mPassword.getText().toString();
 
@@ -81,7 +89,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean checkInputs(String email, String username, String password){
         Log.d(TAG, "checkInputs: checking inputs for null values.");
-        if(email.equals("") || username.equals("") || password.equals("")){
+        if( emailValidator(email))
+        {
+            Toast.makeText(mContext, "Valid EmailId", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(mContext, "Only College Email ID is allowed.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(email.equals("") || username.equals("") || password.equals("")  ){
             Toast.makeText(mContext, "All fields must be filled out.", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -211,4 +226,18 @@ public class RegisterActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+
+
+
+    public static boolean emailValidator(String email) {
+
+        if (email == null) {
+            return false;
+        }
+
+        Matcher matcher = EMAIL_PATTERN.matcher(email);
+        return matcher.matches();
+    }
+
 }

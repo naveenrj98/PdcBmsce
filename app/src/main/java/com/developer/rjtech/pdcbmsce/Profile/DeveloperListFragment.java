@@ -177,4 +177,5 @@ public class DeveloperListFragment extends Fragment {
         super.onStop();
         adptor.stopListening();
     }
+
 }

@@ -20,6 +20,9 @@ import com.developer.rjtech.pdcbmsce.Companies.CompanyCategoryFragment;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.Model.Category;
 import com.developer.rjtech.pdcbmsce.Model.Year;
+import com.developer.rjtech.pdcbmsce.Profile.DeveloperActivty;
+import com.developer.rjtech.pdcbmsce.Profile.DeveloperListFragment;
+import com.developer.rjtech.pdcbmsce.Profile.DevelopersDetailsActivity;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
 import com.developer.rjtech.pdcbmsce.ViewHolder.YearViewHolder;
@@ -33,7 +36,8 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment {
-    ImageView about,rules,alumni;
+   // ImageView about,rules,alumni;
+    private CardView about,rules,alumni,developers;
     FirebaseDatabase database;
     DatabaseReference year;
     RecyclerView recycler_menu;
@@ -49,11 +53,24 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+        View view =  inflater.inflate(R.layout.content_home, container, false);
+//        about = view.findViewById(R.id.about_image);
+//        rules = view.findViewById(R.id.rules_image);
+//        alumni = view.findViewById(R.id.alumni_image);
         about = view.findViewById(R.id.about_image);
-        rules = view.findViewById(R.id.rules_image);
-        alumni = view.findViewById(R.id.alumni_image);
+       rules = view.findViewById(R.id.rules_image);
+       alumni = view.findViewById(R.id.alumni_image);
+        developers = view.findViewById(R.id.developers);
 
+
+        developers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DeveloperActivty.class);
+                startActivity(intent);
+
+            }
+        });
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +83,7 @@ public class HomeFragment extends Fragment {
         alumni.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home, new AlumniFragment()).addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_home, new AlumniFragment()).addToBackStack(null).commit();
             }
         });
 

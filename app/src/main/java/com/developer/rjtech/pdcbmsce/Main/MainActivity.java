@@ -60,17 +60,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.profileToolBar);
+       // toolbar = findViewById(R.id.profileToolBar);
+
         setupFirebaseAuth();
         initImageLoader();
-        materialSearchBar = findViewById(R.id.btn_search);
-         materialSearchBar.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-                 startActivity(intent);
-             }
-         });
+//        materialSearchBar = findViewById(R.id.btn_search);
+//         materialSearchBar.setOnClickListener(new View.OnClickListener() {
+//             @Override
+//             public void onClick(View v) {
+//                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+//                 startActivity(intent);
+//             }
+//         });
 
         Gson gson = new Gson();
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             resume = gson.fromJson(json, Resume.class);
 
         //------------------------------------Navigation related code------------------------------------------------------------
-        setSupportActionBar(toolbar);
+      //  setSupportActionBar(toolbar);
 
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
