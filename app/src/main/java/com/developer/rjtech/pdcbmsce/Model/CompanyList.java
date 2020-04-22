@@ -11,6 +11,7 @@ public class CompanyList {
     private String performanceBC;
     private String stipend;
     private String ccID;
+    private String depID;
     private String CGPA;
     private String EligibleDepartment;
     private String companyName;
@@ -37,6 +38,14 @@ public class CompanyList {
         this.jobDescription = jobDescription;
         this.jobLocation = jobLocation;
         this.noOfPeopleSelected = noOfPeopleSelected;
+    }
+
+    public String getDepID() {
+        return depID;
+    }
+
+    public void setDepID(String depID) {
+        this.depID = depID;
     }
 
     public String getName() {
@@ -161,6 +170,7 @@ public class CompanyList {
                 ", performanceBC='" + performanceBC + '\'' +
                 ", stipend='" + stipend + '\'' +
                 ", ccID='" + ccID + '\'' +
+                ", depID='" + depID + '\'' +
                 ", CGPA='" + CGPA + '\'' +
                 ", EligibleDepartment='" + EligibleDepartment + '\'' +
                 ", companyName='" + companyName + '\'' +

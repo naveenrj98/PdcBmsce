@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+
+    app:cardElevation="10dp"
+    android:layout_margin="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="15dp"
+
+
+    >
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/tv_year"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Company Visited Year" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cg_year"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cp_2020"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="2020" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cp_2021"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2021" />
+
+                </com.google.android.material.chip.ChipGroup>
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/tv_department"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Company Category" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cg_category"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:singleLine="false"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cp_internship"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Internship" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cp_tier1"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiear 1" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cp_tier2"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiear 2" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:textStyle="bold"
+
+                    android:id="@+id/tv_category"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Department" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cg_sort"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cp_cse"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CSE" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cp_ise"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ISE" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cp_ece"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ECE" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cp_mech"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mech" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cp_EEE"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EEE" />
+                </com.google.android.material.chip.ChipGroup>
+
+
+
+
+
+
+
+            </LinearLayout>
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/linearLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="vertical"-->
+<!--                android:scrollbars="vertical"-->
+<!--               >-->
+
+
+
+<!--            </LinearLayout>-->
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>

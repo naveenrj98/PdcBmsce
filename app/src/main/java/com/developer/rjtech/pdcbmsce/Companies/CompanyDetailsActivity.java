@@ -95,7 +95,7 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
 
         //Auth
         database = FirebaseDatabase.getInstance();
-        companies = database.getReference("CompanyYear").child(Common.yearSelected)
+        companies = database.getReference("CompanyYear").child("2020")
                 .child("details").child("Companies");
 
 
