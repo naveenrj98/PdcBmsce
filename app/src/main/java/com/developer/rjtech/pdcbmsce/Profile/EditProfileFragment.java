@@ -48,8 +48,8 @@ public class EditProfileFragment extends Fragment implements
 
 
     //floating Action button
-    FloatingActionMenu materialDesignFAM;
-    com.github.clans.fab.FloatingActionButton fab_fb, fab_linkedin, fab_insta,fab_github, fab_web, fab_help;
+//    FloatingActionMenu materialDesignFAM;
+//    com.github.clans.fab.FloatingActionButton fab_fb, fab_linkedin, fab_insta,fab_github, fab_web, fab_help;
 
 
 
@@ -130,7 +130,6 @@ public class EditProfileFragment extends Fragment implements
 
     //EditProfile Fragment widgets
     private EditText mDisplayName, mUsername, mWebsite, mDescription, mEmail, mPhoneNumber;
-
     private TextView mChangeProfilePhoto;
     private CircleImageView mProfilePhoto;
 
@@ -196,7 +195,7 @@ public class EditProfileFragment extends Fragment implements
         final String website = mWebsite.getText().toString();
         final String description = mDescription.getText().toString();
         final String email = mEmail.getText().toString();
-        final long phoneNumber = Long.parseLong(mPhoneNumber.getText().toString());
+        final String phoneNumber = mPhoneNumber.getText().toString();
 
 
         //case1: if the user made a change to their username
@@ -225,17 +224,17 @@ public class EditProfileFragment extends Fragment implements
          */
         if(!mUserSettings.getSettings().getDisplay_name().equals(displayName)){
             //update displayname
-            mFirebaseMethods.updateUserAccountSettings(displayName, null, null, 0);
+            mFirebaseMethods.updateUserAccountSettings(displayName, null, null, null);
         }
         if(!mUserSettings.getSettings().getWebsite().equals(website)){
             //update website
-            mFirebaseMethods.updateUserAccountSettings(null, website, null, 0);
+            mFirebaseMethods.updateUserAccountSettings(null, website, null, null);
         }
         if(!mUserSettings.getSettings().getDescription().equals(description)){
             //update description
-            mFirebaseMethods.updateUserAccountSettings(null, null, description, 0);
+            mFirebaseMethods.updateUserAccountSettings(null, null, description, null);
         }
-        if(!mUserSettings.getSettings().getProfile_photo().equals(phoneNumber)){
+        if(!mUserSettings.getSettings().getPhone_number().equals(phoneNumber)){
             //update phoneNumber
             mFirebaseMethods.updateUserAccountSettings(null, null, null, phoneNumber);
         }
@@ -283,7 +282,7 @@ public class EditProfileFragment extends Fragment implements
     private void setProfileWidgets(UserSettings userSettings){
         Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.toString());
         Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getUser().getEmail());
-        Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getUser().getPhone_number());
+        Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getSettings().getPhone_number());
 
         mUserSettings = userSettings;
         //User user = userSettings.getUser();
@@ -294,7 +293,7 @@ public class EditProfileFragment extends Fragment implements
         mWebsite.setText(settings.getWebsite());
         mDescription.setText(settings.getDescription());
         mEmail.setText(userSettings.getUser().getEmail());
-        mPhoneNumber.setText(String.valueOf(userSettings.getUser().getPhone_number()));
+        mPhoneNumber.setText(userSettings.getSettings().getPhone_number());
 
 
     }

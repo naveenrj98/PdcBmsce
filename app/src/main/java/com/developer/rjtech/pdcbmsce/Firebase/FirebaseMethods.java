@@ -56,7 +56,7 @@ public class FirebaseMethods {
      * @param description
      * @param phoneNumber
      */
-    public void updateUserAccountSettings(String displayName, String website, String description, long phoneNumber){
+    public void updateUserAccountSettings(String displayName, String website, String description, String phoneNumber){
 
         Log.d(TAG, "updateUserAccountSettings: updating user account settings.");
 
@@ -82,7 +82,7 @@ public class FirebaseMethods {
                     .setValue(description);
         }
 
-        if(phoneNumber != 0) {
+        if(phoneNumber != null) {
             myRef.child(mContext.getString(R.string.dbname_user_account_settings))
                     .child(userID)
                     .child(mContext.getString(R.string.field_phone_number))
@@ -204,9 +204,9 @@ public class FirebaseMethods {
      * @param website
      * @param profile_photo
      */
-    public void addNewUser(String email, String username, String description, String website, String profile_photo){
+    public void addNewUser(String email, String username, String description, String website, String profile_photo, String phone_number){
 
-        User user = new User( userID,  1,  email,  StringManipulation.condenseUsername(username) );
+        User user = new User( userID,  phone_number,  email,  StringManipulation.condenseUsername(username) );
         Common.currentUser = user;
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(userID)
@@ -221,7 +221,8 @@ public class FirebaseMethods {
                 0,
                 profile_photo,
                 StringManipulation.condenseUsername(username),
-                website
+                website,
+                phone_number
         );
 
         myRef.child(mContext.getString(R.string.dbname_user_account_settings))
@@ -292,6 +293,11 @@ public class FirebaseMethods {
                                     .getValue(UserAccountSettings.class)
                                     .getFollowers()
                     );
+                    settings.setPhone_number(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getPhone_number()
+                    );
 
                     Log.d(TAG, "getUserAccountSettings: retrieved user_account_settings information: " + settings.toString());
                 } catch (NullPointerException e) {
@@ -315,10 +321,10 @@ public class FirebaseMethods {
                                 .getValue(User.class)
                                 .getEmail()
                 );
-                user.setPhone_number(
+                user.setPhone(
                         ds.child(userID)
                                 .getValue(User.class)
-                                .getPhone_number()
+                                .getPhone()
                 );
                 user.setUser_id(
                         ds.child(userID)

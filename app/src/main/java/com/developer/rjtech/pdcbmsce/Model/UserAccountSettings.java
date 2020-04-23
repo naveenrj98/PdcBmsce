@@ -10,22 +10,32 @@ public class UserAccountSettings {
     private String profile_photo;
     private String username;
     private String website;
-    private String cname;
-    private String cemail;
+    private String phone_number;
 
-
-    public UserAccountSettings(String cname, String cemail, String csubject, String cmessage) {
-        this.cname = cname;
-        this.cemail = cemail;
-        this.csubject = csubject;
-        this.cmessage = cmessage;
+    public String getPhone_number() {
+        return phone_number;
     }
 
-    private String csubject;
-    private String cmessage;
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
 
+    @Override
+    public String toString() {
+        return "UserAccountSettings{" +
+                "description='" + description + '\'' +
+                ", display_name='" + display_name + '\'' +
+                ", followers=" + followers +
+                ", following=" + following +
+                ", posts=" + posts +
+                ", profile_photo='" + profile_photo + '\'' +
+                ", username='" + username + '\'' +
+                ", website='" + website + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                '}';
+    }
 
-    public UserAccountSettings(String description, String display_name, long followers, long following, long posts, String profile_photo, String username, String website, String cname, String cemail, String csubject, String cmessage) {
+    public UserAccountSettings(String description, String display_name, long followers, long following, long posts, String profile_photo, String username, String website, String phone_number) {
         this.description = description;
         this.display_name = display_name;
         this.followers = followers;
@@ -34,43 +44,8 @@ public class UserAccountSettings {
         this.profile_photo = profile_photo;
         this.username = username;
         this.website = website;
-        this.cname = cname;
-        this.cemail = cemail;
-        this.csubject = csubject;
-        this.cmessage = cmessage;
+        this.phone_number = phone_number;
     }
-    public String getCname() {
-        return cname;
-    }
-
-    public void setCname(String cname) {
-        this.cname = cname;
-    }
-
-    public String getCemail() {
-        return cemail;
-    }
-
-    public void setCemail(String cemail) {
-        this.cemail = cemail;
-    }
-
-    public String getCsubject() {
-        return csubject;
-    }
-
-    public void setCsubject(String csubject) {
-        this.csubject = csubject;
-    }
-
-    public String getCmessage() {
-        return cmessage;
-    }
-
-    public void setCmessage(String cmessage) {
-        this.cmessage = cmessage;
-    }
-
 
     public UserAccountSettings(String description, String display_name, long followers, long following,
                                long posts, String profile_photo, String username, String website) {
@@ -149,24 +124,6 @@ public class UserAccountSettings {
 
     public void setWebsite(String website) {
         this.website = website;
-    }
-
-    @Override
-    public String toString() {
-        return "UserAccountSettings{" +
-                "description='" + description + '\'' +
-                ", display_name='" + display_name + '\'' +
-                ", followers=" + followers +
-                ", following=" + following +
-                ", posts=" + posts +
-                ", profile_photo='" + profile_photo + '\'' +
-                ", username='" + username + '\'' +
-                ", website='" + website + '\'' +
-                ", cname='" + cname + '\'' +
-                ", cemail='" + cemail + '\'' +
-                ", csubject='" + csubject + '\'' +
-                ", cmessage='" + cmessage + '\'' +
-                '}';
     }
 
 }

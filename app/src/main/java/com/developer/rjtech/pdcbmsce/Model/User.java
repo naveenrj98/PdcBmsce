@@ -3,13 +3,13 @@ package com.developer.rjtech.pdcbmsce.Model;
 public class User {
 
     private String user_id;
-    private long phone_number;
+    private String phone;
     private String email;
     private String username;
 
-    public User(String user_id, long phone_number, String email, String username) {
+    public User(String user_id, String phone, String email, String username) {
         this.user_id = user_id;
-        this.phone_number = phone_number;
+        this.phone = phone;
         this.email = email;
         this.username = username;
     }
@@ -27,12 +27,12 @@ public class User {
         this.user_id = user_id;
     }
 
-    public long getPhone_number() {
-        return phone_number;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhone_number(long phone_number) {
-        this.phone_number = phone_number;
+    public void setPhone(String phone) {
+        this.phone= phone;
     }
 
     public String getEmail() {
@@ -56,7 +56,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "user_id='" + user_id + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                ", phone_number='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 '}';
