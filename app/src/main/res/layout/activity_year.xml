@@ -6,7 +6,7 @@
     android:id="@+id/swipe_layout"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Companies.YearActivity"
+    tools:context=".BackupFiles.YearActivity"
     >
 
 <!--    <RelativeLayout-->

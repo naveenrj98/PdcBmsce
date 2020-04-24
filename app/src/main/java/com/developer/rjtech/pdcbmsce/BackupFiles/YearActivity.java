@@ -1,14 +1,4 @@
-package com.developer.rjtech.pdcbmsce.Companies;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+package com.developer.rjtech.pdcbmsce.BackupFiles;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +6,21 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.developer.rjtech.pdcbmsce.BackupFiles.CompanyCategoryActivity;
 import com.developer.rjtech.pdcbmsce.Common.Common;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
-import com.developer.rjtech.pdcbmsce.Model.Category;
-import com.developer.rjtech.pdcbmsce.Model.CompanyCategory;
 import com.developer.rjtech.pdcbmsce.Model.Year;
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.ViewHolder.CompanyCategoryViewHolder;
 import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
+import com.developer.rjtech.pdcbmsce.Model.Category;
 import com.developer.rjtech.pdcbmsce.ViewHolder.YearViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -38,15 +35,15 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompanyCategoryActivity extends AppCompatActivity {
+public class YearActivity extends AppCompatActivity {
 
     //---------Menu ViewHolder--------
     FirebaseDatabase database;
-    DatabaseReference ccategory;
-    RecyclerView recycler_category;
+    DatabaseReference year;
+    RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
     TextView textFullName;
-    FirebaseRecyclerAdapter<CompanyCategory, CompanyCategoryViewHolder> adptor;
+    FirebaseRecyclerAdapter<Year, YearViewHolder> adptor;
 
     //--------Search Functionality---------
     FirebaseRecyclerAdapter<Category, MenuViewHolder> searchadptor;
@@ -59,19 +56,19 @@ public class CompanyCategoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company_category);
+        setContentView(R.layout.activity_year);
 
         //Auth
         database = FirebaseDatabase.getInstance();
-        ccategory = database.getReference("CompanyYear").child(Common.yearSelected)
-        .child("details").child("CompanyCategory");
+        year = database.getReference("CompanyYear");
 
 
-        recycler_category = findViewById(R.id.recycler_company_category);
-        recycler_category.setHasFixedSize(true);
+        recycler_menu = findViewById(R.id.recycler_menu);
+        recycler_menu.setHasFixedSize(true);
 
 
-        recycler_category.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
+        recycler_menu.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
+
 
         swipeRefreshLayout = findViewById(R.id.swipe_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
@@ -91,7 +88,9 @@ public class CompanyCategoryActivity extends AppCompatActivity {
             }
         });
 
-        //Search
+
+
+                //Search
 //        materialSearchBar = findViewById(R.id.searchBar);
 //        materialSearchBar.setHint("Enter Your Company");
 //        loadSuggest();
@@ -127,7 +126,7 @@ public class CompanyCategoryActivity extends AppCompatActivity {
 //            @Override
 //            public void onSearchStateChanged(boolean enabled) {
 //                if (!enabled) {
-//                    recycler_category.setAdapter(adptor);
+//                    recycler_menu.setAdapter(adptor);
 //                }
 //            }
 //
@@ -180,7 +179,7 @@ public class CompanyCategoryActivity extends AppCompatActivity {
 
     private void loadSuggest() {
 
-        ccategory.addValueEventListener(new ValueEventListener() {
+        year.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -201,26 +200,26 @@ public class CompanyCategoryActivity extends AppCompatActivity {
     }
     private void loadMenu() {
 
-        FirebaseRecyclerOptions<CompanyCategory> options = new FirebaseRecyclerOptions.Builder<CompanyCategory>()
-                .setQuery(ccategory, CompanyCategory.class)
+        FirebaseRecyclerOptions<Year> options = new FirebaseRecyclerOptions.Builder<Year>()
+                .setQuery(year, Year.class)
                 .build();
 
-        adptor = new FirebaseRecyclerAdapter<CompanyCategory, CompanyCategoryViewHolder>(options) {
+        adptor = new FirebaseRecyclerAdapter<Year, YearViewHolder>(options) {
 
             @Override
-            protected void onBindViewHolder(@NonNull CompanyCategoryViewHolder holder, int position, @NonNull CompanyCategory model) {
+            protected void onBindViewHolder(@NonNull YearViewHolder holder, int position, @NonNull Year model) {
 
                 Picasso.with(getApplicationContext()).load(model.getImage())
                         .into(holder.imageView);
-                final CompanyCategory clickItem = model;
+                final Year clickItem = model;
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
                         Toast.makeText(getApplicationContext(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), CompanyListActivity.class);
-                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
-                        Common.companyCategorySelected = adptor.getRef(position).getKey();
+                        Intent intent = new Intent(getApplicationContext(), CompanyCategoryActivity.class);
+//                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
+                        Common.yearSelected = adptor.getRef(position).getKey();
                         startActivity(intent);
 
                     }
@@ -231,15 +230,15 @@ public class CompanyCategoryActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public CompanyCategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public YearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.company_category_item, parent, false);
-                return new CompanyCategoryViewHolder(itemView);
+                        .inflate(R.layout.year_item, parent, false);
+                return new YearViewHolder(itemView);
             }
         };
         adptor.startListening();
 
-        recycler_category.setAdapter(adptor);
+        recycler_menu.setAdapter(adptor);
         swipeRefreshLayout.setRefreshing(false);
     }
 

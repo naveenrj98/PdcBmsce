@@ -2,9 +2,7 @@ package com.developer.rjtech.pdcbmsce.ResumeDeatailsSettings;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,21 +24,15 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 
-import com.developer.rjtech.pdcbmsce.Companies.CompanyCategoryFragment;
 import com.developer.rjtech.pdcbmsce.Firebase.FirebaseMethods;
 import com.developer.rjtech.pdcbmsce.Profile.AccountSettingsActivity;
-import com.developer.rjtech.pdcbmsce.Profile.DeveloperFragment;
-import com.developer.rjtech.pdcbmsce.Profile.EditProfileFragment;
-import com.developer.rjtech.pdcbmsce.Profile.SignOutFragment;
 import com.developer.rjtech.pdcbmsce.R;
 
-import com.developer.rjtech.pdcbmsce.Users.ContactUsFragment;
 import com.developer.rjtech.pdcbmsce.Utils.SectionsStatePagerAdapter;
 import com.developer.rjtech.pdcbmsce.Utils.UniversalImageLoader;
 import com.developer.rjtech.pdcbmsce.Model.UserAccountSettings;
 import com.developer.rjtech.pdcbmsce.Model.UserSettings;
 import com.developer.rjtech.pdcbmsce.datamodel.Resume;
-import com.developer.rjtech.pdcbmsce.fragments.PersonalInfoFragment;
 import com.developer.rjtech.pdcbmsce.helper.MainResumeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,7 +41,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 
 import java.util.ArrayList;

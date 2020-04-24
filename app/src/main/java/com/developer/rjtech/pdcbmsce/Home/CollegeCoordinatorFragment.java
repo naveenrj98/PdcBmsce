@@ -10,34 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.developer.rjtech.pdcbmsce.Profile.DevelopersDetailsActivity;
 import com.developer.rjtech.pdcbmsce.R;
 import com.google.firebase.database.FirebaseDatabase;
-import android.content.Intent;
 
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.developer.rjtech.pdcbmsce.Common.Common;
-import com.developer.rjtech.pdcbmsce.Companies.CompanyDetailsActivity;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
-import com.developer.rjtech.pdcbmsce.Model.Category;
-import com.developer.rjtech.pdcbmsce.Model.CompanyList;
 import com.developer.rjtech.pdcbmsce.Model.CollegeCoordinatorList;
-import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.ViewHolder.CompanyListViewHolder;
 import com.developer.rjtech.pdcbmsce.ViewHolder.CollegeCoordinatorListViewHolder;
-import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

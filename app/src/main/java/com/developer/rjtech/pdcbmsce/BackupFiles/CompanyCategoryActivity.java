@@ -1,9 +1,7 @@
-package com.developer.rjtech.pdcbmsce.Companies;
+package com.developer.rjtech.pdcbmsce.BackupFiles;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +18,8 @@ import com.developer.rjtech.pdcbmsce.Common.Common;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.Model.Category;
 import com.developer.rjtech.pdcbmsce.Model.CompanyCategory;
-import com.developer.rjtech.pdcbmsce.Model.CompanyList;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.ViewHolder.CompanyCategoryViewHolder;
-import com.developer.rjtech.pdcbmsce.ViewHolder.CompanyListViewHolder;
 import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -38,45 +34,60 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompanyListActivity extends AppCompatActivity {
+public class CompanyCategoryActivity extends AppCompatActivity {
 
     //---------Menu ViewHolder--------
     FirebaseDatabase database;
-    DatabaseReference clist;
-    RecyclerView recycler_list;
+    DatabaseReference ccategory;
+    RecyclerView recycler_category;
     RecyclerView.LayoutManager layoutManager;
     TextView textFullName;
-    FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder> adptor;
+    FirebaseRecyclerAdapter<CompanyCategory, CompanyCategoryViewHolder> adptor;
 
     //--------Search Functionality---------
     FirebaseRecyclerAdapter<Category, MenuViewHolder> searchadptor;
     List<String> suggestList = new ArrayList<>();
    MaterialSearchBar materialSearchBar;
-    String categoryId="";
+
     SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company_list);
+        setContentView(R.layout.activity_company_category);
 
         //Auth
         database = FirebaseDatabase.getInstance();
-        clist = database.getReference("CompanyYear").child(Common.yearSelected)
-        .child("details").child("Companies");
+        ccategory = database.getReference("CompanyYear").child(Common.yearSelected)
+        .child("details").child("CompanyCategory");
 
 
-        recycler_list = findViewById(R.id.recycler_company_list);
-        recycler_list.setHasFixedSize(true);
+        recycler_category = findViewById(R.id.recycler_company_category);
+        recycler_category.setHasFixedSize(true);
 
 
-        recycler_list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+        recycler_category.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
 
+        swipeRefreshLayout = findViewById(R.id.swipe_layout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                R.color.colorgreen,
+                R.color.color_option_menu,
+                R.color.darkRed);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadMenu();
+            }
+        });
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                loadMenu();
+            }
+        });
 
-
-
-                //Search
+        //Search
 //        materialSearchBar = findViewById(R.id.searchBar);
 //        materialSearchBar.setHint("Enter Your Company");
 //        loadSuggest();
@@ -112,7 +123,7 @@ public class CompanyListActivity extends AppCompatActivity {
 //            @Override
 //            public void onSearchStateChanged(boolean enabled) {
 //                if (!enabled) {
-//                    recycler_list.setAdapter(adptor);
+//                    recycler_category.setAdapter(adptor);
 //                }
 //            }
 //
@@ -130,97 +141,7 @@ public class CompanyListActivity extends AppCompatActivity {
 //        });
 //
 
-        swipeRefreshLayout = findViewById(R.id.swipe_layout);
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
-                R.color.colorgreen,
-                R.color.color_option_menu,
-                R.color.darkRed);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if(getIntent() != null){
-                    categoryId = getIntent().getStringExtra("CategoryId");
 
-                }
-                if (!categoryId.isEmpty() && categoryId != null) {
-                    loadListCompany(categoryId);
-                }
-
-            }
-        });
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                if(getIntent() != null){
-                    categoryId = getIntent().getStringExtra("CategoryId");
-
-                }
-                if (!categoryId.isEmpty() && categoryId != null) {
-                    loadListCompany(categoryId);
-                }
-
-            }
-        });
-
-
-    }
-
-    private void loadListCompany(String categoryId) {
-
-
-        FirebaseRecyclerOptions<CompanyList> options = new FirebaseRecyclerOptions.Builder<CompanyList>()
-                .setQuery(clist.orderByChild("ccID").equalTo(categoryId),CompanyList.class)
-                .build();
-
-        adptor = new FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull CompanyListViewHolder companyListViewHolder, int i, @NonNull CompanyList companyList) {
-
-                Picasso.with(getApplicationContext()).load(companyList.getImage())
-                        .into(companyListViewHolder.imageView);
-                final CompanyList clickItem = companyList;
-                companyListViewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-
-                        Toast.makeText(getApplicationContext(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), CompanyDetailsActivity.class);
-//                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
-                        Common.companyCategorySelected = adptor.getRef(position).getKey();
-                        startActivity(intent);
-
-                    }
-                });
-
-            }
-
-            @NonNull
-            @Override
-            public CompanyListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.company_list_item, parent, false);
-                return new CompanyListViewHolder(itemView);
-            }
-        };
-
-
-        adptor.startListening();
-
-        recycler_list.setAdapter(adptor);
-        swipeRefreshLayout.setRefreshing(false);
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadListCompany(categoryId);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        adptor.stopListening();
     }
 
 //    private void starSearch(CharSequence text) {
@@ -255,7 +176,7 @@ public class CompanyListActivity extends AppCompatActivity {
 
     private void loadSuggest() {
 
-        clist.addValueEventListener(new ValueEventListener() {
+        ccategory.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -274,27 +195,27 @@ public class CompanyListActivity extends AppCompatActivity {
         });
 
     }
-    private void loadListCompany() {
+    private void loadMenu() {
 
-        FirebaseRecyclerOptions<CompanyList> options = new FirebaseRecyclerOptions.Builder<CompanyList>()
-                .setQuery(clist, CompanyList.class)
+        FirebaseRecyclerOptions<CompanyCategory> options = new FirebaseRecyclerOptions.Builder<CompanyCategory>()
+                .setQuery(ccategory, CompanyCategory.class)
                 .build();
 
-        adptor = new FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder>(options) {
+        adptor = new FirebaseRecyclerAdapter<CompanyCategory, CompanyCategoryViewHolder>(options) {
 
             @Override
-            protected void onBindViewHolder(@NonNull CompanyListViewHolder holder, int position, @NonNull CompanyList model) {
+            protected void onBindViewHolder(@NonNull CompanyCategoryViewHolder holder, int position, @NonNull CompanyCategory model) {
 
                 Picasso.with(getApplicationContext()).load(model.getImage())
                         .into(holder.imageView);
-                final CompanyList clickItem = model;
+                final CompanyCategory clickItem = model;
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
                         Toast.makeText(getApplicationContext(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), CompanyDetailsActivity.class);
-//                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
+                        Intent intent = new Intent(getApplicationContext(), CompanyListActivity.class);
+                        intent.putExtra("CategoryId", adptor.getRef(position).getKey());
                         Common.companyCategorySelected = adptor.getRef(position).getKey();
                         startActivity(intent);
 
@@ -306,15 +227,27 @@ public class CompanyListActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public CompanyListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public CompanyCategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.company_list_item, parent, false);
-                return new CompanyListViewHolder(itemView);
+                        .inflate(R.layout.company_category_item, parent, false);
+                return new CompanyCategoryViewHolder(itemView);
             }
         };
         adptor.startListening();
 
-        recycler_list.setAdapter(adptor);
+        recycler_category.setAdapter(adptor);
+        swipeRefreshLayout.setRefreshing(false);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadMenu();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adptor.stopListening();
     }
 }

@@ -16,14 +16,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.developer.rjtech.pdcbmsce.Common.Common;
+import com.developer.rjtech.pdcbmsce.BackupFiles.CompanyDetailsActivity;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.Model.Category;
-import com.developer.rjtech.pdcbmsce.Model.CompanyCategory;
 import com.developer.rjtech.pdcbmsce.Model.CompanyList;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.ViewHolder.CompanyListViewHolder;
-import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;

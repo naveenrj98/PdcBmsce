@@ -7,12 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.developer.rjtech.pdcbmsce.CodingClub.AptitudeFragment;
-import com.developer.rjtech.pdcbmsce.CodingClub.ResumeFragment;
-import com.developer.rjtech.pdcbmsce.CodingClub.TechnicalFragment;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.Utils.AboutSectionPageAdapter;
-import com.developer.rjtech.pdcbmsce.Utils.SectionsPagerAdapter;
 
 import github.chenupt.springindicator.SpringIndicator;
 import github.chenupt.springindicator.viewpager.ScrollerViewPager;

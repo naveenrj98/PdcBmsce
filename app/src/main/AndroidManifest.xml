@@ -20,7 +20,7 @@
 
         </activity>
 
-        <activity android:name=".Companies.YearActivity">
+        <activity android:name=".BackupFiles.YearActivity">
 
             </activity>
         <activity android:name=".Main.MainActivity">
@@ -35,9 +35,9 @@
         <activity android:name=".Profile.ProfileActivity" />
         <activity android:name=".Profile.AccountSettingsActivity" />
         <activity android:name=".Profile.DeveloperActivty" />
-        <activity android:name=".Companies.CompanyDetailsActivity" />
-        <activity android:name=".Companies.CompanyCategoryActivity" />
-        <activity android:name=".Companies.CompanyListActivity" />
+        <activity android:name=".BackupFiles.CompanyDetailsActivity" />
+        <activity android:name=".BackupFiles.CompanyCategoryActivity" />
+        <activity android:name=".BackupFiles.CompanyListActivity" />
         <activity android:name=".Profile.DevelopersDetailsActivity" />
         <activity android:name=".PDFViewer.PdfActivity" />
 
