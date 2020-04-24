@@ -95,6 +95,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
      /*================================ Important Section! ================================
@@ -177,6 +179,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 Log.d(TAG, "onComplete: success. email is verified.");
 
                                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
                                                 startActivity(intent);
                                             }else{
                                                 Toast.makeText(mContext, "Email is not verified \n check your email inbox.", Toast.LENGTH_SHORT).show();
@@ -252,6 +255,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
     }
+
 
     @Override
     public void onStart() {

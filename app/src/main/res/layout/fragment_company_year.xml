@@ -8,148 +8,164 @@
     tools:context=".BackupFiles.YearActivity"
 
     >
+ <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/relLayout1"
+         android:gravity="top"
+         android:layout_alignParentTop="true">
+
+
+
+         <include layout="@layout/snippet_top_companies_toolbar"/>
+
+
+     </RelativeLayout>
+     <RelativeLayout
+
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+
+         <LinearLayout
+             android:id="@+id/ll_cyear"
+             android:layout_marginTop="60dp"
+             android:layout_width="match_parent"
+             android:layout_height="40dp"
+             android:gravity="right"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:id="@+id/tv_filter"
+                 android:text="Filtered By :-"
+                 android:gravity="start"
+                 android:layout_marginRight="50dp"
+                 android:textStyle="bold"
+                 android:layout_gravity="center"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <TextView
+                 android:id="@+id/tv_result"
+                 android:text="Year"
+                 android:gravity="start"
+                 android:textColor="@color/link_blue"
+                 android:textStyle="bold"
+                 android:layout_gravity="center"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <TextView
+
+                 android:text=">"
+                 android:gravity="start"
+
+                 android:textStyle="bold"
+                 android:layout_gravity="center"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <TextView
+                 android:id="@+id/tv_category"
+                 android:text="Category"
+
+                 android:gravity="start"
+                 android:textColor="@color/link_blue"
+                 android:textStyle="bold"
+                 android:layout_gravity="center"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <TextView
+
+                 android:text=">"
+                 android:gravity="start"
+
+                 android:textStyle="bold"
+                 android:layout_gravity="center"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <TextView
+                 android:id="@+id/tv_department"
+                 android:text="Department"
+
+                 android:textColor="@color/link_blue"
+                 android:gravity="start"
+                 android:textStyle="bold"
+                 android:layout_gravity="center"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <LinearLayout
+
+                 android:layout_margin="10dp"
+                 android:id="@+id/ll_filter"
+                 android:layout_gravity="center"
+                 android:orientation="horizontal"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+                 <com.rey.material.widget.ImageView
+
+                     android:layout_gravity="center"
+                     android:src="@drawable/ic_filter_list_black_24dp"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"/>
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center"
+
+                     android:text="Filters"/>
+
+             </LinearLayout>
 
 
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/ll_cyear"
-            android:layout_marginTop="60dp"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="right"
-            android:orientation="horizontal">
+         </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_filter"
-                android:text="Filtered By :-"
-                android:gravity="start"
-                android:layout_marginRight="50dp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/tv_result"
-                android:text="Year"
-                android:gravity="start"
-                android:textColor="@color/link_blue"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
+         <androidx.recyclerview.widget.RecyclerView
 
-                android:text=">"
-                android:gravity="start"
+             android:layout_below="@+id/ll_cyear"
+             android:id="@+id/recycler_menu"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:scrollbars="vertical"
 
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/tv_category"
-                android:text="Category"
+             >
+         </androidx.recyclerview.widget.RecyclerView>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center"
+             android:layout_centerInParent="true"
+             android:orientation="vertical">
 
-                android:gravity="start"
-              android:textColor="@color/link_blue"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-
-                android:text=">"
-                android:gravity="start"
-
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/tv_department"
-                android:text="Department"
-
-android:textColor="@color/link_blue"
-                android:gravity="start"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-          <LinearLayout
-
-              android:layout_margin="10dp"
-              android:id="@+id/ll_filter"
-              android:layout_gravity="center"
-              android:orientation="horizontal"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
-              <com.rey.material.widget.ImageView
-
-                  android:layout_gravity="center"
-                  android:src="@drawable/ic_filter_list_black_24dp"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"/>
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center"
-
-                  android:text="Filters"/>
-
-          </LinearLayout>
+             <ProgressBar
+                 android:id="@+id/year_progressBar"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 />
+             <TextView
+                 android:id="@+id/pleaseWait"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:gravity="center"
 
 
+                 android:text="Please wait....."
+                 android:textColor="@color/colorPrimary"
+                 android:textSize="20sp"
+                 />
+
+         </LinearLayout>
+
+     </RelativeLayout>
 
 
-
-
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-
-          android:layout_below="@+id/ll_cyear"
-            android:id="@+id/recycler_menu"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-
-            >
-        </androidx.recyclerview.widget.RecyclerView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
-
-            <ProgressBar
-                android:id="@+id/year_progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:id="@+id/pleaseWait"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-
-
-                android:text="Please wait....."
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
-                />
-
-        </LinearLayout>
-
-    </RelativeLayout>
+ </RelativeLayout>
 
 
 

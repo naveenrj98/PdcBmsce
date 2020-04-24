@@ -7,19 +7,19 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.developer.rjtech.pdcbmsce.CodingClub.CodingClubFragment;
-import com.developer.rjtech.pdcbmsce.Companies.CompanyYearFragment;
-import com.developer.rjtech.pdcbmsce.Companies.SearchActivity;
+import com.developer.rjtech.pdcbmsce.Companies.CompaniesFragment;
 import com.developer.rjtech.pdcbmsce.Home.HomeFragment;
 import com.developer.rjtech.pdcbmsce.NewUpdates.NewsFragment;
 import com.developer.rjtech.pdcbmsce.Profile.AccountSettingsActivity;
@@ -35,6 +35,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -130,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case ID_COMPANIES:
                         name = "Companies";
 
-                       selectFragment = new CompanyYearFragment();
+                       selectFragment = new CompaniesFragment();
                         break;
                     case ID_ACCOUNT:
                         name = "ACCOUNT";
@@ -152,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        bottomNavigation.setCount(ID_NOTIFICATION, "115");
+        bottomNavigation.setCount(ID_NOTIFICATION, "1");
 
         bottomNavigation.show(ID_HOME,true);
 
@@ -186,6 +188,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
 
             return true;
+        } else if (id == R.id.action_shreapp) {
+
+            Intent intent = new Intent(Intent.ACTION_SEND);
+
+            String applink = "https://play.google.com/store/apps/details?id=com.developer.rjtech.pdcbmsce";
+            intent.setType("text/link");
+            String body = "Hey! Download App and Prepare for BMSCE PLACEMENT"+"\n"+" "+applink+"\n"+"Thanks and Regards"+"\n"+" "+"Naveen RJ";
+            String sub = "Placement BMSCE by Naveen RJ";
+            intent.putExtra(Intent.EXTRA_SUBJECT, sub);
+            intent.putExtra(Intent.EXTRA_TEXT, body);
+            startActivity(Intent.createChooser(intent,"ShareVia"));
+
+
+
+////            ApplicationInfo api = getApplicationContext().getApplicationInfo();
+////            String apkPath = api.sourceDir;
+//            Intent intent = new Intent(Intent.ACTION_SEND);
+//            intent.setType("application/vnd.android.package-archive");
+//            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(apkPath)));
+//            startActivity(Intent.createChooser(intent,"ShareVia"));
+
         }
 
 

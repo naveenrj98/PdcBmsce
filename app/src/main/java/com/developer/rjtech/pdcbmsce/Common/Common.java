@@ -15,6 +15,8 @@ public static User currentUser;
     public static final String BASE_URL = "https://fcm.googleapis.com/";
     public static  String yearSelected="";
     public static  String companyCategorySelected="";
+    public static  String companySelected="";
+
 
 //    public static APIService getFCMClient()
 //    {

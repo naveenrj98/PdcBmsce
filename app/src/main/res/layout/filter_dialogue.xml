@@ -111,7 +111,7 @@
                     android:layout_margin="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Department" />
+                    android:text="Department ( Other Departments will be added soon)" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/cg_sort"
@@ -134,26 +134,26 @@
                         android:layout_height="wrap_content"
                         android:text="ISE" />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/cp_ece"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ECE" />
+<!--                    <com.google.android.material.chip.Chip-->
+<!--                        android:id="@+id/cp_ece"-->
+<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="ECE" />-->
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/cp_mech"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mech" />
+<!--                    <com.google.android.material.chip.Chip-->
+<!--                        android:id="@+id/cp_mech"-->
+<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Mech" />-->
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/cp_EEE"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="EEE" />
+<!--                    <com.google.android.material.chip.Chip-->
+<!--                        android:id="@+id/cp_EEE"-->
+<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="EEE" />-->
                 </com.google.android.material.chip.ChipGroup>
 
 

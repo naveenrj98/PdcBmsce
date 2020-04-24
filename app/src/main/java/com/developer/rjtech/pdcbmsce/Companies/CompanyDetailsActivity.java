@@ -1,4 +1,4 @@
-package com.developer.rjtech.pdcbmsce.BackupFiles;
+package com.developer.rjtech.pdcbmsce.Companies;
 
 import android.content.Context;
 import android.content.Intent;
@@ -95,23 +95,14 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
 
         //Auth
         database = FirebaseDatabase.getInstance();
-        companies = database.getReference("CompanyYear").child("2020")
+        companies = database.getReference("CompanyYear").child(Common.yearSelected)
                 .child("details").child("Companies");
 
 
         company_image = findViewById(R.id.img_company);
         company_name = findViewById(R.id.company_name);
-        if (getIntent() != null) {
-            companyId = getIntent().getStringExtra("CategoryId");
-
-        }
-        if (!companyId.isEmpty() && companyId != null) {
-
-            getDetailCompany(companyId);
-
-
-
-        }
+        // Common.companySelected is id of selected company
+        getDetailCompany(Common.companySelected);
         collapsingToolbarLayout = findViewById(R.id.collapsing);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);

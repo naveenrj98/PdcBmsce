@@ -6,39 +6,46 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.rjtech.pdcbmsce.Common.Common;
-import com.developer.rjtech.pdcbmsce.Companies.CompanyCategoryFragment;
-import com.developer.rjtech.pdcbmsce.Companies.CompanyDetailsActivity;
+
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.Model.Category;
 import com.developer.rjtech.pdcbmsce.Model.CompanyList;
-import com.developer.rjtech.pdcbmsce.Model.Year;
+import com.developer.rjtech.pdcbmsce.Profile.AccountSettingsActivity;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.ViewHolder.CompanyListViewHolder;
 import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
-import com.developer.rjtech.pdcbmsce.ViewHolder.YearViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.squareup.picasso.Picasso;
 
@@ -46,36 +53,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CompanyYearFragment extends Fragment {
+public class CompaniesFragment extends Fragment {
 
     Chip chipy,chipd,chipc;
     private ChipGroup cg_year, cg_department, cg_category;
 
-    private Button btn_apply;
-    private List<String> selectSortedMValues = new ArrayList<>();
-
-    //---------Menu ViewHolder--------
+       //---------Menu ViewHolder--------
     private FirebaseDatabase database;
     private DatabaseReference clist;
     private RecyclerView recycler_list;
-    RecyclerView.LayoutManager layoutManager;
-    TextView textFullName;
     private FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder> adptor;
 
     //--------Search Functionality---------
-    FirebaseRecyclerAdapter<Category, MenuViewHolder> searchadptor;
-    List<String> suggestList = new ArrayList<>();
-    MaterialSearchBar materialSearchBar;
+
     String categoryId="";
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar progressBar;
+
+
+    //--------Search Functionality---------
+    RecyclerView recycler_menu;
+    FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder> searchadptor;
+    List<String> suggestList = new ArrayList<>();
+    MaterialSearchBar materialSearchBar;
 
 
     private TextView pleasewait, tv_year, tv_category, tv_department;
     private LinearLayout ll_filter;
     private String str, str_category, str_department ;
 
-
+    private Toolbar toolbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,15 +90,77 @@ public class CompanyYearFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_company_year, container, false);
 
-
-        // chipy.setText("2020");
         //Auth
         str_department=null;
         str_category=null;
         str = "2020";
+        Common.yearSelected = str;
         database = FirebaseDatabase.getInstance();
         clist = database.getReference("CompanyYear").child(str)
                 .child("details").child("Companies");
+
+        //------------------------------------Navigation related code------------------------------------------------------------
+        toolbar = view.findViewById(R.id.profileToolBar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+//        materialSearchBar = view.findViewById(R.id.search_new_bar);
+//        recycler_menu = view.findViewById(R.id.recycler_search);
+//        recycler_menu.setHasFixedSize(true);
+//        recycler_menu.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+//
+//
+//        loadSuggest();
+//        materialSearchBar.setLastSuggestions(suggestList);
+//        materialSearchBar.setCardViewElevation(10);
+//        materialSearchBar.addTextChangeListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//                List<String> suggest = new ArrayList<>();
+//                for (String search : suggestList) {
+//
+//                    if (search.toLowerCase().contains(materialSearchBar.getText().toLowerCase())) {
+//
+//                        suggest.add(search);
+//                    }
+//                    materialSearchBar.setLastSuggestions(suggest);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+//
+//        materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
+//            @Override
+//            public void onSearchStateChanged(boolean enabled) {
+//                if (!enabled) {
+//                    recycler_menu.setAdapter(searchadptor);
+//                }
+//            }
+//
+//            @Override
+//            public void onSearchConfirmed(CharSequence text) {
+//
+//                starSearch(text);
+//
+//            }
+//
+//            @Override
+//            public void onButtonClicked(int buttonCode) {
+//
+//            }
+//        });
+//
+
+
 
         recycler_list = view.findViewById(R.id.recycler_menu);
         recycler_list.setHasFixedSize(true);
@@ -145,25 +214,118 @@ public class CompanyYearFragment extends Fragment {
 
         return view;
     }
+
+
+    private void loadSuggest() {
+
+        clist.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+                    Category item = postSnapshot.getValue(Category.class);
+                    suggestList.add(item.getName());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
+    }
+    private void starSearch(CharSequence text) {
+
+        Query search = clist.orderByChild("name").equalTo(text.toString());
+
+        FirebaseRecyclerOptions<CompanyList> options = new FirebaseRecyclerOptions.Builder<CompanyList>()
+                .setQuery(search,CompanyList.class)
+                .build();
+
+
+        searchadptor = new FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull CompanyListViewHolder companyListViewHolder, int i, @NonNull CompanyList companyList) {
+                Picasso.with(getActivity()).load(companyList.getImage())
+                        .into(companyListViewHolder.imageView);
+                final CompanyList clickItem = companyList;
+                companyListViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+
+                        Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
+                        //   getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                        Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
+                        intent.putExtra("CategoryId", searchadptor.getRef(position).getKey());
+                        startActivity(intent);
+
+                    }
+                });
+
+
+
+            }
+
+            @NonNull
+            @Override
+            public CompanyListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                View itemView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.company_list_item, parent, false);
+                return new CompanyListViewHolder(itemView);
+
+
+            }
+        };
+        searchadptor.startListening();
+
+        recycler_menu.setAdapter(searchadptor);
+
+
+
+
+    }
+
+
+
+
+
+
     private void loadListCompany() {
 
         FirebaseRecyclerOptions<CompanyList> options;
 
 
 
+        Common.yearSelected = str;
         clist = database.getReference("CompanyYear").child(str)
                 .child("details").child("Companies");
 
         if(str_category!=null )
         {
-
+            tv_category.setText(str_category);
+            if (str_department == null) {
+                tv_department.setText("");
+            }
+            Common.companyCategorySelected = str_category;
             Query query = clist.orderByChild("ccID").equalTo(str_category);
             options = new FirebaseRecyclerOptions.Builder<CompanyList>()
                     .setQuery(query,CompanyList.class)
                     .build();
 
 
-        } else if (str_department != null) {
+        } else if (str_department != null ) {
+            tv_department.setText(str_department);
+            if (str_category == null) {
+                tv_category.setText("");
+            }
 
             Query query = clist.orderByChild("depID").equalTo(str_department);
             options = new FirebaseRecyclerOptions.Builder<CompanyList>()
@@ -171,6 +333,9 @@ public class CompanyYearFragment extends Fragment {
                     .build();
 
         } else {
+            tv_year.setText(str);
+            tv_category.setText("");
+            tv_department.setText("");
             options = new FirebaseRecyclerOptions.Builder<CompanyList>()
                     .setQuery(clist.orderByChild("name"), CompanyList.class)
                     .build();
@@ -192,7 +357,7 @@ public class CompanyYearFragment extends Fragment {
                         Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
                         intent.putExtra("CategoryId", adptor.getRef(position).getKey());
-                        Common.companyCategorySelected = adptor.getRef(position).getKey();
+                      Common.companySelected = adptor.getRef(position).getKey();
                         startActivity(intent);
 
                     }
@@ -259,7 +424,8 @@ public class CompanyYearFragment extends Fragment {
                         Toast.makeText(getActivity(), chipc.getText().toString(), Toast.LENGTH_SHORT).show();
 
                         str_category = chipc.getText().toString();
-                        tv_category.setText(str_category);
+
+
                         loadListCompany();
 
                         break;
@@ -273,7 +439,6 @@ public class CompanyYearFragment extends Fragment {
 
                         Toast.makeText(getActivity(), chipd.getText().toString(), Toast.LENGTH_SHORT).show();
                         str_department = chipd.getText().toString();
-                        tv_department.setText(str_department);
                         loadListCompany();
                         break;
 
@@ -287,7 +452,7 @@ public class CompanyYearFragment extends Fragment {
 
                         Toast.makeText(getActivity(), chipy.getText().toString(), Toast.LENGTH_SHORT).show();
                         str = chipy.getText().toString();
-                        tv_year.setText(str);
+
                         loadListCompany();
 
                         break;
@@ -312,9 +477,15 @@ public class CompanyYearFragment extends Fragment {
 
     }
 
+
+
+
     @Override
     public void onResume() {
         super.onResume();
+        if (searchadptor != null) {
+            searchadptor.startListening();
+        }
         loadListCompany();
     }
 
@@ -322,6 +493,40 @@ public class CompanyYearFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        if(searchadptor!=null)
+        {
+            searchadptor.stopListening();
+        }
         adptor.stopListening();
     }
-}
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(getActivity(), "Settings", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), AccountSettingsActivity.class);
+                startActivity(intent);
+
+                return true;
+            case R.id.action_shreapp:
+                Toast.makeText(getActivity(), "Thanks for sharing", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    }

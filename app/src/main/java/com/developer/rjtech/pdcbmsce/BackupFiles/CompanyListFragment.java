@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.developer.rjtech.pdcbmsce.BackupFiles.CompanyDetailsActivity;
+import com.developer.rjtech.pdcbmsce.Companies.CompanyDetailsActivity;
 import com.developer.rjtech.pdcbmsce.Common.Common;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.Model.Category;

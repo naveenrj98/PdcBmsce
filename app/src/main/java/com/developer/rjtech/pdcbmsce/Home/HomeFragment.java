@@ -61,13 +61,13 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
 
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.content_home, container, false);
-        toolbar = view.findViewById(R.id.profileToolBar);
+
         about = view.findViewById(R.id.about_image);
        rules = view.findViewById(R.id.rules_image);
        alumni = view.findViewById(R.id.alumni_image);
         cv_resume_home = view.findViewById(R.id.cv_resume_home);
         //------------------------------------Navigation related code------------------------------------------------------------
-
+        toolbar = view.findViewById(R.id.profileToolBar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
 

@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.developer.rjtech.pdcbmsce.BackupFiles.CompanyDetailsActivity;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.Model.Category;
 import com.developer.rjtech.pdcbmsce.Model.CompanyList;

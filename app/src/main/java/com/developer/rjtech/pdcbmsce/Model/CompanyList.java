@@ -19,8 +19,25 @@ public class CompanyList {
     private String jobDescription;
     private String jobLocation;
     private String noOfPeopleSelected;
+    private String pdfname,pdfurl;
 
     public CompanyList() {
+    }
+
+    public String getPdfname() {
+        return pdfname;
+    }
+
+    public void setPdfname(String pdfname) {
+        this.pdfname = pdfname;
+    }
+
+    public String getPdfurl() {
+        return pdfurl;
+    }
+
+    public void setPdfurl(String pdfurl) {
+        this.pdfurl = pdfurl;
     }
 
     public CompanyList(String name, String image, String duration, String noOfDays, String performanceBC, String stipend, String ccID, String CGPA, String eligibleDepartment, String companyName, String dateOfVisit, String jobDescription, String jobLocation, String noOfPeopleSelected) {

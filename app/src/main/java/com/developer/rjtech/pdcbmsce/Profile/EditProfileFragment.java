@@ -1,13 +1,17 @@
 package com.developer.rjtech.pdcbmsce.Profile;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.developer.rjtech.pdcbmsce.Firebase.FirebaseMethods;
@@ -26,6 +31,8 @@ import com.developer.rjtech.pdcbmsce.Model.UserAccountSettings;
 import com.developer.rjtech.pdcbmsce.Model.UserSettings;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -39,19 +46,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class EditProfileFragment extends Fragment implements
         ConfirmPasswordDialog.OnConfirmPasswordListener{
 
-
-    //floating Action button
-//    FloatingActionMenu materialDesignFAM;
-//    com.github.clans.fab.FloatingActionButton fab_fb, fab_linkedin, fab_insta,fab_github, fab_web, fab_help;
-
-
+    private Uri saveUrl;
+    private final int PICK_IMAGE_REQUEST = 71;
 
 
     @Override
@@ -123,9 +134,14 @@ public class EditProfileFragment extends Fragment implements
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef, mpic;
     private FirebaseMethods mFirebaseMethods;
     private String userID;
+    private StorageReference storageReference;
+    private FirebaseStorage storage;
+
+
+
 
 
     //EditProfile Fragment widgets
@@ -136,6 +152,8 @@ public class EditProfileFragment extends Fragment implements
 
     //vars
     private UserSettings mUserSettings;
+    private UserAccountSettings userAccountSettings;
+    private Button btnselect,btnuplaod;
 
 
     @Nullable
@@ -152,11 +170,9 @@ public class EditProfileFragment extends Fragment implements
         mChangeProfilePhoto = view.findViewById(R.id.changeProfilePhoto);
         mFirebaseMethods = new FirebaseMethods(getActivity());
 
-
-        //setProfileImage();
         setupFirebaseAuth();
 
-        //back arrow for navigating back to "ProfileActivity"
+        //back arrow for navigating back to "ProfileFragment"
         ImageView backArrow = view.findViewById(R.id.backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,6 +192,15 @@ public class EditProfileFragment extends Fragment implements
         });
 
 
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
+        mProfilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showUpdateDialog(userAccountSettings);
+            }
+        });
 
 
 
@@ -283,7 +308,7 @@ public class EditProfileFragment extends Fragment implements
         Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.toString());
         Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getUser().getEmail());
         Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getSettings().getPhone_number());
-
+        userAccountSettings = userSettings.getSettings();
         mUserSettings = userSettings;
         //User user = userSettings.getUser();
         UserAccountSettings settings = userSettings.getSettings();
@@ -310,6 +335,7 @@ public class EditProfileFragment extends Fragment implements
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
+        mpic = mFirebaseDatabase.getReference("user_account_settings");
         userID = mAuth.getCurrentUser().getUid();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -363,6 +389,147 @@ public class EditProfileFragment extends Fragment implements
         }
     }
 
+    /**
+     * This section is for uploading the profile picture of user
+     */
+    private void showUpdateDialog(final UserAccountSettings item) {
+
+
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setTitle("Set Profile Pic");
+        alertDialog.setMessage("Please Choose From Gallery");
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        View add_menu_layout = inflater.inflate(R.layout.add_new_menu_layout, null);
+
+       btnselect = add_menu_layout.findViewById(R.id.btnselect);
+        btnuplaod = add_menu_layout.findViewById(R.id.btnupload);
+
+        btnselect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                chooseImage();
+            }
+        });
+
+        btnuplaod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeImage(item);
+
+            }
+        });
+
+
+        alertDialog.setView(add_menu_layout);
+        alertDialog.setIcon(R.drawable.ic_profile);
+
+        alertDialog.setPositiveButton("Apply", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            //    mContext.getString(R.string.dbname_user_account_settings;
+
+                dialog.dismiss();
+                //item.setName(editName.getText().toString());
+                mpic.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(item);
+            }
+        });
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+
+            }
+        });
+        alertDialog.show();
+
+
+
+    }
+
+    /**
+     * Updating the existing Profile Picture
+     */
+    private void ChangeImage(final UserAccountSettings item) {
+
+
+        if (saveUrl != null) {
+
+            final ProgressDialog progressDialog = new ProgressDialog(getContext());
+            progressDialog.setMessage("Uploading........");
+            progressDialog.show();
+
+
+            String imageName = UUID.randomUUID().toString();
+            final StorageReference imageFolder = storageReference.child("images/"+imageName);
+            imageFolder.putFile(saveUrl)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(),"Uplaod Succesfull", Toast.LENGTH_SHORT).show();
+                            imageFolder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    item.setProfile_photo(uri.toString());
+
+                                }
+                            });
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            progressDialog.dismiss();
+                            Toast.makeText(getActivity(),e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                            progressDialog.setMessage("Uplaoded...."+progress+"%");
+
+                        }
+                    });
+        }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data.getData() != null && data != null) {
+
+            saveUrl = data.getData();
+            btnselect.setText("Image Selected");
+            btnuplaod.setBackgroundColor(Color.GREEN);
+            btnuplaod.setText("Click on Upload");
+        }
+    }
+
+    /**
+     * Choose Picture from Gallery
+     */
+    private void chooseImage() {
+
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Select user Profile Picture"),PICK_IMAGE_REQUEST);
+
+
+    }
 
 
 }

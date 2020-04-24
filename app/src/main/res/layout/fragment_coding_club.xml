@@ -7,10 +7,22 @@
     >
 
 <!--    <include layout="@layout/content_coding" />-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relLayout1"
+        android:gravity="top"
+        android:layout_alignParentTop="true">
 
+
+
+        <include layout="@layout/snippet_top_codingclub_toolbar"/>
+
+
+    </RelativeLayout>
 
     <github.chenupt.springindicator.SpringIndicator
-        android:layout_marginTop="60dp"
+       android:layout_below="@id/relLayout1"
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="50dp"

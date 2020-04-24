@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Include following permission if you want to cache images on SD card -->
       <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -34,8 +35,8 @@
         <activity android:name=".Users.RegisterActivity" />
         <activity android:name=".Profile.ProfileActivity" />
         <activity android:name=".Profile.AccountSettingsActivity" />
-        <activity android:name=".Profile.DeveloperActivty" />
-        <activity android:name=".BackupFiles.CompanyDetailsActivity" />
+        <activity android:name=".BackupFiles.DeveloperActivty" />
+        <activity android:name=".Companies.CompanyDetailsActivity" />
         <activity android:name=".BackupFiles.CompanyCategoryActivity" />
         <activity android:name=".BackupFiles.CompanyListActivity" />
         <activity android:name=".Profile.DevelopersDetailsActivity" />

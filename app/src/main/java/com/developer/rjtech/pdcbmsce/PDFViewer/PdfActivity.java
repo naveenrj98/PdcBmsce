@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.developer.rjtech.pdcbmsce.Common.Common;
 import com.developer.rjtech.pdcbmsce.Model.CompanyCategory;
+import com.developer.rjtech.pdcbmsce.Model.CompanyList;
 import com.developer.rjtech.pdcbmsce.R;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.google.firebase.database.DataSnapshot;
@@ -61,7 +62,7 @@ public class PdfActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 progressBar.setVisibility(View.VISIBLE);
-                CompanyCategory value = dataSnapshot.getValue(CompanyCategory.class);
+                CompanyList value = dataSnapshot.getValue(CompanyList.class);
                 tv_pdfView.setText(value.getPdfurl());
                 String url = tv_pdfView.getText().toString();
                 new RetrivePdfStream().execute(url);

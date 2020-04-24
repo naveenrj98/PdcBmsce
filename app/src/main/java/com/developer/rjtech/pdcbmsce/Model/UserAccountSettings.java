@@ -35,6 +35,10 @@ public class UserAccountSettings {
                 '}';
     }
 
+    public UserAccountSettings(String profile_photo) {
+        this.profile_photo = profile_photo;
+    }
+
     public UserAccountSettings(String description, String display_name, long followers, long following, long posts, String profile_photo, String username, String website, String phone_number) {
         this.description = description;
         this.display_name = display_name;
