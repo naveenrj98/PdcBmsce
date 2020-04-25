@@ -102,6 +102,18 @@ public class CompaniesFragment extends Fragment {
         //------------------------------------Navigation related code------------------------------------------------------------
         toolbar = view.findViewById(R.id.profileToolBar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+        materialSearchBar = view.findViewById(R.id.search_new_bar);
+
+        materialSearchBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
 //        materialSearchBar = view.findViewById(R.id.search_new_bar);
 //        recycler_menu = view.findViewById(R.id.recycler_search);
 //        recycler_menu.setHasFixedSize(true);

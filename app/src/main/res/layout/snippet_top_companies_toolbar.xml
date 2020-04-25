@@ -34,20 +34,20 @@
 
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_below="@+id/search_new_bar"
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:layout_below="@+id/search_new_bar"-->
 
-                    android:id="@+id/recycler_search"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbars="vertical"
+<!--                    android:id="@+id/recycler_search"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:scrollbars="vertical"-->
 
-                    >
-
-
+<!--                    >-->
 
 
-                </androidx.recyclerview.widget.RecyclerView>
+
+
+<!--                </androidx.recyclerview.widget.RecyclerView>-->
 
 
             </RelativeLayout>

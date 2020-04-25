@@ -71,6 +71,13 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
 
+        rules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_home, new PlacmentRulesFragment()).addToBackStack(null).commit();
+
+            }
+        });
         cv_resume_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

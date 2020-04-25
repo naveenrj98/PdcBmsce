@@ -62,7 +62,7 @@ public class TechnicalFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_technical, container, false);
         //Auth
         database = FirebaseDatabase.getInstance();
-        clist = database.getReference("Technical");
+        clist = database.getReference("TechnicalCategory");
 
 
         recycler_list = view.findViewById(R.id.recycler_technical_list);

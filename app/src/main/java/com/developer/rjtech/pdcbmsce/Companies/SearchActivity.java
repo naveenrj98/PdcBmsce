@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.developer.rjtech.pdcbmsce.Common.Common;
 import com.developer.rjtech.pdcbmsce.Interface.ItemClickListener;
 import com.developer.rjtech.pdcbmsce.Model.Category;
 import com.developer.rjtech.pdcbmsce.Model.CompanyList;
@@ -61,7 +62,7 @@ public class SearchActivity extends AppCompatActivity {
 
         //Auth
         database = FirebaseDatabase.getInstance();
-        category =database.getReference("CompanyYear").child("2020")
+        category =database.getReference("CompanyYear").child(Common.yearSelected)
                 .child("details").child("Companies");
 
         recycler_menu = findViewById(R.id.recycler_search);
@@ -77,8 +78,8 @@ public class SearchActivity extends AppCompatActivity {
 
 
        loadSuggest();
-      materialSearchBar.setLastSuggestions(suggestList);
-       materialSearchBar.setCardViewElevation(10);
+        materialSearchBar.setLastSuggestions(suggestList);
+         materialSearchBar.setCardViewElevation(10);
         materialSearchBar.addTextChangeListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
