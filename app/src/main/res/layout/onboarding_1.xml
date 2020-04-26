@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/next_2"
+    android:background="#6DB8FF"
     tools:context="Onboarding.OnboardingActivity">
 
     <androidx.constraintlayout.widget.Guideline
