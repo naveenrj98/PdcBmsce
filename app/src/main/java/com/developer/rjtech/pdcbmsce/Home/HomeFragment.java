@@ -1,15 +1,28 @@
 package com.developer.rjtech.pdcbmsce.Home;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +32,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.developer.rjtech.pdcbmsce.Main.MainActivity;
 import com.developer.rjtech.pdcbmsce.Model.Category;
 import com.developer.rjtech.pdcbmsce.Model.Year;
 import com.developer.rjtech.pdcbmsce.Profile.AccountSettingsActivity;
@@ -27,6 +41,9 @@ import com.developer.rjtech.pdcbmsce.ViewHolder.MenuViewHolder;
 import com.developer.rjtech.pdcbmsce.ViewHolder.YearViewHolder;
 import com.developer.rjtech.pdcbmsce.helper.MainResumeActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -140,12 +157,11 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
 
     }
 
-
-
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
     }
+
+
+
 }

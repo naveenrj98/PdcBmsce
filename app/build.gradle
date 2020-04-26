@@ -90,6 +90,8 @@ dependencies {
 
     /*--------------------------Html Textview-------------------------------------------------*/
     implementation 'org.sufficientlysecure:html-textview:3.9';
+    /*--------------------------Onboarding-------------------------------------------------*/
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.0'
 
 
 }

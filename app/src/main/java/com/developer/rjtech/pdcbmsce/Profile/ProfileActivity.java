@@ -1,8 +1,6 @@
 package com.developer.rjtech.pdcbmsce.Profile;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -14,7 +12,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.developer.rjtech.pdcbmsce.R;
-import com.developer.rjtech.pdcbmsce.ResumeDeatailsSettings.ProfileFragment;
 import com.github.clans.fab.FloatingActionMenu;
 
 

@@ -77,8 +77,12 @@ private Context mContext;
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
                 if (user != null) {
                     // User is signed in
+                    name.setText(user.getDisplayName());
+                    email.setText(user.getEmail());
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     toastMessage("Successfully signed in with: " + user.getEmail());
                 } else {
@@ -112,10 +116,13 @@ private Context mContext;
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseUser user = mAuth.getCurrentUser();
+                String userID = user.getUid();
 
 
 
                 Log.d(TAG, "onClick: Submit pressed.");
+
                 String cname = name.getText().toString();
                String cemail = email.getText().toString();
                 String csubject = subject.getText().toString();
@@ -125,13 +132,13 @@ private Context mContext;
                         "email: " + email + "\n" +
                         "phone number: " + subject + "\n"
                 );
-                FirebaseUser user = mAuth.getCurrentUser();
-                   String userID = user.getUid();
+
                 //handle the exception if the EditText fields are null
                 if(!cname.equals("") && !cemail.equals("") && !csubject.equals("") && !cmessage.equals("")){
                     ContactUs contactinformation = new ContactUs(cname,cemail,csubject,cmessage);
+
                     myRef.child("contact_details").child(userID).setValue(contactinformation);
-                    toastMessage("Congrats !!! your Enquiry has been recoreded");
+                    toastMessage("Congrats ! Your Enquiry has been recorded");
                     name.setText("");
                     email.setText("");
                     subject.setText("");

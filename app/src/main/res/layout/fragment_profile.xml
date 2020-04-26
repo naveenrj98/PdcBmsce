@@ -2,11 +2,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
     android:id="@+id/fragprofileid"
 
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relLayout1"
+            android:gravity="top"
+            android:layout_alignParentTop="true">
+
+
+
+            <include layout="@layout/snippet_top_profilebar"/>
+
+
+
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/rl_home"
+        android:layout_gravity="top|end"
+        android:gravity="end"
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_settings"
+            android:layout_marginEnd="9dp"
+            android:layout_alignParentEnd="true"
+            android:layout_width="30dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_option_menu"
+            android:layout_height="30dp"
+            app:civ_border_color="@color/black"
+            />
+
+
+    </RelativeLayout>
 <RelativeLayout
+    android:layout_below="@+id/relLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -48,6 +89,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:indeterminate="false" />
+
+
+
 
 </RelativeLayout>
 

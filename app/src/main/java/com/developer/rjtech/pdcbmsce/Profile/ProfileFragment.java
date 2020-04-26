@@ -1,4 +1,4 @@
-package com.developer.rjtech.pdcbmsce.ResumeDeatailsSettings;
+package com.developer.rjtech.pdcbmsce.Profile;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -91,10 +92,11 @@ public class ProfileFragment extends Fragment {
         mFollowers = view.findViewById(R.id.tvFollowers);
         mFollowing = view.findViewById(R.id.tvFollowing);
         mProgressBar = view.findViewById(R.id.profileProgressBar);
-      //  gridView = view.findViewById(R.id.gridView);
+
         toolbar = view.findViewById(R.id.profileToolBar);
-        profileMenu = view.findViewById(R.id.profileMenu);
-       // bottomNavigationView = view.findViewById(R.id.bottomNavViewBar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        //profileMenu = view.findViewById(R.id.profileMenu);
+
         mContext = getActivity();
         mFirebaseMethods = new FirebaseMethods(getActivity());
         Log.d(TAG, "onCreateView: stared.");

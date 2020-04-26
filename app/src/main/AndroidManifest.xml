@@ -4,7 +4,7 @@
     package="com.developer.rjtech.pdcbmsce">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Include following permission if you want to cache images on SD card -->
-      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -14,16 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Companies.FilterActivity"></activity>
-        <activity android:name=".Home.AboutActivity"></activity>
-        <activity android:name=".Companies.SearchActivity">
+        <activity android:name=".Onboarding.OnboardingActivity"></activity>
+        <activity android:name=".OnboardActivty">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
 
         </activity>
-
-        <activity android:name=".BackupFiles.YearActivity">
-
-            </activity>
+        <activity android:name=".Companies.FilterActivity" />
+        <activity android:name=".Home.AboutActivity" />
+        <activity android:name=".Companies.SearchActivity"></activity>
+        <activity android:name=".BackupFiles.YearActivity"></activity>
         <activity android:name=".Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,15 +44,11 @@
         <activity android:name=".BackupFiles.CompanyListActivity" />
         <activity android:name=".Profile.DevelopersDetailsActivity" />
         <activity android:name=".PDFViewer.PdfActivity" />
-
-
         <activity
             android:name=".helper.MainResumeActivity"
             android:label="Resume"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
             android:name=".helper.EditActivity"
             android:parentActivityName=".helper.MainResumeActivity"
@@ -59,7 +58,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".helper.MainResumeActivity" />
         </activity>
-
     </application>
 
 </manifest>

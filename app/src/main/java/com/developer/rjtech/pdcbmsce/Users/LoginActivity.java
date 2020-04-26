@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.developer.rjtech.pdcbmsce.Common.Common;
 import com.developer.rjtech.pdcbmsce.Main.MainActivity;
+import com.developer.rjtech.pdcbmsce.Onboarding.OnboardingActivity;
 import com.developer.rjtech.pdcbmsce.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -178,7 +179,7 @@ public class LoginActivity extends AppCompatActivity {
                                             if(user.isEmailVerified()){
                                                 Log.d(TAG, "onComplete: success. email is verified.");
 
-                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                Intent intent = new Intent(LoginActivity.this, OnboardingActivity.class);
 
                                                 startActivity(intent);
                                             }else{
