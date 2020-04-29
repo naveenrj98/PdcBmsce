@@ -11,6 +11,7 @@ public class CompanyList {
     private String performanceBC;
     private String stipend;
     private String ccID;
+    private String ctc;
     private String depID;
     private String CGPA;
     private String EligibleDepartment;
@@ -55,6 +56,38 @@ public class CompanyList {
         this.jobDescription = jobDescription;
         this.jobLocation = jobLocation;
         this.noOfPeopleSelected = noOfPeopleSelected;
+    }
+
+    @Override
+    public String toString() {
+        return "CompanyList{" +
+                "Name='" + Name + '\'' +
+                ", Image='" + Image + '\'' +
+                ", duration='" + duration + '\'' +
+                ", noOfDays='" + noOfDays + '\'' +
+                ", performanceBC='" + performanceBC + '\'' +
+                ", stipend='" + stipend + '\'' +
+                ", ccID='" + ccID + '\'' +
+                ", ctc='" + ctc + '\'' +
+                ", depID='" + depID + '\'' +
+                ", CGPA='" + CGPA + '\'' +
+                ", EligibleDepartment='" + EligibleDepartment + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", dateOfVisit='" + dateOfVisit + '\'' +
+                ", jobDescription='" + jobDescription + '\'' +
+                ", jobLocation='" + jobLocation + '\'' +
+                ", noOfPeopleSelected='" + noOfPeopleSelected + '\'' +
+                ", pdfname='" + pdfname + '\'' +
+                ", pdfurl='" + pdfurl + '\'' +
+                '}';
+    }
+
+    public String getCtc() {
+        return ctc;
+    }
+
+    public void setCtc(String ctc) {
+        this.ctc = ctc;
     }
 
     public String getDepID() {
@@ -177,24 +210,4 @@ public class CompanyList {
         this.noOfPeopleSelected = noOfPeopleSelected;
     }
 
-    @Override
-    public String toString() {
-        return "CompanyList{" +
-                "Name='" + Name + '\'' +
-                ", Image='" + Image + '\'' +
-                ", duration='" + duration + '\'' +
-                ", noOfDays='" + noOfDays + '\'' +
-                ", performanceBC='" + performanceBC + '\'' +
-                ", stipend='" + stipend + '\'' +
-                ", ccID='" + ccID + '\'' +
-                ", depID='" + depID + '\'' +
-                ", CGPA='" + CGPA + '\'' +
-                ", EligibleDepartment='" + EligibleDepartment + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", dateOfVisit='" + dateOfVisit + '\'' +
-                ", jobDescription='" + jobDescription + '\'' +
-                ", jobLocation='" + jobLocation + '\'' +
-                ", noOfPeopleSelected='" + noOfPeopleSelected + '\'' +
-                '}';
-    }
 }

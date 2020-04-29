@@ -5,10 +5,14 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -16,6 +20,7 @@ import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.developer.rjtech.pdcbmsce.Firebase.FirebaseMethods;
 import com.developer.rjtech.pdcbmsce.R;
@@ -54,6 +59,8 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseMethods firebaseMethods;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+    private RelativeLayout rlayout;
+    private Animation animation;
 
     private String append = "";
     //Background Video
@@ -70,6 +77,13 @@ public class RegisterActivity extends AppCompatActivity {
         mContext = RegisterActivity.this;
         firebaseMethods = new FirebaseMethods(mContext);
         Log.d(TAG, "onCreate: started.");
+        Toolbar toolbar = findViewById(R.id.bgHeader);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        rlayout = findViewById(R.id.rlayout);
+        animation = AnimationUtils.loadAnimation(this,R.anim.uptodowndiagonal);
+        rlayout.setAnimation(animation);
 
         initWidgets();
         setupFirebaseAuth();
@@ -80,7 +94,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home :
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void init(){
         btnRegister.setOnClickListener(new View.OnClickListener() {

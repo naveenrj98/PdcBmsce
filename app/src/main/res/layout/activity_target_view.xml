@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    >
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relLayout1"
+        android:gravity="top"
+        android:layout_alignParentTop="true">
+
+
+
+        <include layout="@layout/snippet_top_toolbar"/>
+
+
+    </RelativeLayout>
+
+
+
+
+
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:mbn_circleColor="#ffffff"
+        app:mbn_backgroundBottomColor="#ffffff"
+        app:mbn_countBackgroundColor="#ff6f00"
+        app:mbn_countTextColor="#ffffff"
+        android:layout_alignParentBottom="true"
+
+
+        app:mbn_defaultIconColor="#90a4ae"
+        app:mbn_rippleColor="#2f424242"
+        app:mbn_selectedIconColor="#3c415e"
+        app:mbn_shadowColor="#1f212121" >
+
+
+
+
+    </com.etebarian.meowbottomnavigation.MeowBottomNavigation>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/btn_home"
+            android:src="@drawable/ic_home"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/news"
+            android:src="@drawable/ic_notification"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/coding"
+            android:src="@drawable/ic_codingclub"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/company"
+            android:background="@drawable/ic_business_black_24dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile"
+            android:src="@drawable/ic_account"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

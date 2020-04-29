@@ -14,19 +14,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Onboarding.OnboardingActivity"></activity>
+        <activity android:name=".Main.TargetViewActivity"></activity>
+        <activity android:name=".PDFViewer.JdActivity" />
+        <activity android:name=".SignOutActivity" />
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".Onboarding.OnboardingActivity" />
         <activity android:name=".OnboardActivty">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
 
         </activity>
         <activity android:name=".Companies.FilterActivity" />
         <activity android:name=".Home.AboutActivity" />
-        <activity android:name=".Companies.SearchActivity"></activity>
-        <activity android:name=".BackupFiles.YearActivity"></activity>
+        <activity android:name=".Companies.SearchActivity" />
+        <activity android:name=".BackupFiles.YearActivity" />
         <activity android:name=".Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Users.LoginActivity" />
+        <activity
+            android:name=".Users.LoginActivity"
+            android:theme="@style/AppTheme.FullScreen" />
         <activity android:name=".Users.RegisterActivity" />
         <activity android:name=".Profile.ProfileActivity" />
         <activity android:name=".Profile.AccountSettingsActivity" />
@@ -48,7 +56,7 @@
             android:name=".helper.MainResumeActivity"
             android:label="Resume"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".helper.EditActivity"
             android:parentActivityName=".helper.MainResumeActivity"

@@ -48,5 +48,11 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"/>
 
+    <TextView
+        android:id="@+id/tv_pdfview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+
 
 </com.rey.material.widget.RelativeLayout>

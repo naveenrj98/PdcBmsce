@@ -22,6 +22,7 @@ import androidx.cardview.widget.CardView;
 
 import com.developer.rjtech.pdcbmsce.Common.Common;
 import com.developer.rjtech.pdcbmsce.Model.CompanyCategory;
+import com.developer.rjtech.pdcbmsce.PDFViewer.JdActivity;
 import com.developer.rjtech.pdcbmsce.PDFViewer.PdfActivity;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.Model.Category;
@@ -49,8 +50,8 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
     private static final String TAG = "ComapnyDetails";
 
     //widgets
-    TextView company_name, tv_pdfView, tv_jobRole,tv_jobLocation,tv_DOV,tv_cgpa,tv_eligibleDep,tv_offers;
-    TextView tv_pdfname;
+    TextView company_name, tv_ctc, tv_jobRole,tv_jobLocation,tv_DOV,tv_cgpa,tv_eligibleDep,tv_offers;
+    TextView tv_pdfname, tv_jdname;
     TextView tv_stipend, tv_duration, tv_worktime, tv_jobtype;
     CircleImageView civ_linkedin, civ_glassdoor, civ_website;
     ImageView company_image;
@@ -79,19 +80,20 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_companies_detail);
 
         tv_jobRole = findViewById(R.id.tv_company_role);
+        tv_ctc = findViewById(R.id.tv_company_ctc);
         tv_jobLocation= findViewById(R.id.tv_jobLocation);
         tv_DOV = findViewById(R.id.tv_dateOfVisit);
         tv_cgpa=findViewById(R.id.tv_cgpa);
         tv_eligibleDep=findViewById(R.id.tv_eligibleDep);
         tv_offers = findViewById(R.id.tv_offers);
         tv_pdfname = findViewById(R.id.tv_pdfname);
+        tv_jdname = findViewById(R.id.tv_job_description);
         tv_stipend = findViewById(R.id.tv_stipend);
         tv_duration = findViewById(R.id.tv_duration);
         tv_jobtype = findViewById(R.id.tv_conversion);
         tv_worktime = findViewById(R.id.tv_worktime);
 
-        //method for calling on Click listener for dropdown in CardView
-        dropDown();
+
 
         //Auth
         database = FirebaseDatabase.getInstance();
@@ -103,6 +105,8 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
         company_name = findViewById(R.id.company_name);
         // Common.companySelected is id of selected company
         getDetailCompany(Common.companySelected);
+        //method for calling on Click listener for dropdown in CardView
+        dropDown();
         collapsingToolbarLayout = findViewById(R.id.collapsing);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
@@ -230,7 +234,7 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
         civ_linkedin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TODO something when floating action menu third item clicked
-                Intent linkedinIntent = getOpenLinkdinIntent(getApplicationContext(),linkedin);
+                Intent linkedinIntent = getOpenLinkedinIntent(getApplicationContext(),linkedin);
                 startActivity(linkedinIntent);
 
 
@@ -239,8 +243,8 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
         civ_glassdoor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TODO something when floating action menu third item clicked
-                Intent linkedinIntent = getOpenGlassDoorIntent(getApplicationContext(),glassdoor);
-                startActivity(linkedinIntent);
+                Intent glassdoorIntent = getOpenGlassDoorIntent(getApplicationContext(),glassdoor);
+                startActivity(glassdoorIntent);
 
 
             }
@@ -297,6 +301,7 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
 
                     tv_jobRole.setText(currentCompany.getRole());
                     tv_jobLocation.setText(currentCompany.getJoblocation());
+                    tv_ctc.setText(currentCompany.getCtc());
                     tv_DOV.setText(currentCompany.getVisitdate());
                     tv_cgpa.setText(currentCompany.getCgpa());
                     tv_eligibleDep.setText(currentCompany.getEligibledepartment());
@@ -353,13 +358,61 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
                 }
             });
 
+        companies.child(companyId).child("JobDescription").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                currentCompany = dataSnapshot.getValue(CompanyCategory.class);
+
+                tv_jdname.setText(currentCompany.getJdname());
+
+                tv_jdname.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(getApplicationContext(), JdActivity.class);
+                        intent.putExtra("companyID",companyId);
+                        startActivity(intent);
+
+                    }
+                });
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        companies.child(companyId).child("Links").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                currentCompany = dataSnapshot.getValue(CompanyCategory.class);
+
+                linkedin= currentCompany.getLinkedin();
+                website = currentCompany.getWebsite();
+                glassdoor = currentCompany.getGlassdoor();
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
 
         }
 
-    //-----------------LInks for Scial Media-----------------------------------------------------//
-    public static Intent getOpenLinkdinIntent(Context context,String linkedin) {
+    //-----------------LInks for Social Media-----------------------------------------------------//
+    public static Intent getOpenLinkedinIntent(Context context,String linkedin) {
 
         try {
             context.getPackageManager()
@@ -389,7 +442,7 @@ public class CompanyDetailsActivity extends AppCompatActivity  {
 
         try {
             context.getPackageManager()
-                    .getPackageInfo("com.google.android", 0); //Checks if YT is even installed.
+                    .getPackageInfo("com.glassdoor.android", 0); //Checks if YT is even installed.
             return new Intent(Intent.ACTION_VIEW,
                     Uri.parse(glassdoor)); //Trys to make intent with YT's URI
         } catch (Exception e) {

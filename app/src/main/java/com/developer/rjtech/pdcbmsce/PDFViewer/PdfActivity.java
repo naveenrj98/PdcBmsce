@@ -31,11 +31,11 @@ import java.net.URL;
 public class PdfActivity extends AppCompatActivity {
 
     PDFView pdfView;
-    TextView tv_pdfView,pleasewait;
+    TextView tv_pdfView,tv_pdfView1,pleasewait;
 
     //---------Menu ViewHolder--------
     FirebaseDatabase database;
-    DatabaseReference mref;
+    DatabaseReference mref,mrefJd;
     ProgressBar progressBar;
 
 
@@ -46,14 +46,17 @@ public class PdfActivity extends AppCompatActivity {
 
         pdfView = findViewById(R.id.pdfView);
         tv_pdfView = findViewById(R.id.tv_pdfview);
+
         progressBar = findViewById(R.id.pdf_progressBar);
         progressBar.setVisibility(View.VISIBLE);
         pleasewait = findViewById(R.id.pleaseWait);
         database = FirebaseDatabase.getInstance();
-        database = FirebaseDatabase.getInstance();
+
         String companyID = getIntent().getStringExtra("companyID");
         mref = database.getReference("CompanyYear").child(Common.yearSelected)
                 .child("details").child("Companies").child(companyID).child("InterviewProcess");
+
+
 
         mref.addValueEventListener(new ValueEventListener() {
 
@@ -62,7 +65,7 @@ public class PdfActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 progressBar.setVisibility(View.VISIBLE);
-                CompanyList value = dataSnapshot.getValue(CompanyList.class);
+                CompanyCategory value = dataSnapshot.getValue(CompanyCategory.class);
                 tv_pdfView.setText(value.getPdfurl());
                 String url = tv_pdfView.getText().toString();
                 new RetrivePdfStream().execute(url);
@@ -77,6 +80,8 @@ public class PdfActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
         class RetrivePdfStream extends AsyncTask<String,Void, InputStream> {
             @Override

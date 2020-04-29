@@ -294,6 +294,9 @@ SIgn In
     <string name="trainingTo0">20/07/2017</string>
     <string name="success_msg">Succesfully Created Resume! Click to Open</string>
     <string name="pref_previously_started">pref_previously_started</string>
+    <string name="disconect">Disconect</string>
+    <string name="logout">Logout</string>
+    <string name="loading">loding</string>
 
 
 </resources>

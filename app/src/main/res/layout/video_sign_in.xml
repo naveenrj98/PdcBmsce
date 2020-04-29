@@ -1,158 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/AppTheme.FullScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Users.LoginActivity">
+    tools:context=".SignInActivity"
+    tools:ignore="VectorDrawableCompat">
 
-
-
-       <VideoView
-           android:id="@+id/videoView"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           />
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/bgHeader"
         android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/header_login"
+        android:elevation="5dp" />
+
+    <TextView
+        android:id="@+id/tvDesc"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-
-        android:layout_margin="20dp"
-        android:background="@drawable/transparent_bg"
-        android:orientation="vertical"
-        android:padding="20dp"
-           android:paddingBottom="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PLACEMENT BMSCE"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textSize="20dp" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:elevation="5dp"
+        android:text="Welcome to BMSCE PLacement"
+        android:textColor="@color/colorWhite"
+        android:textSize="17sp" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:textColorHint="#ffffff">
-
-            <EditText
-                android:id="@+id/input_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:textColor="#ffffff" />
-
-            <TextView
-                android:id="@+id/pleaseWait"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="Please wait..."
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/progressBar" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:textColorHint="#ffffff">
-
-            <EditText
-                android:id="@+id/input_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textColor="#ffffff" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bgHeader">
 
         <RelativeLayout
-           android:background="@color/black"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout1"
+            android:layout_height="match_parent">
 
-
-           android:layout_marginTop="40dp"
-
-
-            android:orientation="horizontal"
-
-            >
-
-
-            <androidx.appcompat.widget.AppCompatButton
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="20dp"
-                android:id="@+id/btn_login"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="vertical"-->
+                <!--                    android:paddingBottom="50dp">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_margin="10dp"-->
+                <!--                        android:text="Username"-->
+                <!--                        android:textColor="@color/colorPurple"-->
+                <!--                        android:textSize="14sp"-->
+                <!--                        android:textStyle="bold" />-->
+
+                <!--                    <EditText-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="10dp"-->
+                <!--                        android:layout_marginRight="10dp"-->
+                <!--                        android:inputType="text" />-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_margin="10dp"-->
+                <!--                        android:text="Password"-->
+                <!--                        android:textColor="@color/colorPurple"-->
+                <!--                        android:textSize="14sp"-->
+                <!--                        android:textStyle="bold" />-->
+
+                <!--                    <EditText-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="10dp"-->
+                <!--                        android:layout_marginRight="10dp"-->
+                <!--                        android:inputType="textPassword" />-->
+                <!--                </LinearLayout>-->
+
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+
+                    android:layout_margin="20dp"
+
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:paddingBottom="50dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PLACEMENT BMSCE"
+                        android:textAlignment="center"
+
+                        android:textSize="20dp" />
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        >
+
+                        <EditText
+                            android:id="@+id/input_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Email"
+                            android:inputType="textEmailAddress"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        >
+
+                        <EditText
+                            android:id="@+id/input_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
+                android:layout_below="@+id/cv"
+                android:layout_alignLeft="@+id/cv"
+                android:layout_alignRight="@+id/cv"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="-60dp"
+                android:layout_marginRight="35dp"
+                android:elevation="10dp">
 
-                android:background="@drawable/white_rounded_button"
-                android:padding="12dp"
-                android:text="Login"
-                android:textColor="#ffffff" />
 
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_signup"
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_margin="20dp"
+                    android:id="@+id/btn_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+
+                    android:background="@drawable/bg_ui"
+                    android:padding="12dp"
+                    android:text="Login"
+                    android:textColor="#ffffff" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_signup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+
+                    android:layout_alignParentEnd="true"
+
+                    android:background="@drawable/bg_ui"
+                    android:padding="12dp"
+                    android:text="Sign UP"
+                    android:textColor="#ffffff" />
+
+
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:id="@+id/tvForgot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_below="@+id/cv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:elevation="5dp"
+                android:layout_alignParentRight="true"
+                android:text="Forgot your password?"
+                android:textSize="14sp" />
 
-                android:layout_alignParentEnd="true"
-
-                android:background="@drawable/white_rounded_button"
-                android:padding="12dp"
-                android:text="Sign UP"
-                android:textColor="#ffffff" />
-
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvForgot"
+                android:layout_alignLeft="@+id/cv"
+                android:layout_alignRight="@+id/cv"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bt_uifb"
+                android:drawableLeft="@drawable/logofacebook"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="LOGIN WITH Google"
+                android:textColor="@color/colorPurple" />
         </RelativeLayout>
+    </ScrollView>
 
+    <TextView
+        android:id="@+id/pleaseWait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-    </LinearLayout>
+        android:layout_centerInParent="true"
 
+        android:text="Please wait..."
+        android:textSize="20sp"
 
-
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="81dp"
         android:layout_height="77dp"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="132dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

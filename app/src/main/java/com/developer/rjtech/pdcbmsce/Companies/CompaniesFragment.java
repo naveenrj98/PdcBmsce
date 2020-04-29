@@ -22,6 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -64,18 +65,13 @@ public class CompaniesFragment extends Fragment {
     private RecyclerView recycler_list;
     private FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder> adptor;
 
-    //--------Search Functionality---------
 
-    String categoryId="";
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar progressBar;
 
 
     //--------Search Functionality---------
-    RecyclerView recycler_menu;
-    FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder> searchadptor;
-    List<String> suggestList = new ArrayList<>();
-    MaterialSearchBar materialSearchBar;
+    ImageView materialSearchBar;
 
 
     private TextView pleasewait, tv_year, tv_category, tv_department;
@@ -113,65 +109,6 @@ public class CompaniesFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-//        materialSearchBar = view.findViewById(R.id.search_new_bar);
-//        recycler_menu = view.findViewById(R.id.recycler_search);
-//        recycler_menu.setHasFixedSize(true);
-//        recycler_menu.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-//
-//
-//        loadSuggest();
-//        materialSearchBar.setLastSuggestions(suggestList);
-//        materialSearchBar.setCardViewElevation(10);
-//        materialSearchBar.addTextChangeListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//                List<String> suggest = new ArrayList<>();
-//                for (String search : suggestList) {
-//
-//                    if (search.toLowerCase().contains(materialSearchBar.getText().toLowerCase())) {
-//
-//                        suggest.add(search);
-//                    }
-//                    materialSearchBar.setLastSuggestions(suggest);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
-//
-//        materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
-//            @Override
-//            public void onSearchStateChanged(boolean enabled) {
-//                if (!enabled) {
-//                    recycler_menu.setAdapter(searchadptor);
-//                }
-//            }
-//
-//            @Override
-//            public void onSearchConfirmed(CharSequence text) {
-//
-//                starSearch(text);
-//
-//            }
-//
-//            @Override
-//            public void onButtonClicked(int buttonCode) {
-//
-//            }
-//        });
-//
-
 
 
         recycler_list = view.findViewById(R.id.recycler_menu);
@@ -228,82 +165,7 @@ public class CompaniesFragment extends Fragment {
     }
 
 
-    private void loadSuggest() {
 
-        clist.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-                    Category item = postSnapshot.getValue(Category.class);
-                    suggestList.add(item.getName());
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-
-    }
-    private void starSearch(CharSequence text) {
-
-        Query search = clist.orderByChild("name").equalTo(text.toString());
-
-        FirebaseRecyclerOptions<CompanyList> options = new FirebaseRecyclerOptions.Builder<CompanyList>()
-                .setQuery(search,CompanyList.class)
-                .build();
-
-
-        searchadptor = new FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull CompanyListViewHolder companyListViewHolder, int i, @NonNull CompanyList companyList) {
-                Picasso.with(getActivity()).load(companyList.getImage())
-                        .into(companyListViewHolder.imageView);
-                final CompanyList clickItem = companyList;
-                companyListViewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-
-                        Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
-                        //   getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-                        Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
-                        intent.putExtra("CategoryId", searchadptor.getRef(position).getKey());
-                        startActivity(intent);
-
-                    }
-                });
-
-
-
-            }
-
-            @NonNull
-            @Override
-            public CompanyListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-                View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.company_list_item, parent, false);
-                return new CompanyListViewHolder(itemView);
-
-
-            }
-        };
-        searchadptor.startListening();
-
-        recycler_menu.setAdapter(searchadptor);
-
-
-
-
-    }
 
 
 
@@ -369,7 +231,7 @@ public class CompaniesFragment extends Fragment {
                         Toast.makeText(getActivity(), "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
                         intent.putExtra("CategoryId", adptor.getRef(position).getKey());
-                      Common.companySelected = adptor.getRef(position).getKey();
+                        Common.companySelected = adptor.getRef(position).getKey();
                         startActivity(intent);
 
                     }
@@ -495,9 +357,7 @@ public class CompaniesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (searchadptor != null) {
-            searchadptor.startListening();
-        }
+
         loadListCompany();
     }
 
@@ -505,10 +365,7 @@ public class CompaniesFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        if(searchadptor!=null)
-        {
-            searchadptor.stopListening();
-        }
+
         adptor.stopListening();
     }
 

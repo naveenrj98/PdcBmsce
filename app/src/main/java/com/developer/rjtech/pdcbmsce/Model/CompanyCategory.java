@@ -6,8 +6,10 @@ public class CompanyCategory {
 
     private String name;
     private String image;
+    private String ctc;
     private String duration,jobtype,stipend,worktime;
     private String pdfname,pdfurl;
+    private String jdname,jdurl;
     private String cgpa,eligibledepartment,jobdescrition,joblocation,offers,role,visitdate;
     private String linkedin, glassdoor, website;
 
@@ -23,12 +25,15 @@ public class CompanyCategory {
         return "CompanyCategory{" +
                 "name='" + name + '\'' +
                 ", image='" + image + '\'' +
+                ", ctc='" + ctc + '\'' +
                 ", duration='" + duration + '\'' +
                 ", jobtype='" + jobtype + '\'' +
                 ", stipend='" + stipend + '\'' +
                 ", worktime='" + worktime + '\'' +
                 ", pdfname='" + pdfname + '\'' +
                 ", pdfurl='" + pdfurl + '\'' +
+                ", jdname='" + jdname + '\'' +
+                ", jdurl='" + jdurl + '\'' +
                 ", cgpa='" + cgpa + '\'' +
                 ", eligibledepartment='" + eligibledepartment + '\'' +
                 ", jobdescrition='" + jobdescrition + '\'' +
@@ -40,6 +45,30 @@ public class CompanyCategory {
                 ", glassdoor='" + glassdoor + '\'' +
                 ", website='" + website + '\'' +
                 '}';
+    }
+
+    public String getJdname() {
+        return jdname;
+    }
+
+    public void setJdname(String jdname) {
+        this.jdname = jdname;
+    }
+
+    public String getJdurl() {
+        return jdurl;
+    }
+
+    public void setJdurl(String jdurl) {
+        this.jdurl = jdurl;
+    }
+
+    public String getCtc() {
+        return ctc;
+    }
+
+    public void setCtc(String ctc) {
+        this.ctc = ctc;
     }
 
     public String getLinkedin() {

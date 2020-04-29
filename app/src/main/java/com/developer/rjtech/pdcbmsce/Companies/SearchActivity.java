@@ -45,7 +45,6 @@ public class SearchActivity extends AppCompatActivity {
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
     TextView textFullName;
-    FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder> adptor;
 
     //--------Search Functionality---------
     FirebaseRecyclerAdapter<CompanyList, CompanyListViewHolder> searchadptor;
@@ -181,6 +180,7 @@ public class SearchActivity extends AppCompatActivity {
                         //   getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
                         Intent intent = new Intent(getApplicationContext(), CompanyDetailsActivity.class);
                         intent.putExtra("CategoryId", searchadptor.getRef(position).getKey());
+                        Common.companySelected = searchadptor.getRef(position).getKey();
                         startActivity(intent);
 
                     }
