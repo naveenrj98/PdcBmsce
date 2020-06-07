@@ -21,7 +21,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.developer.rjtech.pdcbmsce.R;
 import com.developer.rjtech.pdcbmsce.Users.ContactUsFragment;
 import com.developer.rjtech.pdcbmsce.Utils.SectionsStatePagerAdapter;
-
 import java.util.ArrayList;
 
 
@@ -29,10 +28,6 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "AccountSettingsActivity";
     private static final int ACTIVITY_NUM = 4;
-
-
-
-
     private Context mContext;
     private SectionsStatePagerAdapter pagerAdapter;
     private ViewPager mViewPager;
@@ -48,7 +43,6 @@ public class AccountSettingsActivity extends AppCompatActivity {
         mRelativeLayout = findViewById(R.id.relLayout1);
 
         setupSettingsList();
-
         setupFragments();
         getIncomingIntent();
 
@@ -75,7 +69,6 @@ public class AccountSettingsActivity extends AppCompatActivity {
     private void setupFragments(){
         pagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new EditProfileFragment(), getString(R.string.edit_profile_fragment)); //fragment 0
-
         pagerAdapter.addFragment(new DeveloperListFragment(), "Developers"); //fragment 1
         pagerAdapter.addFragment(new ContactUsFragment(), "Contact Us"); //fragment 2
         pagerAdapter.addFragment(new SignOutFragment(), getString(R.string.sign_out_fragment)); //fragment 3
@@ -95,7 +88,6 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
         ArrayList<String> options = new ArrayList<>();
         options.add(getString(R.string.edit_profile_fragment)); //fragment 0
-
         options.add("Developers"); //fragement 1
         options.add("Contact Us"); //fragement 2
         options.add(getString(R.string.sign_out_fragment)); //fragement 3
